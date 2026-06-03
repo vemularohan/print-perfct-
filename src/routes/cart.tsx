@@ -7,9 +7,9 @@ import { GradientPlaceholder } from "@/components/ui/gradient-placeholder";
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
-      { title: "Your Cart — VistaPrint India" },
+      { title: "Your Cart — PrintPerfect" },
       { name: "description", content: "Review and check out your custom printing order." },
-      { property: "og:title", content: "Your Cart — VistaPrint India" },
+      { property: "og:title", content: "Your Cart — PrintPerfect" },
       { property: "og:description", content: "Review your cart and complete your order." },
     ],
   }),

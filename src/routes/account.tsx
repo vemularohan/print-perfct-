@@ -6,10 +6,10 @@ import { GradientPlaceholder } from "@/components/ui/gradient-placeholder";
 export const Route = createFileRoute("/account")({
   head: () => ({
     meta: [
-      { title: "My Account — VistaPrint India" },
+      { title: "My Account — PrintPerfect" },
       { name: "description", content: "View orders, saved projects, addresses and account settings." },
-      { property: "og:title", content: "My Account — VistaPrint India" },
-      { property: "og:description", content: "Your VistaPrint dashboard." },
+      { property: "og:title", content: "My Account — PrintPerfect" },
+      { property: "og:description", content: "Your PrintPerfect dashboard." },
     ],
   }),
   component: AccountPage,

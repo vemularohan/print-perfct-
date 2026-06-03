@@ -5,10 +5,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export const Route = createFileRoute("/help-centre")({
   head: () => ({
     meta: [
-      { title: "Help Centre — VistaPrint India" },
+      { title: "Help Centre — PrintPerfect" },
       { name: "description", content: "Find answers about orders, design, payment, delivery and returns. Or contact our support team." },
-      { property: "og:title", content: "Help Centre — VistaPrint India" },
-      { property: "og:description", content: "Answers and support for VistaPrint customers." },
+      { property: "og:title", content: "Help Centre — PrintPerfect" },
+      { property: "og:description", content: "Answers and support for PrintPerfect customers." },
     ],
   }),
   component: HelpCentre,
@@ -71,7 +71,7 @@ function HelpCentre() {
           {[
             { Icon: Phone, title: "Call us", body: "02522-669393", sub: "Mon–Sat 9am–6pm" },
             { Icon: MessageCircle, title: "Live chat", body: "Start chat", sub: "Avg wait under 2 min" },
-            { Icon: Mail, title: "Email support", body: "help@vistaprint.in", sub: "Replies within 24 hours" },
+            { Icon: Mail, title: "Email support", body: "help@printperfect.in", sub: "Replies within 24 hours" },
           ].map(({ Icon, title, body, sub }) => (
             <div key={title} className="flex items-start gap-4 p-5 rounded-xl bg-card shadow-card">
               <span className="h-10 w-10 rounded-full bg-primary/10 text-primary inline-flex items-center justify-center shrink-0">

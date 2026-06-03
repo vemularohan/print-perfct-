@@ -61,7 +61,7 @@ export function Header() {
               <span className="absolute inset-0 rounded-md bg-secondary -rotate-6 opacity-80" />
               <span className="absolute inset-1.5 rounded-sm bg-background" />
             </div>
-            <span className="text-xl font-bold text-primary tracking-tight">VistaPrint</span>
+            <span className="text-xl font-bold text-primary tracking-tight">PrintPerfect</span>
           </Link>
 
           <div className="hidden md:flex flex-1 max-w-2xl mx-2">

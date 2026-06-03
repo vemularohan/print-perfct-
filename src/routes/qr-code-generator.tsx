@@ -7,9 +7,9 @@ import { CATEGORIES } from "@/data/categories";
 export const Route = createFileRoute("/qr-code-generator")({
   head: () => ({
     meta: [
-      { title: "Free QR Code Generator — VistaPrint India" },
+      { title: "Free QR Code Generator — PrintPerfect" },
       { name: "description", content: "Generate free QR codes for URLs, text, contacts and Wi-Fi. Download as PNG or SVG and print on cards, posters and stickers." },
-      { property: "og:title", content: "Free QR Code Generator — VistaPrint India" },
+      { property: "og:title", content: "Free QR Code Generator — PrintPerfect" },
       { property: "og:description", content: "Create and download QR codes for free." },
     ],
   }),
@@ -24,7 +24,7 @@ const PRINT_LINKS = [
 ];
 
 function QrPage() {
-  const [text, setText] = useState("https://vistaprint.in");
+  const [text, setText] = useState("https://printperfect.in");
   const [pngUrl, setPngUrl] = useState<string>("");
   const [svg, setSvg] = useState<string>("");
   const canvasRef = useRef<HTMLCanvasElement>(null);

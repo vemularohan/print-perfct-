@@ -6,9 +6,9 @@ import { FadeIn } from "@/components/ui/fade-in";
 export const Route = createFileRoute("/logomaker")({
   head: () => ({
     meta: [
-      { title: "Free Logo Maker — VistaPrint India" },
+      { title: "Free Logo Maker — PrintPerfect" },
       { name: "description", content: "Create a professional business logo for free. Choose a template, customise colours and text, download instantly." },
-      { property: "og:title", content: "Free Logo Maker — VistaPrint India" },
+      { property: "og:title", content: "Free Logo Maker — PrintPerfect" },
       { property: "og:description", content: "Hundreds of templates. Fully customisable. Download in PNG or SVG." },
     ],
   }),

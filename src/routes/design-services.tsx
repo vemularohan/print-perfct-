@@ -6,9 +6,9 @@ import { FadeIn } from "@/components/ui/fade-in";
 export const Route = createFileRoute("/design-services")({
   head: () => ({
     meta: [
-      { title: "Professional Design Services — VistaPrint India" },
+      { title: "Professional Design Services — PrintPerfect" },
       { name: "description", content: "Hire expert designers for logos, business cards, banners and more. Briefs delivered in 48 hours." },
-      { property: "og:title", content: "Professional Design Services — VistaPrint India" },
+      { property: "og:title", content: "Professional Design Services — PrintPerfect" },
       { property: "og:description", content: "Let our experts handle your brand design." },
     ],
   }),

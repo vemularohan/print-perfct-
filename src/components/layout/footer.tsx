@@ -46,7 +46,7 @@ export function Footer() {
               <span className="absolute inset-0 rounded-md bg-secondary rotate-6" />
               <span className="absolute inset-0 rounded-md bg-accent -rotate-6 opacity-80" />
             </div>
-            <span className="text-xl font-bold tracking-tight">VistaPrint</span>
+            <span className="text-xl font-bold tracking-tight">PrintPerfect</span>
           </Link>
           <p className="mt-4 text-sm opacity-80 max-w-xs">
             Helping small businesses look professional with custom printing, design and merchandise.
@@ -74,7 +74,7 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col md:flex-row items-center justify-between gap-3 py-5 text-xs opacity-80">
-          <p>© 2026 VistaPrint India. All rights reserved.</p>
+          <p>© 2026 PrintPerfect. All rights reserved.</p>
           <div className="flex items-center gap-2">
             {["VISA", "MC", "UPI", "PhonePe", "Razorpay"].map((p) => (
               <span key={p} className="px-2.5 py-1 rounded bg-white/10 font-medium tracking-wide">{p}</span>

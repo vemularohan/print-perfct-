@@ -77,10 +77,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "VistaPrint India — Custom Printing, Merchandise & Design" },
+      { title: "PrintPerfect — Custom Printing, Merchandise & Design" },
       { name: "description", content: "Custom visiting cards, t-shirts, signs, stationery and more. Fast delivery across India with quality you can trust." },
-      { name: "author", content: "VistaPrint" },
-      { property: "og:title", content: "VistaPrint India — Custom Printing & Merchandise" },
+      { name: "author", content: "PrintPerfect" },
+      { property: "og:title", content: "PrintPerfect — Custom Printing & Merchandise" },
       { property: "og:description", content: "Custom printing, merchandise and design services for small businesses across India." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

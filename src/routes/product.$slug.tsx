@@ -22,7 +22,7 @@ export const Route = createFileRoute("/product/$slug")({
     if (!p) return {};
     return {
       meta: [
-        { title: `${p.name} — VistaPrint India` },
+        { title: `${p.name} — PrintPerfect` },
         { name: "description", content: p.description },
         { property: "og:title", content: p.name },
         { property: "og:description", content: p.description },

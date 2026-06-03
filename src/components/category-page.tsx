@@ -117,7 +117,7 @@ export function CategoryPage({ category }: { category: Category }) {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="why">
-              <AccordionTrigger className="text-base font-semibold">Why choose VistaPrint?</AccordionTrigger>
+              <AccordionTrigger className="text-base font-semibold">Why choose PrintPerfect?</AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
                 We combine premium materials, sharp colour reproduction and dependable turnaround — backed by a satisfaction guarantee.
               </AccordionContent>
