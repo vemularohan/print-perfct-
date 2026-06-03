@@ -1,0 +1,1 @@
+import{j as o,b as t}from"./index-Dp83HdwB.js";import{C as r}from"./category-page-CkYsG9L8.js";import"./product-card-CMCtvxCE.js";import"./gradient-placeholder-Cx_0ZBay.js";import"./fade-in-D-t2qg0Y.js";import"./accordion-m5KAsZ6u.js";import"./chevron-right-le_C0HJg.js";const c=()=>o.jsx(r,{category:t});export{c as component};

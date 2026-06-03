@@ -1,1 +1,0 @@
-import{j as n,L as o}from"./index-CoX8iZlS.js";const e=()=>n.jsxs("div",{className:"container-page py-24 text-center",children:[n.jsx("h1",{children:"Product not found"}),n.jsx(o,{to:"/",className:"text-primary mt-4 inline-block",children:"Back home"})]});export{e as notFoundComponent};
