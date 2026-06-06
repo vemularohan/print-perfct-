@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Star } from "lucide-react";
-import { GradientPlaceholder } from "@/components/ui/gradient-placeholder";
 import type { Product } from "@/data/products";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -10,8 +9,13 @@ export function ProductCard({ product }: { product: Product }) {
       params={{ slug: product.slug }}
       className="group block rounded-xl bg-card shadow-card hover:shadow-card-hover transition-all duration-200 hover:-translate-y-0.5 overflow-hidden"
     >
-      <div className="relative">
-        <GradientPlaceholder name={product.name} ratio="4-5" label="" />
+      <div className="relative aspect-[4/5] bg-muted overflow-hidden">
+        <img
+          src={`/images/${product.slug}.png`}
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
         <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-primary-foreground px-3 py-1 text-xs font-semibold shadow">
           {product.pricePill}
         </span>

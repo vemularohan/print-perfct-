@@ -26,13 +26,15 @@ const SLIDES = [
     eyebrow: "Top deal",
     title: "100 Visiting Cards at ₹200",
     sub: "Fast delivery. Professional quality. Designed in minutes.",
+    image: "/images/standard-visiting-cards.png",
     cta: { label: "Shop Now", to: "/business-cards" as const },
   },
   {
     bg: "linear-gradient(135deg, hsl(220 50% 18%), hsl(205 60% 30%))",
     eyebrow: "New for monsoon",
     title: "Look Professional with Custom Rainwear",
-    sub: "Branded umbrellas and raincoats starting at ₹655.",
+    sub: "Branded umbrellas starting at ₹655.",
+    image: "/images/umbrellas.png",
     ctaA: { label: "Umbrellas", to: "/photo-gifts" as const },
     ctaB: { label: "Raincoats", to: "/clothing-bags" as const },
   },
@@ -55,26 +57,35 @@ function HeroCarousel() {
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.2),transparent_60%)]" />
             <div className="container-page h-full flex items-center relative">
-              <div className="max-w-xl text-white">
-                <p className="uppercase tracking-widest text-xs font-semibold opacity-80 mb-3">{s.eyebrow}</p>
-                <h1 className="text-white mb-4">{s.title}</h1>
-                <p className="text-lg opacity-90 mb-7">{s.sub}</p>
-                <div className="flex flex-wrap gap-3">
-                  {"cta" in s && s.cta ? (
-                    <Link to={s.cta.to} className="btn-primary flex items-center gap-2 !bg-white !text-primary">
-                      {s.cta.label} <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  ) : null}
-                  {"ctaA" in s && s.ctaA ? (
-                    <Link to={s.ctaA.to} className="btn-secondary !border-white !text-white hover:!bg-white/10">
-                      {s.ctaA.label}
-                    </Link>
-                  ) : null}
-                  {"ctaB" in s && s.ctaB ? (
-                    <Link to={s.ctaB.to} className="btn-secondary !border-white !text-white hover:!bg-white/10">
-                      {s.ctaB.label}
-                    </Link>
-                  ) : null}
+              <div className="grid md:grid-cols-2 gap-8 items-center w-full text-white">
+                <div>
+                  <p className="uppercase tracking-widest text-xs font-semibold opacity-80 mb-3">{s.eyebrow}</p>
+                  <h1 className="text-white mb-4 text-3xl md:text-5xl font-bold leading-tight">{s.title}</h1>
+                  <p className="text-lg opacity-90 mb-7">{s.sub}</p>
+                  <div className="flex flex-wrap gap-3">
+                    {"cta" in s && s.cta ? (
+                      <Link to={s.cta.to} className="btn-primary flex items-center gap-2 !bg-white !text-primary">
+                        {s.cta.label} <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    ) : null}
+                    {"ctaA" in s && s.ctaA ? (
+                      <Link to={s.ctaA.to} className="btn-primary flex items-center gap-2 !bg-white !text-primary">
+                        {s.ctaA.label} <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    ) : null}
+                    {"ctaB" in s && s.ctaB ? (
+                      <Link to={s.ctaB.to} className="btn-secondary !border-white !text-white hover:!bg-white/10">
+                        {s.ctaB.label}
+                      </Link>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="hidden md:flex justify-center items-center h-full max-h-[380px]">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="max-h-[360px] w-auto object-contain rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
               </div>
             </div>

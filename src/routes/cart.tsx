@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Trash2, Minus, Plus, ShoppingBag } from "lucide-react";
 import { PRODUCTS } from "@/data/products";
-import { GradientPlaceholder } from "@/components/ui/gradient-placeholder";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -57,8 +56,12 @@ function CartPage() {
         <div className="space-y-4">
           {items.map(({ line, product }) => (
             <div key={product.slug} className="flex gap-4 p-4 rounded-xl border border-border bg-card">
-              <div className="w-24 shrink-0">
-                <GradientPlaceholder name={product.name} ratio="square" label="" />
+              <div className="w-24 shrink-0 aspect-square rounded-lg overflow-hidden bg-muted border border-border">
+                <img
+                  src={`/images/${product.slug}.png`}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="flex-1 min-w-0">
                 <Link to="/product/$slug" params={{ slug: product.slug }} className="font-medium hover:text-primary">

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Star, Heart, Lock, RotateCcw, ShieldCheck, Truck, ChevronRight } from "lucide-react";
 import { getProduct, getRelated, type Product } from "@/data/products";
 import { CONST_REVIEWS } from "@/data/products-with-reviews";
-import { GradientPlaceholder } from "@/components/ui/gradient-placeholder";
 import { ProductCard } from "@/components/product-card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -70,6 +69,14 @@ function ProductDetail() {
   const [finish, setFinish] = useState(product.finishes[0]);
   const original = Math.round(product.priceFromInr * 1.4);
 
+  const images = [
+    { src: `/images/${product.slug}.png`, label: "Main View", className: "object-cover" },
+    { src: `/images/${product.slug}.png`, label: "Close Up", className: "object-cover scale-150 origin-center" },
+    { src: `/images/${product.slug}.png`, label: "Fit View", className: "object-contain bg-neutral-50 p-6" },
+    { src: `/images/${product.slug}.png`, label: "Angle View", className: "object-cover scale-125 origin-top-left" },
+  ];
+  const [selectedImage, setSelectedImage] = useState(images[0]);
+
   return (
     <div>
       <div className="container-page pt-8">
@@ -88,10 +95,28 @@ function ProductDetail() {
 
       <div className="container-page py-10 grid lg:grid-cols-2 gap-10">
         <div>
-          <GradientPlaceholder name={product.name} ratio="square" label="" />
+          <div className="relative aspect-square bg-muted rounded-xl overflow-hidden border border-border shadow-sm">
+            <img
+              src={selectedImage.src}
+              alt={product.name}
+              className={`w-full h-full transition-all duration-500 ${selectedImage.className}`}
+            />
+          </div>
           <div className="grid grid-cols-4 gap-3 mt-3">
-            {[0, 1, 2, 3].map((i) => (
-              <GradientPlaceholder key={i} name={`${product.name}-${i}`} ratio="square" label="" />
+            {images.map((img, i) => (
+              <button
+                key={i}
+                onClick={() => setSelectedImage(img)}
+                className={`relative aspect-square rounded-lg overflow-hidden border bg-muted transition-all ${
+                  selectedImage.label === img.label ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-primary/50"
+                }`}
+              >
+                <img
+                  src={img.src}
+                  alt={`${product.name} - ${img.label}`}
+                  className={`w-full h-full ${img.className}`}
+                />
+              </button>
             ))}
           </div>
         </div>
