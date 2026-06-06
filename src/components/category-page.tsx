@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "@tanstack/react-router";
 import { ChevronRight, SlidersHorizontal } from "lucide-react";
 import type { Category } from "@/data/categories";
 import { getProductsByCategory } from "@/data/products";
@@ -11,8 +11,22 @@ import {
 
 export function CategoryPage({ category }: { category: Category }) {
   const products = getProductsByCategory(category.slug);
+  const location = useLocation();
   const [active, setActive] = useState<string>("View All");
   const [showFilters, setShowFilters] = useState(false);
+
+  // React to search parameter changes
+  useEffect(() => {
+    try {
+      const sp = new URLSearchParams(location.search);
+      const sub = sp.get("sub");
+      if (sub && category.subCategories.includes(sub)) {
+        setActive(sub);
+      } else {
+        setActive("View All");
+      }
+    } catch {}
+  }, [location.search, category.subCategories]);
 
   const filtered = active === "View All" ? products : products.filter((p) => p.subCategory === active);
 
@@ -61,28 +75,21 @@ export function CategoryPage({ category }: { category: Category }) {
                 <span>₹100</span><span>₹5,000</span>
               </div>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold mb-3">Sort by</h3>
-              <select className="w-full text-sm rounded-md border border-border px-3 py-2 bg-background">
-                <option>Most Popular</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-              </select>
-            </div>
+            <FilterGroup title="Sort by" options={["Most Popular", "Price: Low to High", "Price: High to Low"]} isSelect />
           </div>
         </aside>
 
         <div>
-          <div className="flex items-center justify-between mb-5">
-            <p className="text-sm text-muted-foreground">{filtered.length} products</p>
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-border/50">
+            <h2 className="text-xl font-bold tracking-tight">{active} <span className="text-muted-foreground font-normal ml-2">({filtered.length})</span></h2>
             <button
               onClick={() => setShowFilters(true)}
-              className="lg:hidden inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md border border-border"
+              className="lg:hidden btn-secondary !px-4 !py-2 inline-flex items-center gap-2"
             >
               <SlidersHorizontal className="h-4 w-4" /> Filters
             </button>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {filtered.map((p, i) => (
               <FadeIn key={p.slug} delay={i * 0.03}>
                 <ProductCard product={p} />
@@ -157,15 +164,27 @@ export function CategoryPage({ category }: { category: Category }) {
   );
 }
 
-function FilterGroup({ title, options }: { title: string; options: string[] }) {
+function FilterGroup({ title, options, isSelect }: { title: string; options: string[]; isSelect?: boolean }) {
+  if (isSelect) {
+    return (
+      <div>
+        <h3 className="text-sm font-bold text-foreground mb-3">{title}</h3>
+        <select className="w-full text-sm rounded-lg border border-border px-3 py-2.5 bg-background focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+          {options.map((o) => (
+            <option key={o}>{o}</option>
+          ))}
+        </select>
+      </div>
+    );
+  }
   return (
     <div>
-      <h3 className="text-sm font-semibold mb-3">{title}</h3>
-      <div className="space-y-2">
+      <h3 className="text-sm font-bold text-foreground mb-3">{title}</h3>
+      <div className="space-y-2.5">
         {options.map((o) => (
-          <label key={o} className="flex items-center gap-2 text-sm cursor-pointer">
-            <input type="checkbox" className="rounded border-border text-primary focus:ring-primary" />
-            <span className="text-muted-foreground">{o}</span>
+          <label key={o} className="flex items-center gap-3 text-sm cursor-pointer group">
+            <input type="checkbox" className="h-4 w-4 rounded border-border text-primary focus:ring-primary accent-primary" />
+            <span className="text-muted-foreground group-hover:text-foreground transition-colors">{o}</span>
           </label>
         ))}
       </div>

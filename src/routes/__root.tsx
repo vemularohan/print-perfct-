@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 
 function NotFoundComponent() {
   return (
@@ -99,7 +100,8 @@ function RootComponent() {
       <HeadContent />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1">
+        <CookieBanner />
+        <main id="main" className="flex-1">
           <Outlet />
         </main>
         <Footer />

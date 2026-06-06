@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Search, Heart, User, ShoppingCart, FolderOpen, Phone, X, Menu, ChevronDown } from "lucide-react";
+import { Search, Heart, User, ShoppingCart, FolderOpen, Phone, X, Menu, ChevronDown, ChevronRight } from "lucide-react";
 import { CATEGORIES, NAV_TABS } from "@/data/categories";
 import { cn } from "@/lib/utils";
 
@@ -41,7 +41,7 @@ export function Header() {
               <Link to="/help-centre" className="hidden md:inline-flex items-center gap-1.5 hover:underline">
                 <Phone className="h-3.5 w-3.5" /> 02522-669393
               </Link>
-              <button onClick={() => setPromoOpen(false)} aria-label="Dismiss promo" className="opacity-80 hover:opacity-100">
+              <button type="button" onClick={() => setPromoOpen(false)} aria-label="Dismiss promo" className="opacity-80 hover:opacity-100">
                 <X className="h-3.5 w-3.5" />
               </button>
             </div>
@@ -51,7 +51,7 @@ export function Header() {
 
       <div className="border-b border-border bg-background shadow-sm">
         <div className="container-page flex items-center gap-4 py-4">
-          <button className="lg:hidden p-2 -ml-2" onClick={() => setMobileOpen(true)} aria-label="Open menu">
+          <button type="button" className="lg:hidden p-2 -ml-2" onClick={() => setMobileOpen(true)} aria-label="Open menu">
             <Menu className="h-6 w-6" />
           </button>
 
@@ -64,16 +64,18 @@ export function Header() {
             <span className="text-xl font-bold text-primary tracking-tight">PrintPerfect</span>
           </Link>
 
-          <div className="hidden md:flex flex-1 max-w-2xl mx-2">
-            <div className="flex w-full rounded-lg overflow-hidden border border-border focus-within:border-primary transition-colors">
-              <input
-                type="text"
-                placeholder="Search for products, designs and more..."
-                className="flex-1 px-4 py-2.5 text-sm bg-background focus:outline-none"
-              />
-              <button className="bg-primary text-primary-foreground px-5 inline-flex items-center justify-center hover:bg-primary/90" aria-label="Search">
-                <Search className="h-4 w-4" />
-              </button>
+          <div className="hidden md:flex flex-1 max-w-3xl mx-8 items-center">
+            <div className="flex-1 max-w-2xl">
+              <div className="flex w-full rounded-full overflow-hidden border border-border focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all bg-surface">
+                <input
+                  type="text"
+                  placeholder="Search for visiting cards, t-shirts, gifts..."
+                  className="flex-1 px-5 py-2.5 text-sm bg-transparent focus:outline-none"
+                />
+                <button className="bg-primary text-primary-foreground px-6 inline-flex items-center justify-center hover:bg-primary/90 transition-colors" aria-label="Search">
+                  <Search className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -95,44 +97,88 @@ export function Header() {
           </nav>
         </div>
 
-        <div ref={wrapRef} className="relative border-t border-border hidden lg:block">
-          <div className="container-page">
-            <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
-              {NAV_TABS.map((tab) => {
+        <div ref={wrapRef} className="relative border-t border-border hidden lg:block overflow-visible">
+          <div className="container-page overflow-visible">
+            <div className="flex items-center justify-between overflow-visible">
+              {NAV_TABS.map((tab, idx) => {
                 const category = CATEGORIES.find((c) => c.route === tab.to);
                 const isOpen = openTab === tab.label;
+                // Move dropdown to the right if it's near the end of the list
+                const isNearEnd = idx > NAV_TABS.length - 3;
                 return (
-                  <div key={tab.label} className="relative">
-                    <Link
-                      to={tab.to}
-                      onMouseEnter={() => category && setOpenTab(tab.label)}
-                      activeProps={{ className: "text-primary" }}
-                      activeOptions={{ exact: tab.to === "/" }}
-                      className="inline-flex items-center gap-1 whitespace-nowrap px-3 py-3 text-sm font-medium text-foreground hover:text-primary transition-colors"
-                    >
-                      {tab.label}
-                      {category ? <ChevronDown className="h-3 w-3 opacity-60" /> : null}
-                    </Link>
+                  <div
+                    key={tab.label}
+                    className="relative"
+                    onMouseEnter={() => category && setOpenTab(tab.label)}
+                    onFocus={() => category && setOpenTab(tab.label)}
+                    onMouseLeave={() => setOpenTab(null)}
+                  >
+                    <div className="relative inline-flex items-center">
+                      <Link
+                        to={tab.to}
+                        activeProps={{ className: "text-primary font-semibold" }}
+                        activeOptions={{ exact: tab.to === "/" }}
+                        className="inline-flex items-center gap-1 whitespace-nowrap px-2 xl:px-3 text-[13px] xl:text-[14px] py-4 font-medium text-foreground hover:text-primary transition-colors focus:outline-none"
+                      >
+                        {tab.label}
+                      </Link>
+                      {tab.label === "Clothing & Bags" && (
+                        <span className="absolute -top-1 right-0 bg-destructive text-white text-[7px] font-bold px-1 py-0.5 rounded-sm animate-pulse pointer-events-none shadow-sm">HOT</span>
+                      )}
+                      {category ? (
+                        <button
+                          type="button"
+                          aria-expanded={openTab === tab.label}
+                          aria-haspopup="menu"
+                          onClick={() => setOpenTab((v) => (v === tab.label ? null : tab.label))}
+                          className="p-1 -ml-1.5 rounded-md hover:bg-muted hidden lg:inline-flex opacity-40 hover:opacity-100 transition-opacity"
+                        >
+                          <ChevronDown className="h-3 w-3" />
+                        </button>
+                      ) : null}
+                    </div>
                     {category && isOpen ? (
                       <div
+                        onMouseEnter={() => setOpenTab(tab.label)}
                         onMouseLeave={() => setOpenTab(null)}
-                        className="absolute left-0 top-full mt-0 w-[640px] bg-card shadow-card-hover rounded-b-xl border border-border p-6 z-50 animate-in fade-in slide-in-from-top-2"
+                        role="menu"
+                        aria-label={`${category.name} menu`}
+                        className={cn(
+                          "absolute top-full mt-0 w-[450px] bg-white shadow-2xl rounded-b-xl border-x border-b border-border p-6 z-[100] animate-in fade-in slide-in-from-top-1 duration-200",
+                          isNearEnd ? "right-0" : "left-1/2 -translate-x-1/2"
+                        )}
                       >
-                        <div className="grid grid-cols-3 gap-x-6 gap-y-2">
-                          {category.subCategories.map((sub) => (
-                            <Link
-                              key={sub}
-                              to={category.route}
-                              onClick={() => setOpenTab(null)}
-                              className="text-sm text-muted-foreground hover:text-primary py-1.5"
-                            >
-                              {sub}
-                            </Link>
-                          ))}
+                        <div className="flex gap-8">
+                          <div className="flex-1">
+                            <h4 className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-4">Categories</h4>
+                            <div className="grid grid-cols-2 gap-x-6 gap-y-1">
+                              {category.subCategories.map((sub) => (
+                                <Link
+                                  key={sub}
+                                  to={category.route as any}
+                                  search={{ sub } as any}
+                                  onClick={() => setOpenTab(null)}
+                                  className="text-sm text-foreground hover:text-primary hover:translate-x-1 transition-all py-1.5 flex items-center gap-2 group/item"
+                                >
+                                  <span className="h-1 w-1 rounded-full bg-border group-hover/item:bg-primary transition-colors" />
+                                  {sub}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="w-40 shrink-0 border-l border-border pl-8">
+                             <h4 className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-4">Featured</h4>
+                             <Link to={category.route} className="block group/feat">
+                                <div className="aspect-square bg-muted rounded-lg mb-2 flex items-center justify-center overflow-hidden">
+                                  <span className="text-2xl opacity-20 group-hover/feat:scale-110 transition-transform">✨</span>
+                                </div>
+                                <p className="text-xs font-semibold group-hover:text-primary transition-colors">Best Sellers</p>
+                             </Link>
+                          </div>
                         </div>
-                        <div className="mt-4 pt-4 border-t border-border">
-                          <Link to={category.route} onClick={() => setOpenTab(null)} className="text-sm font-semibold text-primary hover:underline">
-                            Shop all {category.name} →
+                        <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
+                          <Link to={category.route} onClick={() => setOpenTab(null)} className="text-sm font-bold text-primary hover:underline flex items-center gap-1">
+                            Shop All {category.name} <ChevronRight className="h-4 w-4" />
                           </Link>
                         </div>
                       </div>
@@ -159,26 +205,39 @@ export function Header() {
         >
           <div className="flex items-center justify-between p-4 border-b border-border">
             <span className="font-bold text-primary text-lg">Menu</span>
-            <button onClick={() => setMobileOpen(false)} aria-label="Close">
+            <button type="button" onClick={() => setMobileOpen(false)} aria-label="Close">
               <X className="h-5 w-5" />
             </button>
           </div>
           <nav className="p-2">
-            {NAV_TABS.map((tab) => (
-              <Link
-                key={tab.label}
-                to={tab.to}
-                onClick={() => setMobileOpen(false)}
-                className="block px-3 py-3 text-sm font-medium border-b border-border hover:bg-muted"
-              >
-                {tab.label}
-              </Link>
-            ))}
-            <div className="grid grid-cols-2 gap-2 p-3">
-              <Link to="/login" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md bg-muted text-center text-sm">Account</Link>
-              <Link to="/cart" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md bg-primary text-primary-foreground text-center text-sm">Cart</Link>
-            </div>
+            {NAV_TABS.map((tab) => {
+              const category = CATEGORIES.find((c) => c.route === tab.to);
+              return (
+                <div key={tab.label} className="border-b border-border">
+                  <Link
+                    to={tab.to}
+                    onClick={() => setMobileOpen(false)}
+                    className="block px-3 py-3 text-sm font-medium hover:bg-muted"
+                  >
+                    {tab.label}
+                  </Link>
+                  {category ? (
+                    <div className="pl-4 pb-2">
+                      {category.subCategories.map((s) => (
+                        <Link key={s} to={category.route as any} search={{ sub: s } as any} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary">
+                          {s}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
           </nav>
+          <div className="grid grid-cols-2 gap-2 p-3">
+            <Link to="/login" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md bg-muted text-center text-sm">Account</Link>
+            <Link to="/cart" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md bg-primary text-primary-foreground text-center text-sm">Cart</Link>
+          </div>
         </div>
       </div>
     </header>

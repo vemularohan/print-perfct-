@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="pg" x1="0" x2="1">
+      <stop offset="0" stop-color="#83c4ea" />
+      <stop offset="1" stop-color="#2b90c6" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#pg)" />
+  <g fill="#fff" font-family="Inter, Arial, sans-serif" text-anchor="middle">
+    <text x="300" y="300" font-size="36" font-weight="600">Product Image</text>
+  </g>
+</svg>

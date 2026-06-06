@@ -75,7 +75,4 @@ export const CATEGORIES: Category[] = [
 export const NAV_TABS = [
   { label: "View All", to: "/" },
   ...CATEGORIES.map((c) => ({ label: c.name, to: c.route })),
-  { label: "Design Services", to: "/design-services" },
-  { label: "Logo Maker", to: "/logomaker" },
-  { label: "QR Code Generator", to: "/qr-code-generator" },
 ] as const;

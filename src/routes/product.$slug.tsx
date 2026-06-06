@@ -20,12 +20,36 @@ export const Route = createFileRoute("/product/$slug")({
   head: ({ loaderData }) => {
     const p = loaderData?.product;
     if (!p) return {};
+    const ld = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: p.name,
+      image: ["/assets/placeholder-product.svg"],
+      description: p.description,
+      sku: p.slug,
+      brand: { "@type": "Organization", name: "PrintPerfect" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: p.rating,
+        reviewCount: p.reviewCount,
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price: p.priceFromInr.toString(),
+        availability: "https://schema.org/InStock",
+        url: `/product/${p.slug}`,
+      },
+    };
+
     return {
       meta: [
         { title: `${p.name} — PrintPerfect` },
         { name: "description", content: p.description },
         { property: "og:title", content: p.name },
         { property: "og:description", content: p.description },
+        { property: "og:image", content: "/assets/og-image.svg" },
+        { "script:ld+json": ld },
       ],
     };
   },
@@ -84,12 +108,14 @@ function ProductDetail() {
             <a href="#reviews" className="text-primary hover:underline">({product.reviewCount.toLocaleString("en-IN")} reviews)</a>
           </div>
 
-          <div className="flex items-end gap-3 mb-6">
-            <span className="text-3xl font-bold text-primary">₹{product.priceFromInr.toLocaleString("en-IN")}</span>
-            <span className="text-base text-muted-foreground line-through">₹{original.toLocaleString("en-IN")}</span>
-            <span className="inline-flex items-center rounded-full bg-success/15 text-success px-2.5 py-0.5 text-xs font-semibold">
-              Save {Math.round((1 - product.priceFromInr / original) * 100)}%
-            </span>
+          <div className="flex items-end gap-3 mb-8">
+            <span className="text-4xl font-bold text-primary tracking-tight">₹{product.priceFromInr.toLocaleString("en-IN")}</span>
+            <div className="flex flex-col mb-1">
+              <span className="text-sm text-muted-foreground line-through">₹{original.toLocaleString("en-IN")}</span>
+              <span className="text-[12px] font-bold text-success uppercase tracking-wider">
+                Save {Math.round((1 - product.priceFromInr / original) * 100)}%
+              </span>
+            </div>
           </div>
 
           <div className="mb-6">
@@ -131,12 +157,12 @@ function ProductDetail() {
             Estimated delivery: <span className="text-foreground font-medium">5–7 business days</span>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 mb-6">
-            <button className="flex-1 bg-primary text-primary-foreground rounded-md py-4 font-semibold text-base hover:bg-primary/90 transition shadow-card">
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <button className="btn-primary flex-1 h-14 text-lg">
               Customise & Buy
             </button>
-            <button className="inline-flex items-center justify-center gap-2 border-2 border-border rounded-md px-5 py-4 font-medium hover:border-primary hover:text-primary transition">
-              <Heart className="h-4 w-4" /> Favourite
+            <button className="btn-secondary flex-1 h-14 text-lg inline-flex items-center justify-center gap-2">
+              <Heart className="h-5 w-5" /> Favourite
             </button>
           </div>
 

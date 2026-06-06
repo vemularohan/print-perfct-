@@ -61,17 +61,17 @@ function HeroCarousel() {
                 <p className="text-lg opacity-90 mb-7">{s.sub}</p>
                 <div className="flex flex-wrap gap-3">
                   {"cta" in s && s.cta ? (
-                    <Link to={s.cta.to} className="inline-flex items-center gap-2 bg-white text-primary font-semibold rounded-md px-6 py-3 hover:bg-white/90 transition">
+                    <Link to={s.cta.to} className="btn-primary flex items-center gap-2 !bg-white !text-primary">
                       {s.cta.label} <ArrowRight className="h-4 w-4" />
                     </Link>
                   ) : null}
                   {"ctaA" in s && s.ctaA ? (
-                    <Link to={s.ctaA.to} className="inline-flex items-center gap-2 border-2 border-white text-white font-semibold rounded-md px-6 py-3 hover:bg-white/10 transition">
+                    <Link to={s.ctaA.to} className="btn-secondary !border-white !text-white hover:!bg-white/10">
                       {s.ctaA.label}
                     </Link>
                   ) : null}
                   {"ctaB" in s && s.ctaB ? (
-                    <Link to={s.ctaB.to} className="inline-flex items-center gap-2 border-2 border-white text-white font-semibold rounded-md px-6 py-3 hover:bg-white/10 transition">
+                    <Link to={s.ctaB.to} className="btn-secondary !border-white !text-white hover:!bg-white/10">
                       {s.ctaB.label}
                     </Link>
                   ) : null}
@@ -171,7 +171,7 @@ function HomePage() {
           <div className="relative max-w-2xl">
             <h2 className="text-white mb-3">Need a custom design?</h2>
             <p className="opacity-90 text-lg mb-6">Our in-house experts can design logos, business cards, banners and more — usually within 48 hours.</p>
-            <Link to="/design-services" className="inline-flex items-center gap-2 bg-white text-primary font-semibold rounded-md px-6 py-3 hover:bg-white/90 transition">
+            <Link to="/design-services" className="btn-primary !bg-white !text-primary inline-flex items-center gap-2">
               Start Design Brief <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
