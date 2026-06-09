@@ -124,7 +124,7 @@ export function CategoryPage({ category }: { category: Category }) {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="why">
-              <AccordionTrigger className="text-base font-semibold">Why choose PrintPerfect?</AccordionTrigger>
+              <AccordionTrigger className="text-base font-semibold">Why choose SuriyanPrints?</AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
                 We combine premium materials, sharp colour reproduction and dependable turnaround — backed by a satisfaction guarantee.
               </AccordionContent>

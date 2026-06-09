@@ -11,9 +11,9 @@ import { FadeIn } from "@/components/ui/fade-in";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PrintPerfect — Custom Printing, Merchandise & Design" },
+      { title: "SuriyanPrints — Custom Printing, Merchandise & Design" },
       { name: "description", content: "Shop visiting cards, t-shirts, signs, stationery, stamps and more. Fast delivery across India." },
-      { property: "og:title", content: "PrintPerfect — Custom Printing & Merchandise" },
+      { property: "og:title", content: "SuriyanPrints — Custom Printing & Merchandise" },
       { property: "og:description", content: "Quality custom printing and merchandise for small businesses." },
     ],
   }),

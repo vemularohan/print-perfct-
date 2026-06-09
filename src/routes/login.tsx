@@ -4,10 +4,10 @@ import { useState } from "react";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Sign In — PrintPerfect" },
+      { title: "Sign In — SuriyanPrints" },
       { name: "description", content: "Sign in or create an account to track orders, save designs and reorder fast." },
-      { property: "og:title", content: "Sign In — PrintPerfect" },
-      { property: "og:description", content: "Access your PrintPerfect account." },
+      { property: "og:title", content: "Sign In — SuriyanPrints" },
+      { property: "og:description", content: "Access your SuriyanPrints account." },
     ],
   }),
   component: LoginPage,
@@ -38,7 +38,7 @@ function LoginPage() {
               <span className="absolute inset-0 rounded-md bg-white/40 -rotate-6" />
               <span className="absolute inset-2 rounded-sm bg-white" />
             </div>
-            <span className="text-2xl font-bold">PrintPerfect</span>
+            <span className="text-2xl font-bold">SuriyanPrints</span>
           </div>
           <h1 className="text-white mb-3">Print. Brand. Grow.</h1>
           <p className="opacity-90">Sign in to access your saved designs, track orders and reorder favourites in one click.</p>

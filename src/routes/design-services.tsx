@@ -6,9 +6,9 @@ import { FadeIn } from "@/components/ui/fade-in";
 export const Route = createFileRoute("/design-services")({
   head: () => ({
     meta: [
-      { title: "Professional Design Services — PrintPerfect" },
+      { title: "Professional Design Services — SuriyanPrints" },
       { name: "description", content: "Hire expert designers for logos, business cards, banners and more. Briefs delivered in 48 hours." },
-      { property: "og:title", content: "Professional Design Services — PrintPerfect" },
+      { property: "og:title", content: "Professional Design Services — SuriyanPrints" },
       { property: "og:description", content: "Let our experts handle your brand design." },
     ],
   }),

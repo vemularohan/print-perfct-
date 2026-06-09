@@ -53,7 +53,7 @@ export const CATEGORIES: Category[] = [
     slug: "photo-gifts",
     name: "Photo Gifts",
     route: "/photo-gifts",
-    subCategories: ["Photo Albums", "Photo Mugs", "Canvas Prints", "Calendars", "Cushions"],
+    subCategories: ["Photo Albums", "Photo Mugs", "Canvas Prints", "Calendars", "Cushions", "Umbrellas"],
     blurb: "Personalised gifts that turn memories into keepsakes.",
   },
   {

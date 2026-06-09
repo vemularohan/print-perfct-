@@ -6,10 +6,10 @@ import { GradientPlaceholder } from "@/components/ui/gradient-placeholder";
 export const Route = createFileRoute("/account")({
   head: () => ({
     meta: [
-      { title: "My Account — PrintPerfect" },
+      { title: "My Account — SuriyanPrints" },
       { name: "description", content: "View orders, saved projects, addresses and account settings." },
-      { property: "og:title", content: "My Account — PrintPerfect" },
-      { property: "og:description", content: "Your PrintPerfect dashboard." },
+      { property: "og:title", content: "My Account — SuriyanPrints" },
+      { property: "og:description", content: "Your SuriyanPrints dashboard." },
     ],
   }),
   component: AccountPage,

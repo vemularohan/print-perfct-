@@ -282,7 +282,7 @@ export const PRODUCTS: Product[] = [
     slug: "umbrellas",
     name: "Single Fold Umbrellas",
     categorySlug: "photo-gifts",
-    subCategory: "Calendars",
+    subCategory: "Umbrellas",
     priceFromInr: 655,
     qtyTiers: [10, 25, 50],
     finishes: ["Polyester"],

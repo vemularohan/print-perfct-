@@ -26,7 +26,7 @@ export const Route = createFileRoute("/product/$slug")({
       image: ["/assets/placeholder-product.svg"],
       description: p.description,
       sku: p.slug,
-      brand: { "@type": "Organization", name: "PrintPerfect" },
+      brand: { "@type": "Organization", name: "SuriyanPrints" },
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: p.rating,
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/product/$slug")({
 
     return {
       meta: [
-        { title: `${p.name} — PrintPerfect` },
+        { title: `${p.name} — SuriyanPrints` },
         { name: "description", content: p.description },
         { property: "og:title", content: p.name },
         { property: "og:description", content: p.description },

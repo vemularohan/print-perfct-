@@ -7,9 +7,9 @@ const cat = CATEGORIES.find((c) => c.slug === "clothing-bags")!;
 export const Route = createFileRoute("/clothing-bags")({
   head: () => ({
     meta: [
-      { title: `${cat.name} — PrintPerfect` },
+      { title: `${cat.name} — SuriyanPrints` },
       { name: "description", content: cat.blurb },
-      { property: "og:title", content: `${cat.name} — PrintPerfect` },
+      { property: "og:title", content: `${cat.name} — SuriyanPrints` },
       { property: "og:description", content: cat.blurb },
     ],
   }),
