@@ -1,10 +1,22 @@
-# Image Generation Prompts for New Products
+# Comprehensive Image Generation Prompts
 
-Here are the detailed image generation prompts for the 27 newly added products. You can feed these into an AI image generator (like Midjourney, DALL-E 3, or Imagen) to get premium, realistic mockup images for your catalog.
+Here are the detailed image generation prompts for all products in the catalog. You can feed these into an AI image generator (like Midjourney, DALL-E 3, or Imagen) to get premium, realistic mockup images. All prompts use placeholders like `[Your Logo Here]`, `[Your Name Here]`, etc., so you can customize them.
 
 ---
 
 ## 1. Visiting Cards (Business Cards)
+
+### Standard Visiting Cards
+> **Prompt:** A stack of premium business cards (89x54mm) on a desk, clean design displaying "[Your Logo Here]" and "[Your Name Here]", professional studio lighting, soft natural shadows, photorealistic, 8k.
+
+### Rounded Corner Visiting Cards
+> **Prompt:** Stack of business cards with rounded corners displaying "[Your Logo Here]" and "[Your Name Here]" on a wooden workspace desk, close-up macro photography, premium texture, realistic shadow.
+
+### Spot UV Visiting Cards
+> **Prompt:** Close-up of a business card showing glossy raised spot UV details on "[Your Logo Here]" over a premium matte black paper base, reflecting studio light, luxury texture, photorealistic.
+
+### Classic Visiting Cards
+> **Prompt:** A clean stack of simple classic business cards displaying "[Your Logo Here]" and "[Your Name/Details Here]" on a light neutral background, bright even studio lighting, clean mockup.
 
 ### Square Visiting Cards
 > **Prompt:** A studio mockup of stack of square business cards (60x60mm) made of thick textured paper, minimal design displaying "[Your Logo Here]", lying on a clean neutral background, soft natural lighting, realistic shadows, photorealistic, 8k.
@@ -31,6 +43,15 @@ Here are the detailed image generation prompts for the 27 newly added products. 
 
 ## 2. Signs & Posters
 
+### Custom Posters
+> **Prompt:** A large custom poster displaying "[Your Design/Logo Here]" hanging in a minimalist black frame on a clean concrete office wall, daylight, interior design mockup, photorealistic.
+
+### Vinyl Banners
+> **Prompt:** A large heavy-duty outdoor vinyl banner displaying "[Your Logo/Event Here]" with brass eyelets, hanging on a brick wall, realistic outdoor daytime lighting, 8k.
+
+### Flyers
+> **Prompt:** A stack of glossy marketing flyers displaying "[Your Brand/Offer Here]" lying on a clean modern office table, soft shadows, studio product shot.
+
 ### Custom Window Decals
 > **Prompt:** A semi-transparent branded window decal displaying "[Your Logo Here]" cleanly applied to a modern glass storefront window, showing street reflection in the glass, daytime natural lighting, photorealistic, 8k.
 
@@ -43,6 +64,15 @@ Here are the detailed image generation prompts for the 27 newly added products. 
 ---
 
 ## 3. Stationery
+
+### Letterheads
+> **Prompt:** A clean sheet of A4 letterhead paper displaying "[Your Logo Here]" and official header layout, lying flat on a wooden desk next to a modern pen, corporate branding mockup, photorealistic.
+
+### Envelopes
+> **Prompt:** A mockup of custom printed envelopes displaying "[Your Logo Here]" in the return address corner, lying on a grey texture background, soft realistic shadows.
+
+### Personalised Notebooks
+> **Prompt:** An A5 hardcover journal notebook displaying "[Your Logo Here]" printed on the front cover, resting on a clean desk next to a cup of coffee, workspace photography.
 
 ### Custom Branded Diaries
 > **Prompt:** A premium A5 leatherette-bound notebook diary with a custom debossed "[Your Logo Here]" on the cover, elastic band closure and a ribbon bookmark, resting on a walnut wooden desk, photorealistic.
@@ -57,6 +87,12 @@ Here are the detailed image generation prompts for the 27 newly added products. 
 
 ## 4. Labels & Stickers
 
+### Product Roll Labels
+> **Prompt:** A roll of custom-shaped glossy product labels displaying "[Your Logo/Design Here]" being peeled off, studio background, professional packaging photography.
+
+### Die Cut Stickers
+> **Prompt:** A collection of custom die-cut vinyl stickers displaying "[Your Logo/Illustration Here]" lying scattered on a dark textured surface, clean mockups, photorealistic.
+
 ### Custom Sheet Labels
 > **Prompt:** An A4 sheet of pre-cut round glossy labels displaying "[Your Logo Here]" showing some half-peeled stickers, clean branding template, high resolution product photography, neutral background.
 
@@ -70,6 +106,12 @@ Here are the detailed image generation prompts for the 27 newly added products. 
 
 ## 5. Stamps
 
+### Self Inking Stamps
+> **Prompt:** A self-inking stamp casing tool displaying "[Your Logo Here]" on the cover, with a clean black ink stamped print showing "[Your Logo/Name Here]" on white paper next to it, office desk environment.
+
+### Basic Rubber Stamps
+> **Prompt:** A classic wooden-handle rubber stamp resting next to a stamped black logo impression displaying "[Your Logo Here]" on a kraft paper bag, rustic vintage branding aesthetic.
+
 ### Adjustable Date Stamps
 > **Prompt:** A professional self-inking date stamp tool with rolling dial bands and "[Your Name/Logo Here]" on the body, stamped ink impression showing a custom date on white paper next to it, office desk background, realistic.
 
@@ -80,6 +122,18 @@ Here are the detailed image generation prompts for the 27 newly added products. 
 
 ## 6. Clothing & Bags
 
+### Custom Polo T-Shirts
+> **Prompt:** A custom pique polo shirt displaying "[Your Logo Here]" embroidered on the left chest, lying folded on a clean light grey background, high resolution clothing photography.
+
+### Custom T-Shirts
+> **Prompt:** A mockup of a custom cotton round-neck t-shirt displaying "[Your Logo/Graphic Here]" printed on the chest, realistic fabric folds and texture, clean background.
+
+### Custom Caps
+> **Prompt:** A structured 6-panel baseball cap displaying "[Your Logo Here]" embroidered on the front, studio product shot, soft light shadows.
+
+### Custom Tote Bags
+> **Prompt:** A canvas cotton tote bag displaying "[Your Logo/Design Here]" printed on the side, hanging on a wooden hook against a white wall, minimalist mockup.
+
 ### Custom Embroidered Dress Shirts
 > **Prompt:** A folded premium cotton formal oxford dress shirt, showing a high-density "[Your Logo Here]" embroidered on the left chest pocket, studio lighting, professional clothing photography.
 
@@ -89,6 +143,15 @@ Here are the detailed image generation prompts for the 27 newly added products. 
 ---
 
 ## 7. Photo Gifts
+
+### Personalised Photo Mugs
+> **Prompt:** A ceramic coffee mug displaying "[Your Photo Here]" printed on the side, sitting on a kitchen counter, daylight, warm lifestyle photography.
+
+### Photo Albums
+> **Prompt:** A premium open hardcover photo album displaying "[Your Photo/Title Here]" on the cover and high-quality layflat photo pages inside, studio lighting.
+
+### Single Fold Umbrellas
+> **Prompt:** A custom printed single-fold umbrella displaying "[Your Logo Here]" printed on its panels, standing open, studio lighting, water droplets on fabric.
 
 ### Custom Canvas Prints
 > **Prompt:** A square textured canvas print wrapped around a thick pine wood frame, displaying "[Your Photo Here]", hanging on a modern neutral apartment wall with soft shadows, realistic home interior.
@@ -103,6 +166,12 @@ Here are the detailed image generation prompts for the 27 newly added products. 
 
 ## 8. Drinkware
 
+### Ceramic Coffee Mugs
+> **Prompt:** A premium ceramic mug displaying "[Your Logo Here]" sitting on a coffee table, modern cafe background, soft morning light.
+
+### Custom Water Bottles
+> **Prompt:** A reusable stainless steel water bottle displaying "[Your Logo/Brand Here]" laser engraved on the side, standing next to a laptop on a gym table, athletic mockup.
+
 ### Insulated Travel Mugs
 > **Prompt:** A double-walled insulated stainless steel travel mug displaying "[Your Logo Here]" with a matte black powder-coated finish and a spill-proof lid, standing on a car dashboard cup holder, morning light.
 
@@ -112,6 +181,12 @@ Here are the detailed image generation prompts for the 27 newly added products. 
 ---
 
 ## 9. Pens
+
+### Custom Ball Pens
+> **Prompt:** A custom printed plastic ballpoint pen displaying "[Your Logo/Name Here]" on the barrel, resting on an open journal notebook, office desk workspace photography.
+
+### Metal Pens
+> **Prompt:** A premium matte black metal pen showing a laser engraved logo displaying "[Your Logo Here]" on the barrel, professional studio lighting, luxury desk accessory mockup.
 
 ### Custom Branded Highlighters
 > **Prompt:** A set of three colourful fluorescent highlighters (neon green, yellow, pink) featuring "[Your Logo Here]" printed on the body, lying on a notebook, bright daylight.
