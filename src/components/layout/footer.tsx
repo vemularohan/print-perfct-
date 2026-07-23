@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import logoUrl from "../../../assets/suriyanprintslogo.png";
+
 
 const COLS = [
   {
@@ -41,12 +43,8 @@ export function Footer() {
     <footer className="bg-footer text-footer-foreground mt-16">
       <div className="container-page py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Link to="/" className="flex items-center gap-2">
-            <div className="relative h-8 w-8">
-              <span className="absolute inset-0 rounded-md bg-secondary rotate-6" />
-              <span className="absolute inset-0 rounded-md bg-accent -rotate-6 opacity-80" />
-            </div>
-            <span className="text-xl font-bold tracking-tight">SuriyanPrints</span>
+          <Link to="/" className="inline-block bg-white p-2 rounded-lg">
+            <img src={logoUrl} alt="SuriyanPrints Logo" className="h-8 w-auto max-w-[150px] object-contain" />
           </Link>
           <p className="mt-4 text-sm opacity-80 max-w-xs">
             Helping small businesses look professional with custom printing, design and merchandise.

@@ -19,7 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
         <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-primary-foreground px-3 py-1 text-xs font-semibold shadow">
           {product.pricePill}
         </span>
-        <div className="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute inset-x-0 bottom-0 p-3">
           <div className="rounded-md bg-white/95 text-primary font-medium text-sm text-center py-2 shadow-sm ring-1 ring-black/5">
             Quick View
           </div>

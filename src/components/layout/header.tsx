@@ -4,6 +4,8 @@ import { Search, Heart, User, ShoppingCart, FolderOpen, Phone, X, Menu, ChevronD
 import { CATEGORIES, NAV_TABS } from "@/data/categories";
 import { cn } from "@/lib/utils";
 
+import logoUrl from "../../../assets/suriyanprintslogo.png";
+
 export function Header() {
   const [promoOpen, setPromoOpen] = useState(true);
   const [openTab, setOpenTab] = useState<string | null>(null);
@@ -56,12 +58,7 @@ export function Header() {
           </button>
 
           <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="relative h-8 w-8">
-              <span className="absolute inset-0 rounded-md bg-primary rotate-6" />
-              <span className="absolute inset-0 rounded-md bg-secondary -rotate-6 opacity-80" />
-              <span className="absolute inset-1.5 rounded-sm bg-background" />
-            </div>
-            <span className="text-xl font-bold text-primary tracking-tight">SuriyanPrints</span>
+            <img src={logoUrl} alt="SuriyanPrints Logo" className="h-9 w-auto max-w-[180px] object-contain" />
           </Link>
 
           <div className="hidden md:flex flex-1 max-w-3xl mx-8 items-center">
