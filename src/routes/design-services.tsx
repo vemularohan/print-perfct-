@@ -41,7 +41,7 @@ const TIERS = [
 function DesignServices() {
   return (
     <div>
-      <section className="relative overflow-hidden text-white" style={{ backgroundImage: "linear-gradient(120deg, hsl(220 50% 18%), hsl(205 60% 32%))" }}>
+      <section className="relative overflow-hidden text-white" style={{ backgroundImage: "linear-gradient(120deg, hsl(215 80% 12%), hsl(359 70% 30%))" }}>
         <div className="container-page py-20 max-w-3xl">
           <p className="uppercase tracking-widest text-xs font-semibold opacity-80 mb-3">Design Services</p>
           <h1 className="text-white mb-4">Professional Design — Let our experts do it</h1>

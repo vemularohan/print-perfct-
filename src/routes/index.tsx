@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
 
 const SLIDES = [
   {
-    bg: "linear-gradient(135deg, hsl(205 80% 35%), hsl(200 75% 50%))",
+    bg: "linear-gradient(135deg, hsl(359 75% 38%), hsl(215 80% 15%))",
     eyebrow: "Top deal",
     title: "100 Visiting Cards at ₹200",
     sub: "Fast delivery. Professional quality. Designed in minutes.",
@@ -30,7 +30,7 @@ const SLIDES = [
     cta: { label: "Shop Now", to: "/business-cards" as const },
   },
   {
-    bg: "linear-gradient(135deg, hsl(220 50% 18%), hsl(205 60% 30%))",
+    bg: "linear-gradient(135deg, hsl(215 80% 12%), hsl(215 50% 25%))",
     eyebrow: "New for monsoon",
     title: "Look Professional with Custom Rainwear",
     sub: "Branded umbrellas starting at ₹655.",
@@ -176,7 +176,7 @@ function HomePage() {
       <section className="container-page py-16">
         <div
           className="relative overflow-hidden rounded-2xl p-10 md:p-16 text-white"
-          style={{ backgroundImage: "linear-gradient(120deg, hsl(205 80% 30%), hsl(200 80% 50%))" }}
+          style={{ backgroundImage: "linear-gradient(120deg, hsl(359 75% 35%), hsl(35 90% 50%))" }}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.25),transparent_60%)]" />
           <div className="relative max-w-2xl">

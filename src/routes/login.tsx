@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 
+import logoUrl from "../../assets/suriyanprintslogo.png";
+
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
@@ -30,15 +32,10 @@ function LoginPage() {
 
   return (
     <div className="grid lg:grid-cols-2 min-h-[calc(100vh-200px)]">
-      <div className="hidden lg:flex items-center justify-center p-12 text-white" style={{ backgroundImage: "linear-gradient(135deg, hsl(205 80% 30%), hsl(200 80% 50%))" }}>
+      <div className="hidden lg:flex items-center justify-center p-12 text-white" style={{ backgroundImage: "linear-gradient(135deg, hsl(215 80% 12%), hsl(359 70% 30%))" }}>
         <div className="max-w-md">
-          <div className="flex items-center gap-2 mb-8">
-            <div className="relative h-10 w-10">
-              <span className="absolute inset-0 rounded-md bg-white/20 rotate-6" />
-              <span className="absolute inset-0 rounded-md bg-white/40 -rotate-6" />
-              <span className="absolute inset-2 rounded-sm bg-white" />
-            </div>
-            <span className="text-2xl font-bold">SuriyanPrints</span>
+          <div className="mb-8 inline-block bg-white p-2 rounded-lg">
+            <img src={logoUrl} alt="SuriyanPrints Logo" className="h-10 w-auto object-contain" />
           </div>
           <h1 className="text-white mb-3">Print. Brand. Grow.</h1>
           <p className="opacity-90">Sign in to access your saved designs, track orders and reorder favourites in one click.</p>
