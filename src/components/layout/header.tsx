@@ -10,6 +10,7 @@ export function Header() {
   const [promoOpen, setPromoOpen] = useState(true);
   const [openTab, setOpenTab] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,14 +25,18 @@ export function Header() {
     };
     document.addEventListener("mousedown", onClick);
     document.addEventListener("keydown", onKey);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => {
       document.removeEventListener("mousedown", onClick);
       document.removeEventListener("keydown", onKey);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-background">
+    <header className={cn("sticky top-0 z-40 transition-all duration-300", scrolled ? "bg-background/90 backdrop-blur-xl shadow-lg shadow-secondary/5" : "bg-background")}>
       {promoOpen && (
         <div className="bg-primary text-primary-foreground text-xs">
           <div className="container-page flex items-center justify-between py-2 gap-4">
@@ -51,7 +56,7 @@ export function Header() {
         </div>
       )}
 
-      <div className="border-b border-border bg-background shadow-sm">
+      <div className={cn("border-b border-border transition-colors", scrolled ? "bg-transparent" : "bg-background shadow-sm")}>
         <div className="container-page flex items-center gap-4 py-4">
           <button type="button" className="lg:hidden p-2 -ml-2" onClick={() => setMobileOpen(true)} aria-label="Open menu">
             <Menu className="h-6 w-6" />
@@ -63,10 +68,10 @@ export function Header() {
 
           <div className="hidden md:flex flex-1 max-w-3xl mx-8 items-center">
             <div className="flex-1 max-w-2xl">
-              <div className="flex w-full rounded-full overflow-hidden border border-border focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all bg-surface">
+              <div className="flex w-full rounded-full overflow-hidden border border-border/80 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all bg-surface shadow-sm focus-within:shadow-card">
                 <input
                   type="text"
-                  placeholder="Search for visiting cards, t-shirts, gifts..."
+                  placeholder="Search T-shirts, bottles, caps, gifts..."
                   className="flex-1 px-5 py-2.5 text-sm bg-transparent focus:outline-none"
                 />
                 <button className="bg-primary text-primary-foreground px-6 inline-flex items-center justify-center hover:bg-primary/90 transition-colors" aria-label="Search">

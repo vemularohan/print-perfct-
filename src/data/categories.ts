@@ -35,7 +35,7 @@ export const HOMEPAGE_CATEGORIES: HomepageCategory[] = [
     search: { sub: "Water Bottles" },
   },
   {
-    name: "Caps",
+    name: "Custom Caps",
     route: "/clothing-bags",
     image: "/images/custom-caps.png",
     blurb: "Embroidered caps with your logo front and centre.",
@@ -43,7 +43,7 @@ export const HOMEPAGE_CATEGORIES: HomepageCategory[] = [
     search: { sub: "Caps" },
   },
   {
-    name: "Badges",
+    name: "Custom Badges",
     route: "/labels-stickers",
     image: "/images/bumper-stickers.png",
     blurb: "Pin badges, lanyards, and event identification.",
@@ -64,7 +64,7 @@ export const HOMEPAGE_CATEGORIES: HomepageCategory[] = [
     emoji: "🖊️",
   },
   {
-    name: "Stamps",
+    name: "Custom Stamps",
     route: "/stamps",
     image: "/images/self-inking-stamps.png",
     blurb: "Professional self-inking and rubber stamps.",

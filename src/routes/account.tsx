@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ShoppingBag, FolderOpen, Palette, Heart, MapPin, User, LogOut } from "lucide-react";
 import { GradientPlaceholder } from "@/components/ui/gradient-placeholder";
+import { loadOrders, type Order } from "@/lib/cart";
+import { PRODUCTS } from "@/data/products";
 
 export const Route = createFileRoute("/account")({
   head: () => ({
@@ -40,6 +42,21 @@ const STATUS_STYLES = {
 
 function AccountPage() {
   const [tab, setTab] = useState<(typeof NAV)[number]["key"]>("orders");
+  const [savedOrders, setSavedOrders] = useState<Order[]>([]);
+  useEffect(() => setSavedOrders(loadOrders()), []);
+  const orders = [
+    ...savedOrders.map((order) => ({
+      id: order.id,
+      date: order.date,
+      items: order.lines.map((line) => {
+        const product = PRODUCTS.find((p) => p.slug === line.slug);
+        return `${line.qty} × ${product?.name ?? line.slug}${line.embroidery ? " (Embroidery)" : ""}`;
+      }).join(", "),
+      total: order.total,
+      status: order.status,
+    })),
+    ...ORDERS,
+  ];
 
   return (
     <div className="container-page py-10 grid lg:grid-cols-[240px_1fr] gap-8">
@@ -82,7 +99,7 @@ function AccountPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {ORDERS.map((o) => (
+                  {orders.map((o) => (
                     <tr key={o.id} className="border-t border-border">
                       <td className="p-4 font-mono">{o.id}</td>
                       <td className="p-4 text-muted-foreground">{o.date}</td>

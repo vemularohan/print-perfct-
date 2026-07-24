@@ -1,7 +1,7 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Star, Heart, Lock, RotateCcw, ShieldCheck, Truck, ChevronRight, Minus, Plus } from "lucide-react";
-import { getProduct, getRelated, type Product, getProductPricing } from "@/data/products";
+import { getProduct, getRelated, type Product } from "@/data/products";
 import { CONST_REVIEWS } from "@/data/products-with-reviews";
 import { ProductCard } from "@/components/product-card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -9,6 +9,7 @@ import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CATEGORIES } from "@/data/categories";
+import { EMBROIDERY_PRICE_INR, getLinePricing, supportsEmbroidery, addCartLine } from "@/lib/cart";
 
 export const Route = createFileRoute("/product/$slug")({
   loader: ({ params }) => {
@@ -58,9 +59,11 @@ function ProductDetail() {
   const related = getRelated(product.slug);
   const [qty, setQty] = useState(product.qtyTiers[1] ?? product.qtyTiers[0]);
   const [finish, setFinish] = useState(product.finishes[0]);
+  const [embroidery, setEmbroidery] = useState(false);
+  const navigate = useNavigate();
   
-  const pricing = getProductPricing(product, qty);
-  const original = pricing.originalPrice;
+  const pricing = getLinePricing(product, { slug: product.slug, qty, embroidery });
+  const original = pricing.originalPrice + pricing.embroideryTotal;
 
   const images = [
     { src: `/images/${product.slug}.png`, label: "Main View", className: "object-cover" },
@@ -131,14 +134,12 @@ function ProductDetail() {
               <span className="text-4xl font-bold text-primary tracking-tight">₹{pricing.totalPrice.toLocaleString("en-IN")}</span>
               <div className="flex flex-col mb-1">
                 <span className="text-sm text-muted-foreground line-through">₹{original.toLocaleString("en-IN")}</span>
-                <span className="text-[12px] font-bold text-success uppercase tracking-wider">
-                  Save {Math.round((1 - pricing.totalPrice / original) * 100)}%
-                </span>
+                <span className="text-[12px] font-bold text-success uppercase tracking-wider">{pricing.totalPrice < original ? `Save ${Math.round((1 - pricing.totalPrice / original) * 100)}%` : "Custom price"}</span>
               </div>
             </div>
             {pricing.discountPercent > 0 && (
               <div className="text-sm text-success font-medium mt-1">
-                Includes {pricing.discountPercent}% bulk discount (₹{Math.round(pricing.unitPrice)} / unit)
+                Includes {pricing.discountPercent}% bulk discount (₹{Math.round(pricing.unitPrice)} / unit){embroidery ? " + ₹100 embroidery / unit" : ""}
               </div>
             )}
           </div>
@@ -197,6 +198,16 @@ function ProductDetail() {
             </div>
           </div>
 
+          {supportsEmbroidery(product) ? (
+            <label className="mb-6 flex cursor-pointer items-center justify-between rounded-xl border border-border bg-surface p-4 transition-colors hover:border-primary/50">
+              <span className="flex items-center gap-3">
+                <input type="checkbox" checked={embroidery} onChange={(e) => setEmbroidery(e.target.checked)} className="h-4 w-4 accent-[var(--primary)]" />
+                <span><span className="block text-sm font-semibold">Embroidery (+₹{EMBROIDERY_PRICE_INR})</span><span className="block text-xs text-muted-foreground">Premium stitched logo finish per T-shirt</span></span>
+              </span>
+              {embroidery ? <span className="text-sm font-semibold text-primary">+₹{pricing.embroideryTotal.toLocaleString("en-IN")}</span> : null}
+            </label>
+          ) : null}
+
           <div className="mb-6">
             <p className="text-sm font-medium mb-2">Finish</p>
             <div className="flex flex-wrap gap-2">
@@ -220,7 +231,7 @@ function ProductDetail() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
-            <button className="btn-primary flex-1 h-14 text-lg">
+            <button onClick={() => { addCartLine({ slug: product.slug, qty, embroidery: supportsEmbroidery(product) && embroidery }); navigate({ to: "/cart" }); }} className="btn-primary flex-1 h-14 text-lg">
               Customise & Buy
             </button>
             <button className="btn-secondary flex-1 h-14 text-lg inline-flex items-center justify-center gap-2">

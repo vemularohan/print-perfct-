@@ -7,13 +7,13 @@ const COLS = [
   {
     title: "Products",
     links: [
-      { label: "Visiting Cards", to: "/business-cards" },
       { label: "T-shirts & Polos", to: "/clothing-bags" },
-      { label: "Stationery", to: "/stationery" },
-      { label: "Stamps", to: "/stamps" },
-      { label: "Signs & Banners", to: "/signs-posters" },
-      { label: "Labels & Stickers", to: "/labels-stickers" },
-      { label: "Mugs & Gifts", to: "/photo-gifts" },
+      { label: "Custom Bottles", to: "/drinkware" },
+      { label: "Custom Caps", to: "/clothing-bags" },
+      { label: "Custom Badges", to: "/labels-stickers" },
+      { label: "Corporate Gifts", to: "/photo-gifts" },
+      { label: "Custom Pens", to: "/pens" },
+      { label: "Custom Stamps", to: "/stamps" },
     ],
   },
   {
