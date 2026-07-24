@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import { Star, Heart, Lock, RotateCcw, ShieldCheck, Truck, ChevronRight } from "lucide-react";
-import { getProduct, getRelated, type Product } from "@/data/products";
+import { Star, Heart, Lock, RotateCcw, ShieldCheck, Truck, ChevronRight, Minus, Plus } from "lucide-react";
+import { getProduct, getRelated, type Product, getProductPricing } from "@/data/products";
 import { CONST_REVIEWS } from "@/data/products-with-reviews";
 import { ProductCard } from "@/components/product-card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -16,36 +16,27 @@ export const Route = createFileRoute("/product/$slug")({
     if (!p) throw notFound();
     return { product: p };
   },
-  head: ({ loaderData }) => {
-    const p = loaderData?.product;
-    if (!p) return {};
+  head: ({ data }) => {
+    const p = (data as { product: Product }).product;
     const ld = {
       "@context": "https://schema.org",
       "@type": "Product",
       name: p.name,
-      image: ["/assets/placeholder-product.svg"],
+      image: `/images/${p.slug}.png`,
       description: p.description,
-      sku: p.slug,
-      brand: { "@type": "Organization", name: "SuriyanPrints" },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: p.rating,
-        reviewCount: p.reviewCount,
-      },
       offers: {
         "@type": "Offer",
         priceCurrency: "INR",
-        price: p.priceFromInr.toString(),
+        price: p.priceFromInr,
+        itemCondition: "https://schema.org/NewCondition",
         availability: "https://schema.org/InStock",
-        url: `/product/${p.slug}`,
       },
     };
-
     return {
       meta: [
         { title: `${p.name} — SuriyanPrints` },
         { name: "description", content: p.description },
-        { property: "og:title", content: p.name },
+        { property: "og:title", content: `${p.name} — SuriyanPrints` },
         { property: "og:description", content: p.description },
         { property: "og:image", content: "/assets/og-image.svg" },
         { "script:ld+json": ld },
@@ -67,7 +58,9 @@ function ProductDetail() {
   const related = getRelated(product.slug);
   const [qty, setQty] = useState(product.qtyTiers[1] ?? product.qtyTiers[0]);
   const [finish, setFinish] = useState(product.finishes[0]);
-  const original = Math.round(product.priceFromInr * 1.4);
+  
+  const pricing = getProductPricing(product, qty);
+  const original = pricing.originalPrice;
 
   const images = [
     { src: `/images/${product.slug}.png`, label: "Main View", className: "object-cover" },
@@ -133,30 +126,74 @@ function ProductDetail() {
             <a href="#reviews" className="text-primary hover:underline">({product.reviewCount.toLocaleString("en-IN")} reviews)</a>
           </div>
 
-          <div className="flex items-end gap-3 mb-8">
-            <span className="text-4xl font-bold text-primary tracking-tight">₹{product.priceFromInr.toLocaleString("en-IN")}</span>
-            <div className="flex flex-col mb-1">
-              <span className="text-sm text-muted-foreground line-through">₹{original.toLocaleString("en-IN")}</span>
-              <span className="text-[12px] font-bold text-success uppercase tracking-wider">
-                Save {Math.round((1 - product.priceFromInr / original) * 100)}%
-              </span>
+          <div className="flex flex-col mb-8">
+            <div className="flex items-end gap-3">
+              <span className="text-4xl font-bold text-primary tracking-tight">₹{pricing.totalPrice.toLocaleString("en-IN")}</span>
+              <div className="flex flex-col mb-1">
+                <span className="text-sm text-muted-foreground line-through">₹{original.toLocaleString("en-IN")}</span>
+                <span className="text-[12px] font-bold text-success uppercase tracking-wider">
+                  Save {Math.round((1 - pricing.totalPrice / original) * 100)}%
+                </span>
+              </div>
             </div>
+            {pricing.discountPercent > 0 && (
+              <div className="text-sm text-success font-medium mt-1">
+                Includes {pricing.discountPercent}% bulk discount (₹{Math.round(pricing.unitPrice)} / unit)
+              </div>
+            )}
           </div>
 
           <div className="mb-6">
             <p className="text-sm font-medium mb-2">Quantity</p>
-            <div className="flex flex-wrap gap-2">
-              {product.qtyTiers.map((q) => (
-                <button
-                  key={q}
-                  onClick={() => setQty(q)}
-                  className={`px-4 py-2 rounded-md text-sm border transition-colors ${
-                    qty === q ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary"
-                  }`}
-                >
-                  {q}
-                </button>
-              ))}
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-3">
+                <div className="inline-flex items-center border border-border rounded-md bg-background shadow-sm">
+                  <button 
+                    onClick={() => setQty(Math.max(product.qtyTiers[0] || 1, qty - (product.qtyTiers[0] >= 25 ? product.qtyTiers[0] : 1)))} 
+                    className="p-2.5 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors" 
+                    aria-label="Decrease"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <input
+                    type="number"
+                    value={qty}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value);
+                      if (!isNaN(val)) setQty(Math.max(product.qtyTiers[0] || 1, val));
+                    }}
+                    className="w-16 text-center text-sm font-semibold focus:outline-none bg-transparent"
+                  />
+                  <button 
+                    onClick={() => setQty(qty + (product.qtyTiers[0] >= 25 ? product.qtyTiers[0] : 1))} 
+                    className="p-2.5 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors" 
+                    aria-label="Increase"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
+                
+                <span className="text-xs text-muted-foreground">
+                  (Min quantity: {product.qtyTiers[0]})
+                </span>
+              </div>
+              
+              <div className="flex flex-wrap gap-2">
+                {product.qtyTiers.map((q) => (
+                  <button
+                    key={q}
+                    type="button"
+                    onClick={() => setQty(q)}
+                    className={`px-3.5 py-1.5 rounded-md text-xs font-medium border transition-all ${
+                      qty === q 
+                        ? "bg-primary text-primary-foreground border-primary shadow-sm" 
+                        : "border-border hover:border-primary/60 hover:bg-muted/50"
+                    }`}
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 

@@ -18,6 +18,49 @@ export type Product = {
 
 const make = (p: Product): Product => p;
 
+export function getProductPricing(product: Product, qty: number) {
+  const baseQty = product.qtyTiers[0] || 1;
+  const isBulkProduct = baseQty >= 25; // like business cards, stickers, flyers
+  
+  let unitPrice = 0;
+  if (isBulkProduct) {
+    unitPrice = product.priceFromInr / baseQty;
+  } else {
+    unitPrice = product.priceFromInr;
+  }
+  
+  let discountPercent = 0;
+  
+  if (isBulkProduct) {
+    const ratio = qty / baseQty;
+    if (ratio >= 10) discountPercent = 35;
+    else if (ratio >= 5) discountPercent = 25;
+    else if (ratio >= 2.5) discountPercent = 15;
+    else if (ratio >= 2) discountPercent = 10;
+    else if (ratio >= 1.5) discountPercent = 5;
+  } else {
+    if (qty >= 100) discountPercent = 40;
+    else if (qty >= 50) discountPercent = 30;
+    else if (qty >= 25) discountPercent = 25;
+    else if (qty >= 10) discountPercent = 20;
+    else if (qty >= 5) discountPercent = 15;
+    else if (qty >= 3) discountPercent = 10;
+    else if (qty >= 2) discountPercent = 5;
+  }
+  
+  const discountedUnitPrice = unitPrice * (1 - discountPercent / 100);
+  const totalPrice = Math.round(discountedUnitPrice * qty);
+  const originalPrice = Math.round(unitPrice * qty * 1.4); // 40% markup
+  
+  return {
+    unitPrice: discountedUnitPrice,
+    totalPrice,
+    originalPrice,
+    discountPercent,
+    isBulkProduct
+  };
+}
+
 export const PRODUCTS: Product[] = [
   make({
     slug: "standard-visiting-cards",
@@ -137,7 +180,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "stationery",
     subCategory: "Notebooks",
     priceFromInr: 299,
-    qtyTiers: [25, 50, 100],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Softcover", "Hardcover"],
     rating: 4.7,
     reviewCount: 890,
@@ -153,7 +196,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "clothing-bags",
     subCategory: "Polo T-Shirts",
     priceFromInr: 549,
-    qtyTiers: [10, 25, 50, 100],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Embroidery", "Screen Print"],
     rating: 4.6,
     reviewCount: 1540,
@@ -172,7 +215,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "clothing-bags",
     subCategory: "T-Shirts",
     priceFromInr: 349,
-    qtyTiers: [10, 25, 50, 100],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["DTG Print", "Screen Print"],
     rating: 4.5,
     reviewCount: 2120,
@@ -187,12 +230,12 @@ export const PRODUCTS: Product[] = [
     name: "Custom Caps",
     categorySlug: "clothing-bags",
     subCategory: "Caps",
-    priceFromInr: 299,
-    qtyTiers: [12, 25, 50, 100],
+    priceFromInr: 149,
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Embroidery"],
     rating: 4.4,
     reviewCount: 670,
-    pricePill: "FROM ₹299",
+    pricePill: "FROM ₹149",
     description: "6-panel structured caps with embroidered front logo.",
     features: ["Adjustable strap", "Embroidered logo", "Multiple colours"],
     specs: [{ label: "Style", value: "6-panel structured" }],
@@ -204,7 +247,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "clothing-bags",
     subCategory: "Tote Bags",
     priceFromInr: 199,
-    qtyTiers: [25, 50, 100, 250],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100, 250],
     finishes: ["Screen Print"],
     rating: 4.6,
     reviewCount: 1330,
@@ -252,7 +295,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "photo-gifts",
     subCategory: "Photo Mugs",
     priceFromInr: 249,
-    qtyTiers: [1, 3, 6, 12],
+    qtyTiers: [1, 2, 5, 10, 25, 50],
     finishes: ["Ceramic White", "Magic Mug"],
     rating: 4.7,
     reviewCount: 1820,
@@ -284,7 +327,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "photo-gifts",
     subCategory: "Umbrellas",
     priceFromInr: 655,
-    qtyTiers: [10, 25, 50],
+    qtyTiers: [1, 2, 5, 10, 25, 50],
     finishes: ["Polyester"],
     rating: 4.4,
     reviewCount: 410,
@@ -380,7 +423,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "pens",
     subCategory: "Ball Pens",
     priceFromInr: 19,
-    qtyTiers: [50, 100, 250, 500, 1000],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Plastic", "Metal"],
     rating: 4.4,
     reviewCount: 760,
@@ -396,7 +439,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "pens",
     subCategory: "Metal Pens",
     priceFromInr: 149,
-    qtyTiers: [25, 50, 100, 250],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Engraved", "Printed"],
     rating: 4.6,
     reviewCount: 380,
@@ -412,7 +455,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "drinkware",
     subCategory: "Ceramic Mugs",
     priceFromInr: 199,
-    qtyTiers: [6, 12, 25, 50],
+    qtyTiers: [1, 2, 5, 10, 25, 50],
     finishes: ["White", "Black", "Coloured Rim"],
     rating: 4.6,
     reviewCount: 980,
@@ -428,7 +471,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "drinkware",
     subCategory: "Water Bottles",
     priceFromInr: 349,
-    qtyTiers: [10, 25, 50, 100],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Stainless Steel", "Plastic"],
     rating: 4.5,
     reviewCount: 470,
@@ -604,7 +647,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "stationery",
     subCategory: "Diaries",
     priceFromInr: 399,
-    qtyTiers: [10, 25, 50, 100],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Leatherette", "Hardcover"],
     rating: 4.7,
     reviewCount: 280,
@@ -620,7 +663,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "stationery",
     subCategory: "Notepads",
     priceFromInr: 149,
-    qtyTiers: [25, 50, 100],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Glue-Bound Top"],
     rating: 4.4,
     reviewCount: 175,
@@ -636,7 +679,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "stationery",
     subCategory: "Folders",
     priceFromInr: 499,
-    qtyTiers: [50, 100, 250],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100, 250],
     finishes: ["Matte", "Glossy"],
     rating: 4.6,
     reviewCount: 130,
@@ -732,7 +775,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "clothing-bags",
     subCategory: "Dress Shirts",
     priceFromInr: 899,
-    qtyTiers: [5, 10, 25, 50],
+    qtyTiers: [1, 2, 5, 10, 25, 50],
     finishes: ["Premium Cotton", "Oxford Blend"],
     rating: 4.7,
     reviewCount: 165,
@@ -748,7 +791,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "clothing-bags",
     subCategory: "Backpacks",
     priceFromInr: 1299,
-    qtyTiers: [10, 25, 50, 100],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Polyester Matte", "Nylon Cordura"],
     rating: 4.8,
     reviewCount: 310,
@@ -780,7 +823,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "photo-gifts",
     subCategory: "Calendars",
     priceFromInr: 299,
-    qtyTiers: [1, 5, 10, 50],
+    qtyTiers: [1, 2, 5, 10, 50],
     finishes: ["Spiral Wall", "Desk Stand"],
     rating: 4.7,
     reviewCount: 412,
@@ -796,7 +839,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "photo-gifts",
     subCategory: "Cushions",
     priceFromInr: 449,
-    qtyTiers: [1, 3, 5],
+    qtyTiers: [1, 2, 5],
     finishes: ["Velvet", "Satin"],
     rating: 4.6,
     reviewCount: 380,
@@ -812,7 +855,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "drinkware",
     subCategory: "Travel Mugs",
     priceFromInr: 499,
-    qtyTiers: [5, 10, 25, 50],
+    qtyTiers: [1, 2, 5, 10, 25, 50],
     finishes: ["Matte Black", "Stainless Steel"],
     rating: 4.7,
     reviewCount: 310,
@@ -828,7 +871,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "drinkware",
     subCategory: "Tumblers",
     priceFromInr: 599,
-    qtyTiers: [5, 10, 25, 50],
+    qtyTiers: [1, 2, 5, 10, 25, 50],
     finishes: ["Powder Coated", "Metallic"],
     rating: 4.6,
     reviewCount: 220,
@@ -844,7 +887,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "pens",
     subCategory: "Highlighters",
     priceFromInr: 49,
-    qtyTiers: [50, 100, 250, 500],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Multi-colour Set", "Single Neon"],
     rating: 4.4,
     reviewCount: 180,
@@ -860,7 +903,7 @@ export const PRODUCTS: Product[] = [
     categorySlug: "pens",
     subCategory: "Pen Sets",
     priceFromInr: 499,
-    qtyTiers: [10, 25, 50, 100],
+    qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Metal & Rollerball Set"],
     rating: 4.8,
     reviewCount: 190,

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Trash2, Minus, Plus, ShoppingBag } from "lucide-react";
-import { PRODUCTS } from "@/data/products";
+import { PRODUCTS, getProductPricing } from "@/data/products";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -19,7 +19,7 @@ type CartLine = { slug: string; qty: number };
 
 function CartPage() {
   const [lines, setLines] = useState<CartLine[]>([
-    { slug: "standard-visiting-cards", qty: 1 },
+    { slug: "standard-visiting-cards", qty: 100 },
     { slug: "photo-mugs", qty: 2 },
   ]);
   const [code, setCode] = useState("");
@@ -28,12 +28,24 @@ function CartPage() {
     .map((l) => ({ line: l, product: PRODUCTS.find((p) => p.slug === l.slug)! }))
     .filter((x) => x.product);
 
-  const subtotal = items.reduce((s, x) => s + x.product.priceFromInr * x.line.qty, 0);
+  const subtotal = items.reduce((s, x) => {
+    const { totalPrice } = getProductPricing(x.product, x.line.qty);
+    return s + totalPrice;
+  }, 0);
   const delivery = subtotal >= 500 ? 0 : 79;
   const total = subtotal + delivery;
 
-  const update = (slug: string, delta: number) =>
-    setLines((ls) => ls.map((l) => (l.slug === slug ? { ...l, qty: Math.max(1, l.qty + delta) } : l)));
+  const update = (slug: string, delta: number) => {
+    const product = PRODUCTS.find((p) => p.slug === slug);
+    if (!product) return;
+    const baseQty = product.qtyTiers[0] || 1;
+    const step = baseQty >= 25 ? baseQty : 1;
+    setLines((ls) =>
+      ls.map((l) =>
+        l.slug === slug ? { ...l, qty: Math.max(baseQty, l.qty + delta * step) } : l
+      )
+    );
+  };
   const remove = (slug: string) => setLines((ls) => ls.filter((l) => l.slug !== slug));
 
   if (items.length === 0) {
@@ -54,40 +66,50 @@ function CartPage() {
       <h1 className="mb-8">Your cart</h1>
       <div className="grid lg:grid-cols-[1fr_360px] gap-8">
         <div className="space-y-4">
-          {items.map(({ line, product }) => (
-            <div key={product.slug} className="flex gap-4 p-4 rounded-xl border border-border bg-card">
-              <div className="w-24 shrink-0 aspect-square rounded-lg overflow-hidden bg-muted border border-border">
-                <img
-                  src={`/images/${product.slug}.png`}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <Link to="/product/$slug" params={{ slug: product.slug }} className="font-medium hover:text-primary">
-                  {product.name}
-                </Link>
-                <p className="text-sm text-muted-foreground mt-1">{product.subCategory}</p>
-                <div className="mt-3 flex items-center justify-between">
-                  <div className="inline-flex items-center border border-border rounded-md">
-                    <button onClick={() => update(product.slug, -1)} className="p-2 hover:bg-muted" aria-label="Decrease">
-                      <Minus className="h-3.5 w-3.5" />
-                    </button>
-                    <span className="px-3 text-sm w-10 text-center">{line.qty}</span>
-                    <button onClick={() => update(product.slug, 1)} className="p-2 hover:bg-muted" aria-label="Increase">
-                      <Plus className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="font-semibold">₹{(product.priceFromInr * line.qty).toLocaleString("en-IN")}</span>
-                    <button onClick={() => remove(product.slug)} className="text-muted-foreground hover:text-destructive" aria-label="Remove">
-                      <Trash2 className="h-4 w-4" />
-                    </button>
+          {items.map(({ line, product }) => {
+            const { totalPrice, unitPrice, discountPercent } = getProductPricing(product, line.qty);
+            return (
+              <div key={product.slug} className="flex gap-4 p-4 rounded-xl border border-border bg-card">
+                <div className="w-24 shrink-0 aspect-square rounded-lg overflow-hidden bg-muted border border-border">
+                  <img
+                    src={`/images/${product.slug}.png`}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <Link to="/product/$slug" params={{ slug: product.slug }} className="font-medium hover:text-primary">
+                    {product.name}
+                  </Link>
+                  <p className="text-sm text-muted-foreground mt-1">{product.subCategory}</p>
+                  <div className="mt-3 flex items-center justify-between">
+                    <div className="inline-flex items-center border border-border rounded-md">
+                      <button onClick={() => update(product.slug, -1)} className="p-2 hover:bg-muted" aria-label="Decrease">
+                        <Minus className="h-3.5 w-3.5" />
+                      </button>
+                      <span className="px-3 text-sm w-10 text-center">{line.qty}</span>
+                      <button onClick={() => update(product.slug, 1)} className="p-2 hover:bg-muted" aria-label="Increase">
+                        <Plus className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-right">
+                        <span className="font-semibold block">₹{totalPrice.toLocaleString("en-IN")}</span>
+                        {discountPercent > 0 && (
+                          <span className="text-[10px] text-success font-medium block">
+                            {discountPercent}% off (₹{Math.round(unitPrice)}/u)
+                          </span>
+                        )}
+                      </div>
+                      <button onClick={() => remove(product.slug)} className="text-muted-foreground hover:text-destructive" aria-label="Remove">
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <aside className="lg:sticky lg:top-32 h-fit rounded-xl border border-border p-6 bg-card shadow-card">
