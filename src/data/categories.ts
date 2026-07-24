@@ -6,13 +6,116 @@ export type Category = {
   blurb: string;
 };
 
+export type HomepageCategory = {
+  name: string;
+  route: string;
+  image: string;
+  blurb: string;
+  emoji: string;
+  search?: Record<string, string>;
+};
+
+export type NavTab = {
+  label: string;
+  to: string;
+  subCategories?: string[];
+  hot?: boolean;
+  cta?: boolean;
+  hash?: string;
+};
+
+/** Remaining homepage categories — T-Shirts featured separately. */
+export const HOMEPAGE_CATEGORIES: HomepageCategory[] = [
+  {
+    name: "Custom Bottles",
+    route: "/drinkware",
+    image: "/images/water-bottles.png",
+    blurb: "Branded water bottles and tumblers for teams and events.",
+    emoji: "🍼",
+    search: { sub: "Water Bottles" },
+  },
+  {
+    name: "Caps",
+    route: "/clothing-bags",
+    image: "/images/custom-caps.png",
+    blurb: "Embroidered caps with your logo front and centre.",
+    emoji: "🧢",
+    search: { sub: "Caps" },
+  },
+  {
+    name: "Badges",
+    route: "/labels-stickers",
+    image: "/images/bumper-stickers.png",
+    blurb: "Pin badges, lanyards, and event identification.",
+    emoji: "🏅",
+  },
+  {
+    name: "Corporate Gifts",
+    route: "/photo-gifts",
+    image: "/images/photo-albums.png",
+    blurb: "Premium welcome kits and branded gift sets.",
+    emoji: "🎁",
+  },
+  {
+    name: "Custom Pens",
+    route: "/pens",
+    image: "/images/metal-pens.png",
+    blurb: "Smooth-writing branded pens for corporate gifting.",
+    emoji: "🖊️",
+  },
+  {
+    name: "Stamps",
+    route: "/stamps",
+    image: "/images/self-inking-stamps.png",
+    blurb: "Professional self-inking and rubber stamps.",
+    emoji: "🔖",
+  },
+];
+
+export const TSHIRT_PRODUCT_SLUGS = ["custom-tshirts", "polo-tshirts"] as const;
+
 export const CATEGORIES: Category[] = [
   {
     slug: "clothing-bags",
-    name: "Clothing & Bags",
+    name: "Custom T-Shirts",
     route: "/clothing-bags",
-    subCategories: ["Polo T-Shirts", "T-Shirts", "Dress Shirts", "Caps", "Tote Bags", "Backpacks"],
-    blurb: "Branded apparel and bags for teams, events and giveaways.",
+    subCategories: ["T-Shirts", "Polo T-Shirts", "Hoodies", "DTF Prints", "Caps", "Tote Bags"],
+    blurb: "Custom apparel for teams, events, and brand promotion.",
+  },
+  {
+    slug: "drinkware",
+    name: "Custom Bottles",
+    route: "/drinkware",
+    subCategories: ["Water Bottles", "Travel Mugs", "Tumblers", "Ceramic Mugs"],
+    blurb: "Branded drinkware your team and customers will use daily.",
+  },
+  {
+    slug: "labels-stickers",
+    name: "Badges",
+    route: "/labels-stickers",
+    subCategories: ["Pin Badges", "Lanyards", "Name Badges", "Button Badges", "Custom Stickers"],
+    blurb: "Pin badges, lanyards, and promotional items for events.",
+  },
+  {
+    slug: "photo-gifts",
+    name: "Corporate Gifts",
+    route: "/photo-gifts",
+    subCategories: ["Welcome Kits", "Photo Mugs", "Gift Sets", "Calendars", "Canvas Prints"],
+    blurb: "Premium branded gifts that leave a lasting impression.",
+  },
+  {
+    slug: "pens",
+    name: "Custom Pens",
+    route: "/pens",
+    subCategories: ["Ball Pens", "Metal Pens", "Highlighters", "Pen Sets"],
+    blurb: "Smooth-writing custom pens — a corporate gift classic.",
+  },
+  {
+    slug: "stamps",
+    name: "Stamps",
+    route: "/stamps",
+    subCategories: ["Self Inking", "Rubber Stamps", "Date Stamps", "Address Stamps"],
+    blurb: "Professional stamps for daily office use.",
   },
   {
     slug: "stationery",
@@ -21,58 +124,45 @@ export const CATEGORIES: Category[] = [
     subCategories: ["Letterheads", "Envelopes", "Notebooks", "Diaries", "Notepads", "Folders"],
     blurb: "Custom business stationery that puts your brand on every page.",
   },
-  {
-    slug: "drinkware",
-    name: "Drinkware",
-    route: "/drinkware",
-    subCategories: ["Ceramic Mugs", "Travel Mugs", "Water Bottles", "Tumblers"],
-    blurb: "Custom drinkware that your team and customers will reach for daily.",
-  },
-  {
-    slug: "photo-gifts",
-    name: "Photo Gifts",
-    route: "/photo-gifts",
-    subCategories: ["Photo Albums", "Photo Mugs", "Canvas Prints", "Calendars", "Cushions", "Umbrellas"],
-    blurb: "Personalised gifts that turn memories into keepsakes.",
-  },
-  {
-    slug: "pens",
-    name: "Pens",
-    route: "/pens",
-    subCategories: ["Ball Pens", "Metal Pens", "Highlighters", "Pen Sets"],
-    blurb: "Smooth-writing custom pens — a corporate gift classic.",
-  },
-  {
-    slug: "labels-stickers",
-    name: "Labels & Stickers",
-    route: "/labels-stickers",
-    subCategories: ["Roll Labels", "Sheet Labels", "Die Cut", "Bumper Stickers", "Bottle Labels"],
-    blurb: "Durable labels and stickers for products, packaging and promotion.",
-  },
-  {
-    slug: "stamps",
-    name: "Stamps",
-    route: "/stamps",
-    subCategories: ["Self Inking", "Rubber Stamps", "Date Stamps", "Address Stamps"],
-    blurb: "Professional stamps for daily office use, signatures and approvals.",
-  },
-  {
-    slug: "business-cards",
-    name: "Visiting Cards",
-    route: "/business-cards",
-    subCategories: ["Standard", "Classic", "Rounded Corner", "Square", "Spot UV", "Matte", "Glossy", "NFC", "QR Code", "Bulk", "Premium Plus"],
-    blurb: "Make a memorable first impression with premium visiting cards printed on a range of finishes.",
-  },
-  {
-    slug: "signs-posters",
-    name: "Signs & Posters",
-    route: "/signs-posters",
-    subCategories: ["Posters", "Banners", "Flyers", "Window Decals", "Yard Signs", "Roll-up Banners"],
-    blurb: "High-impact signage and posters for storefronts, events and pop-ups.",
-  },
 ];
 
-export const NAV_TABS = [
-  { label: "View All", to: "/" },
-  ...CATEGORIES.map((c) => ({ label: c.name, to: c.route })),
-] as const;
+export const NAV_TABS: NavTab[] = [
+  { label: "Home", to: "/" },
+  {
+    label: "Custom T-Shirts",
+    to: "/clothing-bags",
+    hot: true,
+    subCategories: ["T-Shirts", "Polo T-Shirts", "Hoodies", "DTF Prints", "Caps"],
+  },
+  {
+    label: "Bottles",
+    to: "/drinkware",
+    subCategories: ["Water Bottles", "Travel Mugs", "Tumblers", "Ceramic Mugs"],
+  },
+  {
+    label: "Caps",
+    to: "/clothing-bags",
+    subCategories: ["Caps", "T-Shirts", "Polo T-Shirts"],
+  },
+  {
+    label: "Badges",
+    to: "/labels-stickers",
+    subCategories: ["Pin Badges", "Lanyards", "Name Badges", "Button Badges"],
+  },
+  {
+    label: "Corporate Gifts",
+    to: "/photo-gifts",
+    subCategories: ["Welcome Kits", "Photo Mugs", "Gift Sets", "Calendars"],
+  },
+  {
+    label: "Pens",
+    to: "/pens",
+    subCategories: ["Ball Pens", "Metal Pens", "Highlighters", "Pen Sets"],
+  },
+  {
+    label: "Stamps",
+    to: "/stamps",
+    subCategories: ["Self Inking", "Rubber Stamps", "Date Stamps", "Address Stamps"],
+  },
+  { label: "Get Quote", to: "/", hash: "get-quote", cta: true },
+];

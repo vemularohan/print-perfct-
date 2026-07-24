@@ -195,12 +195,12 @@ export const PRODUCTS: Product[] = [
     name: "Custom Polo T-Shirts",
     categorySlug: "clothing-bags",
     subCategory: "Polo T-Shirts",
-    priceFromInr: 549,
+    priceFromInr: 349,
     qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["Embroidery", "Screen Print"],
     rating: 4.6,
     reviewCount: 1540,
-    pricePill: "FROM ₹549",
+    pricePill: "FROM ₹349",
     description: "Premium pique polos with embroidered or printed branding.",
     features: ["220gsm pique cotton", "Sizes XS–4XL", "Embroidery or print"],
     specs: [
@@ -214,12 +214,12 @@ export const PRODUCTS: Product[] = [
     name: "Custom T-Shirts",
     categorySlug: "clothing-bags",
     subCategory: "T-Shirts",
-    priceFromInr: 349,
+    priceFromInr: 299,
     qtyTiers: [1, 2, 5, 10, 25, 50, 100],
     finishes: ["DTG Print", "Screen Print"],
     rating: 4.5,
     reviewCount: 2120,
-    pricePill: "FROM ₹349",
+    pricePill: "FROM ₹299",
     description: "Soft cotton round-neck tees with full-colour DTG or screen printing.",
     features: ["180gsm cotton", "Pre-shrunk", "Sizes XS–4XL"],
     specs: [{ label: "Fabric", value: "180gsm combed cotton" }],
@@ -925,13 +925,11 @@ export const getRelated = (slug: string, limit = 6) => {
 };
 
 export const POPULAR_SLUGS = [
-  "standard-visiting-cards", "letterheads", "photo-albums", "bumper-stickers",
-  "polo-tshirts", "custom-tshirts", "photo-mugs", "umbrellas",
-  "self-inking-stamps", "tote-bags", "metal-pens", "ceramic-mugs",
+  "custom-tshirts", "polo-tshirts", "water-bottles", "custom-caps",
+  "metal-pens", "self-inking-stamps", "photo-mugs", "tote-bags",
 ];
 
 export const TRENDING_SLUGS = [
-  "classic-visiting-cards", "spot-uv-visiting-cards", "rounded-corner-visiting-cards",
-  "custom-caps", "rubber-stamps", "envelopes", "notebooks",
-  "flyers", "banners", "posters", "roll-labels", "water-bottles",
+  "custom-tshirts", "polo-tshirts", "water-bottles", "custom-caps",
+  "travel-mugs", "tumblers", "ball-pens", "rubber-stamps",
 ];
