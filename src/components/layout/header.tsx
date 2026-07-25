@@ -45,9 +45,9 @@ export function Header() {
               <span className="font-mono font-semibold">SAVE5</span>
             </p>
             <div className="flex items-center gap-4 shrink-0">
-              <Link to="/help-centre" className="hidden md:inline-flex items-center gap-1.5 hover:underline">
+              <a href="tel:02522-669393" className="hidden md:inline-flex items-center gap-1.5 hover:underline">
                 <Phone className="h-3.5 w-3.5" /> 02522-669393
-              </Link>
+              </a>
               <button type="button" onClick={() => setPromoOpen(false)} aria-label="Dismiss promo" className="opacity-80 hover:opacity-100">
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -82,15 +82,12 @@ export function Header() {
           </div>
 
           <nav className="flex items-center gap-1 ml-auto">
-            <Link to="/account" className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-md hover:bg-muted text-sm">
-              <FolderOpen className="h-5 w-5" /> <span className="hidden xl:inline">Projects</span>
-            </Link>
-            <Link to="/account" className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-md hover:bg-muted text-sm">
-              <Heart className="h-5 w-5" /> <span className="hidden xl:inline">Favourites</span>
-            </Link>
-            <Link to="/login" className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-md hover:bg-muted text-sm">
-              <User className="h-5 w-5" /> <span className="hidden xl:inline">Account</span>
-            </Link>
+            <a href="#get-quote" className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-md hover:bg-muted text-sm font-semibold">
+              Contact
+            </a>
+            <a href="#get-quote" className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-md hover:bg-muted text-sm font-semibold">
+              Get Quote
+            </a>
             <Link to="/cart" className="flex items-center gap-1.5 px-3 py-2 rounded-md hover:bg-muted text-sm relative">
               <ShoppingCart className="h-5 w-5" />
               <span className="hidden xl:inline">Cart</span>
@@ -117,7 +114,9 @@ export function Header() {
                   >
                     <div className="relative inline-flex items-center">
                       <Link
-                        to={tab.to}
+                        to={tab.to === "/product/sports-jerseys" ? "/product/$slug" : (tab.to as any)}
+                        params={tab.to === "/product/sports-jerseys" ? { slug: "sports-jerseys" } : undefined}
+                        hash={tab.hash}
                         activeProps={{ className: "text-primary font-semibold" }}
                         activeOptions={{ exact: tab.to === "/" }}
                         className="inline-flex items-center gap-1 whitespace-nowrap px-2 xl:px-3 text-[13px] xl:text-[14px] py-4 font-medium text-foreground hover:text-primary transition-colors focus:outline-none"
@@ -217,7 +216,9 @@ export function Header() {
               return (
                 <div key={tab.label} className="border-b border-border">
                   <Link
-                    to={tab.to}
+                    to={tab.to === "/product/sports-jerseys" ? "/product/$slug" : (tab.to as any)}
+                    params={tab.to === "/product/sports-jerseys" ? { slug: "sports-jerseys" } : undefined}
+                    hash={tab.hash}
                     onClick={() => setMobileOpen(false)}
                     className="block px-3 py-3 text-sm font-medium hover:bg-muted"
                   >
@@ -237,7 +238,7 @@ export function Header() {
             })}
           </nav>
           <div className="grid grid-cols-2 gap-2 p-3">
-            <Link to="/login" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md bg-muted text-center text-sm">Account</Link>
+            <a href="#get-quote" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md bg-muted text-center text-sm">Contact</a>
             <Link to="/cart" onClick={() => setMobileOpen(false)} className="px-3 py-2 rounded-md bg-primary text-primary-foreground text-center text-sm">Cart</Link>
           </div>
         </div>

@@ -1,8 +1,8 @@
 export const SITE_CONTACT = {
-  phone: "02522-669393",
-  phoneTel: "+912522669393",
-  whatsapp: "912522669393",
-  email: "help@suriyanprints.in",
+  phone: "+91 9676662304",
+  phoneTel: "+919676662304",
+  whatsapp: "919676662304",
+  email: "info@suriyanprints.in",
 } as const;
 
 export function whatsappUrl(message: string) {

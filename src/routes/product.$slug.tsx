@@ -61,6 +61,20 @@ function ProductDetail() {
   const [finish, setFinish] = useState(product.finishes[0]);
   const [embroidery, setEmbroidery] = useState(false);
   const navigate = useNavigate();
+
+  // Sports Jerseys specific configuration states
+  const isJersey = product.categorySlug === "sports-jerseys";
+  const [jerseyType, setJerseyType] = useState("Cricket");
+  const [fit, setFit] = useState("Regular");
+  const [fabric, setFabric] = useState("Dry-Fit");
+  const [sleeve, setSleeve] = useState("Half Sleeve");
+  const [neck, setNeck] = useState("Round Neck");
+  const [size, setSize] = useState("M");
+  const [playerName, setPlayerName] = useState("");
+  const [playerNumber, setPlayerNumber] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [hasTeamLogo, setHasTeamLogo] = useState(false);
+  const [hasSponsorLogo, setHasSponsorLogo] = useState(false);
   
   const pricing = getLinePricing(product, { slug: product.slug, qty, embroidery });
   const original = pricing.originalPrice + pricing.embroideryTotal;
@@ -198,44 +212,211 @@ function ProductDetail() {
             </div>
           </div>
 
+          {isJersey ? (
+            <div className="space-y-6 mb-8 border-t border-b border-border py-6">
+              <div>
+                <p className="text-sm font-bold text-foreground mb-2">Jersey Type</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Cricket", "Football", "Basketball", "Volleyball", "Kabaddi", "Badminton", "Marathon", "Cycling"].map((t) => (
+                    <button
+                      key={t}
+                      type="button"
+                      onClick={() => setJerseyType(t)}
+                      className={`px-4 py-2 rounded-full text-xs font-bold border transition-colors ${
+                        jerseyType === t ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary/50 bg-card"
+                      }`}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm font-bold text-foreground mb-2">Fit Option</p>
+                  <div className="flex gap-2">
+                    {["Regular", "Athletic"].map((f) => (
+                      <button
+                        key={f}
+                        type="button"
+                        onClick={() => setFit(f)}
+                        className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-colors ${
+                          fit === f ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary/50 bg-card"
+                        }`}
+                      >
+                        {f}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-sm font-bold text-foreground mb-2">Neck Style</p>
+                  <div className="flex gap-2">
+                    {["Round Neck", "V-Neck", "Polo Collar"].map((n) => (
+                      <button
+                        key={n}
+                        type="button"
+                        onClick={() => setNeck(n)}
+                        className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-colors ${
+                          neck === n ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary/50 bg-card"
+                        }`}
+                      >
+                        {n}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm font-bold text-foreground mb-2">Fabric Option</p>
+                  <select
+                    value={fabric}
+                    onChange={(e) => setFabric(e.target.value)}
+                    className="w-full rounded-xl border border-input bg-card px-3 py-2 text-xs font-bold focus:outline-primary"
+                  >
+                    {["Micro Polyester", "Dry-Fit", "Premium Dry-Fit"].map((fb) => (
+                      <option key={fb} value={fb}>{fb}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <p className="text-sm font-bold text-foreground mb-2">Sleeve Option</p>
+                  <select
+                    value={sleeve}
+                    onChange={(e) => setSleeve(e.target.value)}
+                    className="w-full rounded-xl border border-input bg-card px-3 py-2 text-xs font-bold focus:outline-primary"
+                  >
+                    {["Half Sleeve", "Full Sleeve", "Sleeveless"].map((sl) => (
+                      <option key={sl} value={sl}>{sl}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-sm font-bold text-foreground mb-2">Size Selection</p>
+                <div className="flex flex-wrap gap-2">
+                  {["XS", "S", "M", "L", "XL", "XXL", "3XL"].map((sz) => (
+                    <button
+                      key={sz}
+                      type="button"
+                      onClick={() => setSize(sz)}
+                      className={`h-10 w-10 rounded-xl text-xs font-bold border transition-colors flex items-center justify-center ${
+                        size === sz ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary/50 bg-card"
+                      }`}
+                    >
+                      {sz}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3.5 border-t border-border pt-6">
+                <p className="text-sm font-bold text-foreground">Customizations</p>
+                <div className="grid sm:grid-cols-2 gap-3.5">
+                  <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                    Player Name
+                    <input
+                      type="text"
+                      placeholder="E.g. ARJUN"
+                      value={playerName}
+                      onChange={(e) => setPlayerName(e.target.value)}
+                      className="mt-1.5 w-full rounded-xl border border-input px-3 py-2 text-xs font-semibold focus:outline-primary text-foreground"
+                    />
+                  </label>
+                  <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                    Jersey Number
+                    <input
+                      type="text"
+                      placeholder="E.g. 07"
+                      value={playerNumber}
+                      onChange={(e) => setPlayerNumber(e.target.value)}
+                      className="mt-1.5 w-full rounded-xl border border-input px-3 py-2 text-xs font-semibold focus:outline-primary text-foreground"
+                    />
+                  </label>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-3.5">
+                  <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                    Team Name
+                    <input
+                      type="text"
+                      placeholder="E.g. SPARTANS"
+                      value={teamName}
+                      onChange={(e) => setTeamName(e.target.value)}
+                      className="mt-1.5 w-full rounded-xl border border-input px-3 py-2 text-xs font-semibold focus:outline-primary text-foreground"
+                    />
+                  </label>
+                  <div className="flex flex-col gap-2 pt-2 justify-center">
+                    <label className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase cursor-pointer select-none">
+                      <input type="checkbox" checked={hasTeamLogo} onChange={(e) => setHasTeamLogo(e.target.checked)} className="h-4 w-4 accent-[var(--primary)]" />
+                      Add Team Logo
+                    </label>
+                    <label className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase cursor-pointer select-none">
+                      <input type="checkbox" checked={hasSponsorLogo} onChange={(e) => setHasSponsorLogo(e.target.checked)} className="h-4 w-4 accent-[var(--primary)]" />
+                      Add Sponsor Logo
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="mb-6">
+              <p className="text-sm font-medium mb-2">Finish</p>
+              <div className="flex flex-wrap gap-2">
+                {product.finishes.map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFinish(f)}
+                    className={`px-4 py-2 rounded-full text-sm border transition-colors ${
+                      finish === f ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary"
+                    }`}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {supportsEmbroidery(product) ? (
             <label className="mb-6 flex cursor-pointer items-center justify-between rounded-xl border border-border bg-surface p-4 transition-colors hover:border-primary/50">
               <span className="flex items-center gap-3">
                 <input type="checkbox" checked={embroidery} onChange={(e) => setEmbroidery(e.target.checked)} className="h-4 w-4 accent-[var(--primary)]" />
-                <span><span className="block text-sm font-semibold">Embroidery (+₹{EMBROIDERY_PRICE_INR})</span><span className="block text-xs text-muted-foreground">Premium stitched logo finish per T-shirt</span></span>
+                <span>
+                  <span className="block text-sm font-semibold">Embroidery (+₹{EMBROIDERY_PRICE_INR})</span>
+                  <span className="block text-xs text-muted-foreground">Premium stitched logo finish per T-shirt / Jersey</span>
+                </span>
               </span>
               {embroidery ? <span className="text-sm font-semibold text-primary">+₹{pricing.embroideryTotal.toLocaleString("en-IN")}</span> : null}
             </label>
           ) : null}
 
-          <div className="mb-6">
-            <p className="text-sm font-medium mb-2">Finish</p>
-            <div className="flex flex-wrap gap-2">
-              {product.finishes.map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setFinish(f)}
-                  className={`px-4 py-2 rounded-full text-sm border transition-colors ${
-                    finish === f ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary"
-                  }`}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6 font-semibold">
             <Truck className="h-4 w-4 text-primary" />
-            Estimated delivery: <span className="text-foreground font-medium">5–7 business days</span>
+            Estimated delivery: <span className="text-foreground font-semibold">5–7 business days</span>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
-            <button onClick={() => { addCartLine({ slug: product.slug, qty, embroidery: supportsEmbroidery(product) && embroidery }); navigate({ to: "/cart" }); }} className="btn-primary flex-1 h-14 text-lg">
+            <button 
+              onClick={() => { 
+                addCartLine({ 
+                  slug: product.slug, 
+                  qty, 
+                  embroidery: supportsEmbroidery(product) && embroidery 
+                }); 
+                navigate({ to: "/cart" }); 
+              }} 
+              className="btn-primary flex-1 h-14 text-lg font-bold rounded-xl"
+            >
               Customise & Buy
             </button>
-            <button className="btn-secondary flex-1 h-14 text-lg inline-flex items-center justify-center gap-2">
-              <Heart className="h-5 w-5" /> Favourite
+            <button className="btn-secondary flex-1 h-14 text-lg inline-flex items-center justify-center gap-2 rounded-xl font-bold">
+              <Heart className="h-5 w-5" /> Save to Cart
             </button>
           </div>
 

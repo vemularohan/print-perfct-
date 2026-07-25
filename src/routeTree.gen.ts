@@ -18,7 +18,6 @@ import { Route as PensRouteImport } from './routes/pens'
 import { Route as LogomakerRouteImport } from './routes/logomaker'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LabelsStickersRouteImport } from './routes/labels-stickers'
-import { Route as HelpCentreRouteImport } from './routes/help-centre'
 import { Route as DrinkwareRouteImport } from './routes/drinkware'
 import { Route as DesignServicesRouteImport } from './routes/design-services'
 import { Route as ClothingBagsRouteImport } from './routes/clothing-bags'
@@ -73,11 +72,6 @@ const LabelsStickersRoute = LabelsStickersRouteImport.update({
   path: '/labels-stickers',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HelpCentreRoute = HelpCentreRouteImport.update({
-  id: '/help-centre',
-  path: '/help-centre',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DrinkwareRoute = DrinkwareRouteImport.update({
   id: '/drinkware',
   path: '/drinkware',
@@ -127,7 +121,6 @@ export interface FileRoutesByFullPath {
   '/clothing-bags': typeof ClothingBagsRoute
   '/design-services': typeof DesignServicesRoute
   '/drinkware': typeof DrinkwareRoute
-  '/help-centre': typeof HelpCentreRoute
   '/labels-stickers': typeof LabelsStickersRoute
   '/login': typeof LoginRoute
   '/logomaker': typeof LogomakerRoute
@@ -147,7 +140,6 @@ export interface FileRoutesByTo {
   '/clothing-bags': typeof ClothingBagsRoute
   '/design-services': typeof DesignServicesRoute
   '/drinkware': typeof DrinkwareRoute
-  '/help-centre': typeof HelpCentreRoute
   '/labels-stickers': typeof LabelsStickersRoute
   '/login': typeof LoginRoute
   '/logomaker': typeof LogomakerRoute
@@ -168,7 +160,6 @@ export interface FileRoutesById {
   '/clothing-bags': typeof ClothingBagsRoute
   '/design-services': typeof DesignServicesRoute
   '/drinkware': typeof DrinkwareRoute
-  '/help-centre': typeof HelpCentreRoute
   '/labels-stickers': typeof LabelsStickersRoute
   '/login': typeof LoginRoute
   '/logomaker': typeof LogomakerRoute
@@ -190,7 +181,6 @@ export interface FileRouteTypes {
     | '/clothing-bags'
     | '/design-services'
     | '/drinkware'
-    | '/help-centre'
     | '/labels-stickers'
     | '/login'
     | '/logomaker'
@@ -210,7 +200,6 @@ export interface FileRouteTypes {
     | '/clothing-bags'
     | '/design-services'
     | '/drinkware'
-    | '/help-centre'
     | '/labels-stickers'
     | '/login'
     | '/logomaker'
@@ -230,7 +219,6 @@ export interface FileRouteTypes {
     | '/clothing-bags'
     | '/design-services'
     | '/drinkware'
-    | '/help-centre'
     | '/labels-stickers'
     | '/login'
     | '/logomaker'
@@ -251,7 +239,6 @@ export interface RootRouteChildren {
   ClothingBagsRoute: typeof ClothingBagsRoute
   DesignServicesRoute: typeof DesignServicesRoute
   DrinkwareRoute: typeof DrinkwareRoute
-  HelpCentreRoute: typeof HelpCentreRoute
   LabelsStickersRoute: typeof LabelsStickersRoute
   LoginRoute: typeof LoginRoute
   LogomakerRoute: typeof LogomakerRoute
@@ -329,13 +316,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LabelsStickersRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/help-centre': {
-      id: '/help-centre'
-      path: '/help-centre'
-      fullPath: '/help-centre'
-      preLoaderRoute: typeof HelpCentreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/drinkware': {
       id: '/drinkware'
       path: '/drinkware'
@@ -403,7 +383,6 @@ const rootRouteChildren: RootRouteChildren = {
   ClothingBagsRoute: ClothingBagsRoute,
   DesignServicesRoute: DesignServicesRoute,
   DrinkwareRoute: DrinkwareRoute,
-  HelpCentreRoute: HelpCentreRoute,
   LabelsStickersRoute: LabelsStickersRoute,
   LoginRoute: LoginRoute,
   LogomakerRoute: LogomakerRoute,

@@ -8,7 +8,7 @@ export type CartLine = { slug: string; qty: number; embroidery?: boolean };
 export type Order = { id: string; date: string; lines: CartLine[]; subtotal: number; delivery: number; total: number; status: "Processing" };
 
 export function supportsEmbroidery(product: Product) {
-  return product.slug === "custom-tshirts" || product.slug === "polo-tshirts";
+  return product.slug === "custom-tshirts" || product.slug === "polo-tshirts" || product.categorySlug === "sports-jerseys";
 }
 
 export function getLinePricing(product: Product, line: CartLine) {

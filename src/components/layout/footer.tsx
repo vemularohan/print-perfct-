@@ -22,18 +22,16 @@ const COLS = [
       { label: "Logo Maker", to: "/logomaker" },
       { label: "QR Code Generator", to: "/qr-code-generator" },
       { label: "Design Services", to: "/design-services" },
-      { label: "Bulk Orders", to: "/help-centre" },
+      { label: "Bulk Orders", to: "/" },
     ],
   },
   {
-    title: "Help & Company",
+    title: "Company",
     links: [
-      { label: "Help Centre", to: "/help-centre" },
-      { label: "Track Order", to: "/account" },
-      { label: "Returns Policy", to: "/help-centre" },
-      { label: "About Us", to: "/help-centre" },
-      { label: "Privacy Policy", to: "/help-centre" },
-      { label: "Terms of Use", to: "/help-centre" },
+      { label: "About Us", to: "/" },
+      { label: "Contact Us", to: "/" },
+      { label: "Privacy Policy", to: "/" },
+      { label: "Terms of Use", to: "/" },
     ],
   },
 ] as const;
@@ -49,6 +47,14 @@ export function Footer() {
           <p className="mt-4 text-sm opacity-80 max-w-xs">
             Helping small businesses look professional with custom printing, design and merchandise.
           </p>
+          <div className="mt-4 text-xs space-y-1.5 opacity-80">
+            <p className="flex items-center gap-2">
+              <span>📞</span> <a href="tel:+919676662304" className="hover:underline">+91 9676662304</a>
+            </p>
+            <p className="flex items-center gap-2">
+              <span>💬</span> <a href="https://wa.me/919676662304?text=Hi%20Suriyan%20Prints,%20I'm%20interested%20in%20custom%20printing.%20Please%20share%20more%20details." target="_blank" rel="noopener noreferrer" className="hover:underline">WhatsApp: +91 9676662304</a>
+            </p>
+          </div>
           <div className="mt-5 flex items-center gap-3">
             {[Facebook, Instagram, Linkedin, Twitter, Youtube].map((Icon, i) => (
               <a key={i} href="#" aria-label="Social" className="h-9 w-9 inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
