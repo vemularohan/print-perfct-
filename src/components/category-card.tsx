@@ -40,7 +40,7 @@ export function CategoryCard({ name, to, image, blurb, badge, search, size = "de
       )}
     >
       {imgUrl ? (
-        <div className={cn("relative bg-muted overflow-hidden", isCompact ? "aspect-[4/5]" : "aspect-[5/4]")}>
+        <div className={cn("relative bg-muted overflow-hidden w-full", isCompact ? "aspect-[4/5]" : "aspect-[5/4]")}>
           <img
             src={imgUrl}
             alt={name}
@@ -52,28 +52,22 @@ export function CategoryCard({ name, to, image, blurb, badge, search, size = "de
               {badge}
             </span>
           ) : null}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
       ) : (
         <GradientPlaceholder name={name} ratio={isCompact ? "4-5" : "5-4"} label="" />
       )}
-      <div className={cn("flex flex-1 flex-col", isCompact ? "p-3 text-center" : "p-4")}>
-        <span
-          className={cn(
-            "font-semibold text-foreground group-hover:text-primary transition-colors",
-            isCompact ? "text-sm" : "text-base",
-          )}
-        >
-          {name}
-        </span>
-        {blurb && !isCompact ? (
-          <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{blurb}</p>
-        ) : null}
-        {!isCompact ? (
-          <span className="mt-auto pt-3 inline-flex items-center gap-1 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-            Shop now <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+      <div className="flex flex-1 flex-col p-5 text-left justify-between gap-3">
+        <div>
+          <span className="font-extrabold text-foreground group-hover:text-primary transition-colors text-base">
+            {name}
           </span>
-        ) : null}
+          {blurb ? (
+            <p className="text-xs text-muted-foreground mt-1 line-clamp-2 leading-relaxed">{blurb}</p>
+          ) : null}
+        </div>
+        <span className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-primary group-hover:text-primary/80 transition-colors">
+          Shop Now <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform duration-300" />
+        </span>
       </div>
     </Link>
   );

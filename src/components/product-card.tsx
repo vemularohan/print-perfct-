@@ -16,11 +16,11 @@ export function ProductCard({ product, size = "default" }: Props) {
       to="/product/$slug"
       params={{ slug: product.slug }}
       className={cn(
-        "group block rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 overflow-hidden border border-border/60",
+        "group flex flex-col rounded-2xl bg-card shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 overflow-hidden border border-border/60",
         isLarge ? "hover:-translate-y-1.5" : "hover:-translate-y-0.5 rounded-xl",
       )}
     >
-      <div className={cn("relative bg-muted overflow-hidden", isLarge ? "aspect-[4/5] md:aspect-[3/4]" : "aspect-[4/5]")}>
+      <div className={cn("relative bg-muted overflow-hidden w-full", isLarge ? "aspect-[4/5] md:aspect-[3/4]" : "aspect-[4/5]")}>
         <img
           src={`/images/${product.slug}.png`}
           alt={product.name}
@@ -29,7 +29,7 @@ export function ProductCard({ product, size = "default" }: Props) {
         />
         <span
           className={cn(
-            "absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-primary-foreground font-semibold shadow",
+            "absolute top-3 left-3 inline-flex items-center rounded-full bg-primary text-primary-foreground font-semibold shadow-md",
             isLarge ? "px-4 py-1.5 text-sm" : "px-3 py-1 text-xs",
           )}
         >
@@ -41,12 +41,16 @@ export function ProductCard({ product, size = "default" }: Props) {
           </div>
         </div>
       </div>
-      <div className={cn(isLarge ? "p-5" : "p-4")}>
-        <h3 className={cn("font-semibold text-foreground line-clamp-1 mb-1", isLarge ? "text-lg" : "text-base")}>
-          {product.name}
-        </h3>
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-center gap-1">
+      
+      <div className={cn(isLarge ? "p-5" : "p-4", "flex flex-col flex-1 flex-grow justify-between gap-3 text-left")}>
+        <div>
+          <h3 className={cn("font-extrabold text-foreground line-clamp-1 mb-1 group-hover:text-primary transition-colors", isLarge ? "text-lg" : "text-base")}>
+            {product.name}
+          </h3>
+          <p className={cn("font-black text-primary mb-1", isLarge ? "text-base" : "text-sm")}>
+            From ₹{product.priceFromInr.toLocaleString("en-IN")}
+          </p>
+          <div className="flex items-center gap-1 mb-2">
             <div className="flex text-amber-500">
               {[...Array(5)].map((_, i) => (
                 <Star
@@ -55,13 +59,14 @@ export function ProductCard({ product, size = "default" }: Props) {
                 />
               ))}
             </div>
-            <span className={cn("font-medium text-muted-foreground", isLarge ? "text-xs" : "text-[11px]")}>
-              ({product.reviewCount.toLocaleString("en-IN")})
-            </span>
+            <span className="text-[11px] text-muted-foreground">({product.reviewCount.toLocaleString("en-IN")})</span>
           </div>
-          <p className={cn("font-bold text-primary", isLarge ? "text-base" : "text-sm")}>
-            From ₹{product.priceFromInr.toLocaleString("en-IN")}
+          <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+            {product.description}
           </p>
+        </div>
+        <div className="w-full bg-primary/5 group-hover:bg-primary text-primary group-hover:text-primary-foreground font-bold text-[11px] uppercase tracking-wider text-center py-3 rounded-xl transition-all duration-300 mt-2">
+          View Details
         </div>
       </div>
     </Link>

@@ -106,8 +106,8 @@ function PremiumHeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.18),transparent_60%)]" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
       <div key={slide.title} className="container-page relative py-20 md:py-28 lg:py-32 animate-in fade-in slide-in-from-right-8 duration-700">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
-          <div className="text-white z-10">
+        <div className="flex flex-col lg:grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+          <div className="order-2 lg:order-1 text-white z-10">
             <p className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 backdrop-blur-md px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-6">
               <Sparkles className="h-3.5 w-3.5 text-amber-300" /> {slide.label}
             </p>
@@ -150,13 +150,13 @@ function PremiumHeroSection() {
               </a>
             </div>
           </div>
-          <div className="mx-auto w-full max-w-md relative z-10">
+          <div className="order-1 lg:order-2 mx-auto w-full max-w-md relative z-10">
             <div className="absolute inset-0 bg-gradient-to-tr from-amber-400/20 to-transparent blur-3xl rounded-full" />
             <div className="relative rounded-[2rem] overflow-hidden border border-white/30 shadow-2xl bg-white/5 backdrop-blur p-2">
               <img 
                 src={slide.image} 
                 alt={slide.title} 
-                className="w-full aspect-[4/5] object-cover rounded-[1.7rem] transition-transform duration-700 hover:scale-105" 
+                className="w-full aspect-[4/3] md:aspect-[4/5] object-contain md:object-cover rounded-[1.7rem] transition-transform duration-700 hover:scale-105" 
                 fetchPriority={active === 0 ? "high" : "auto"} 
               />
             </div>
@@ -324,7 +324,7 @@ function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
             {/* Visual Gallery */}
-            <div className="grid grid-cols-2 gap-4 order-2 lg:order-1">
+            <div className="grid grid-cols-2 gap-4 order-1 lg:order-1">
               <div className="space-y-4">
                 <div className="rounded-3xl overflow-hidden shadow-md aspect-square bg-muted">
                   <img src="/images/polo-tshirts.png" alt="Embroidered Polo Shirt" className="w-full h-full object-cover hover:scale-105 transition-all duration-500" />
@@ -347,7 +347,7 @@ function HomePage() {
             </div>
 
             {/* Content Details */}
-            <div className="order-1 lg:order-2 space-y-6">
+            <div className="order-2 lg:order-2 space-y-6">
               <span className="text-xs font-black uppercase tracking-[0.25em] text-primary block">Stitched Perfection</span>
               <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">Premium Custom Embroidery</h2>
               <p className="text-base text-muted-foreground leading-relaxed">
@@ -394,9 +394,24 @@ function HomePage() {
 
       {/* 4. DTF PRINTING SECTION */}
       <section className="container-page py-16 md:py-24">
-        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
           
-          <div className="space-y-6">
+          {/* Process Visuals */}
+          <div className="order-1 lg:order-2 grid grid-cols-3 gap-3 w-full">
+            <div className="rounded-3xl overflow-hidden aspect-[4/5] bg-muted shadow-sm col-span-2">
+              <img src="/images/custom-tshirts.png" alt="DTF Process T-Shirts" className="w-full h-full object-cover hover:scale-105 transition-all duration-500" />
+            </div>
+            <div className="space-y-3">
+              <div className="rounded-2xl overflow-hidden aspect-square bg-muted shadow-sm">
+                <img src="/images/sports-jerseys.png" alt="Sports Jerseys" className="w-full h-full object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden aspect-square bg-muted shadow-sm">
+                <img src="/images/banners.png" alt="Printed Banners" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
+          <div className="order-2 lg:order-1 space-y-6">
             <span className="text-xs font-black uppercase tracking-[0.25em] text-primary block">Vibrant & Flexible</span>
             <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">High Quality DTF Printing</h2>
             <p className="text-base text-muted-foreground leading-relaxed">
@@ -414,21 +429,6 @@ function HomePage() {
               >
                 WhatsApp Specs
               </a>
-            </div>
-          </div>
-
-          {/* Process Visuals */}
-          <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-3xl overflow-hidden aspect-[4/5] bg-muted shadow-sm col-span-2">
-              <img src="/images/custom-tshirts.png" alt="DTF Process T-Shirts" className="w-full h-full object-cover hover:scale-105 transition-all duration-500" />
-            </div>
-            <div className="space-y-3">
-              <div className="rounded-2xl overflow-hidden aspect-square bg-muted shadow-sm">
-                <img src="/images/sports-jerseys.png" alt="Sports Jerseys" className="w-full h-full object-cover" />
-              </div>
-              <div className="rounded-2xl overflow-hidden aspect-square bg-muted shadow-sm">
-                <img src="/images/banners.png" alt="Printed Banners" className="w-full h-full object-cover" />
-              </div>
             </div>
           </div>
 
