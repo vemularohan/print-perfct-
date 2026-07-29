@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>/</loc></url>
-  <url><loc>/business-cards</loc></url>
-  <url><loc>/photo-gifts</loc></url>
-  <url><loc>/clothing-bags</loc></url>
-  <url><loc>/design-services</loc></url>
-  <url><loc>/help-centre</loc></url>
-  <url><loc>/stationery</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/explore</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/business-cards</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/photo-gifts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/clothing-bags</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/design-services</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/stationery</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/drinkware</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/pens</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/stamps</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/labels-stickers</loc></url>
+  
+  <!-- SEO Service Pages -->
+  <url><loc>https://suriyanprints.vercel.app/services/custom-tshirt-printing</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/corporate-tshirts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/polo-tshirts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/round-neck-tshirts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/oversized-tshirts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/sports-jerseys</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/event-tshirts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/school-college-tshirts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/company-uniform-tshirts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/embroidery</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/services/dtf-printing</loc></url>
+
+  <!-- SEO Blog Pages -->
+  <url><loc>https://suriyanprints.vercel.app/blog/top-10-tshirt-printing-hyderabad</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/blog/best-corporate-tshirt-printing-company</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/blog/embroidery-vs-dtf-printing</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/blog/best-fabric-corporate-tshirts</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/blog/bulk-tshirt-printing-cost</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/blog/best-promotional-tshirt-ideas</loc></url>
+  <url><loc>https://suriyanprints.vercel.app/blog/corporate-uniform-guide</loc></url>
 </urlset>

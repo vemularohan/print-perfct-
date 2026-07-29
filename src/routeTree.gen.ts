@@ -26,7 +26,25 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as BusinessCardsRouteImport } from './routes/business-cards'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesSportsJerseysRouteImport } from './routes/services.sports-jerseys'
+import { Route as ServicesSchoolCollegeTshirtsRouteImport } from './routes/services.school-college-tshirts'
+import { Route as ServicesRoundNeckTshirtsRouteImport } from './routes/services.round-neck-tshirts'
+import { Route as ServicesPoloTshirtsRouteImport } from './routes/services.polo-tshirts'
+import { Route as ServicesOversizedTshirtsRouteImport } from './routes/services.oversized-tshirts'
+import { Route as ServicesEventTshirtsRouteImport } from './routes/services.event-tshirts'
+import { Route as ServicesEmbroideryRouteImport } from './routes/services.embroidery'
+import { Route as ServicesDtfPrintingRouteImport } from './routes/services.dtf-printing'
+import { Route as ServicesCustomTshirtPrintingRouteImport } from './routes/services.custom-tshirt-printing'
+import { Route as ServicesCorporateTshirtsRouteImport } from './routes/services.corporate-tshirts'
+import { Route as ServicesCompanyUniformTshirtsRouteImport } from './routes/services.company-uniform-tshirts'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
+import { Route as BlogTop10TshirtPrintingHyderabadRouteImport } from './routes/blog.top-10-tshirt-printing-hyderabad'
+import { Route as BlogEmbroideryVsDtfPrintingRouteImport } from './routes/blog.embroidery-vs-dtf-printing'
+import { Route as BlogCorporateUniformGuideRouteImport } from './routes/blog.corporate-uniform-guide'
+import { Route as BlogBulkTshirtPrintingCostRouteImport } from './routes/blog.bulk-tshirt-printing-cost'
+import { Route as BlogBestPromotionalTshirtIdeasRouteImport } from './routes/blog.best-promotional-tshirt-ideas'
+import { Route as BlogBestFabricCorporateTshirtsRouteImport } from './routes/blog.best-fabric-corporate-tshirts'
+import { Route as BlogBestCorporateTshirtPrintingCompanyRouteImport } from './routes/blog.best-corporate-tshirt-printing-company'
 
 const StationeryRoute = StationeryRouteImport.update({
   id: '/stationery',
@@ -113,11 +131,114 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesSportsJerseysRoute = ServicesSportsJerseysRouteImport.update({
+  id: '/services/sports-jerseys',
+  path: '/services/sports-jerseys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSchoolCollegeTshirtsRoute =
+  ServicesSchoolCollegeTshirtsRouteImport.update({
+    id: '/services/school-college-tshirts',
+    path: '/services/school-college-tshirts',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesRoundNeckTshirtsRoute =
+  ServicesRoundNeckTshirtsRouteImport.update({
+    id: '/services/round-neck-tshirts',
+    path: '/services/round-neck-tshirts',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesPoloTshirtsRoute = ServicesPoloTshirtsRouteImport.update({
+  id: '/services/polo-tshirts',
+  path: '/services/polo-tshirts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesOversizedTshirtsRoute =
+  ServicesOversizedTshirtsRouteImport.update({
+    id: '/services/oversized-tshirts',
+    path: '/services/oversized-tshirts',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesEventTshirtsRoute = ServicesEventTshirtsRouteImport.update({
+  id: '/services/event-tshirts',
+  path: '/services/event-tshirts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesEmbroideryRoute = ServicesEmbroideryRouteImport.update({
+  id: '/services/embroidery',
+  path: '/services/embroidery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesDtfPrintingRoute = ServicesDtfPrintingRouteImport.update({
+  id: '/services/dtf-printing',
+  path: '/services/dtf-printing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesCustomTshirtPrintingRoute =
+  ServicesCustomTshirtPrintingRouteImport.update({
+    id: '/services/custom-tshirt-printing',
+    path: '/services/custom-tshirt-printing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesCorporateTshirtsRoute =
+  ServicesCorporateTshirtsRouteImport.update({
+    id: '/services/corporate-tshirts',
+    path: '/services/corporate-tshirts',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesCompanyUniformTshirtsRoute =
+  ServicesCompanyUniformTshirtsRouteImport.update({
+    id: '/services/company-uniform-tshirts',
+    path: '/services/company-uniform-tshirts',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProductSlugRoute = ProductSlugRouteImport.update({
   id: '/product/$slug',
   path: '/product/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogTop10TshirtPrintingHyderabadRoute =
+  BlogTop10TshirtPrintingHyderabadRouteImport.update({
+    id: '/blog/top-10-tshirt-printing-hyderabad',
+    path: '/blog/top-10-tshirt-printing-hyderabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogEmbroideryVsDtfPrintingRoute =
+  BlogEmbroideryVsDtfPrintingRouteImport.update({
+    id: '/blog/embroidery-vs-dtf-printing',
+    path: '/blog/embroidery-vs-dtf-printing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogCorporateUniformGuideRoute =
+  BlogCorporateUniformGuideRouteImport.update({
+    id: '/blog/corporate-uniform-guide',
+    path: '/blog/corporate-uniform-guide',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogBulkTshirtPrintingCostRoute =
+  BlogBulkTshirtPrintingCostRouteImport.update({
+    id: '/blog/bulk-tshirt-printing-cost',
+    path: '/blog/bulk-tshirt-printing-cost',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogBestPromotionalTshirtIdeasRoute =
+  BlogBestPromotionalTshirtIdeasRouteImport.update({
+    id: '/blog/best-promotional-tshirt-ideas',
+    path: '/blog/best-promotional-tshirt-ideas',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogBestFabricCorporateTshirtsRoute =
+  BlogBestFabricCorporateTshirtsRouteImport.update({
+    id: '/blog/best-fabric-corporate-tshirts',
+    path: '/blog/best-fabric-corporate-tshirts',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogBestCorporateTshirtPrintingCompanyRoute =
+  BlogBestCorporateTshirtPrintingCompanyRouteImport.update({
+    id: '/blog/best-corporate-tshirt-printing-company',
+    path: '/blog/best-corporate-tshirt-printing-company',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -137,7 +258,25 @@ export interface FileRoutesByFullPath {
   '/signs-posters': typeof SignsPostersRoute
   '/stamps': typeof StampsRoute
   '/stationery': typeof StationeryRoute
+  '/blog/best-corporate-tshirt-printing-company': typeof BlogBestCorporateTshirtPrintingCompanyRoute
+  '/blog/best-fabric-corporate-tshirts': typeof BlogBestFabricCorporateTshirtsRoute
+  '/blog/best-promotional-tshirt-ideas': typeof BlogBestPromotionalTshirtIdeasRoute
+  '/blog/bulk-tshirt-printing-cost': typeof BlogBulkTshirtPrintingCostRoute
+  '/blog/corporate-uniform-guide': typeof BlogCorporateUniformGuideRoute
+  '/blog/embroidery-vs-dtf-printing': typeof BlogEmbroideryVsDtfPrintingRoute
+  '/blog/top-10-tshirt-printing-hyderabad': typeof BlogTop10TshirtPrintingHyderabadRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/services/company-uniform-tshirts': typeof ServicesCompanyUniformTshirtsRoute
+  '/services/corporate-tshirts': typeof ServicesCorporateTshirtsRoute
+  '/services/custom-tshirt-printing': typeof ServicesCustomTshirtPrintingRoute
+  '/services/dtf-printing': typeof ServicesDtfPrintingRoute
+  '/services/embroidery': typeof ServicesEmbroideryRoute
+  '/services/event-tshirts': typeof ServicesEventTshirtsRoute
+  '/services/oversized-tshirts': typeof ServicesOversizedTshirtsRoute
+  '/services/polo-tshirts': typeof ServicesPoloTshirtsRoute
+  '/services/round-neck-tshirts': typeof ServicesRoundNeckTshirtsRoute
+  '/services/school-college-tshirts': typeof ServicesSchoolCollegeTshirtsRoute
+  '/services/sports-jerseys': typeof ServicesSportsJerseysRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -157,7 +296,25 @@ export interface FileRoutesByTo {
   '/signs-posters': typeof SignsPostersRoute
   '/stamps': typeof StampsRoute
   '/stationery': typeof StationeryRoute
+  '/blog/best-corporate-tshirt-printing-company': typeof BlogBestCorporateTshirtPrintingCompanyRoute
+  '/blog/best-fabric-corporate-tshirts': typeof BlogBestFabricCorporateTshirtsRoute
+  '/blog/best-promotional-tshirt-ideas': typeof BlogBestPromotionalTshirtIdeasRoute
+  '/blog/bulk-tshirt-printing-cost': typeof BlogBulkTshirtPrintingCostRoute
+  '/blog/corporate-uniform-guide': typeof BlogCorporateUniformGuideRoute
+  '/blog/embroidery-vs-dtf-printing': typeof BlogEmbroideryVsDtfPrintingRoute
+  '/blog/top-10-tshirt-printing-hyderabad': typeof BlogTop10TshirtPrintingHyderabadRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/services/company-uniform-tshirts': typeof ServicesCompanyUniformTshirtsRoute
+  '/services/corporate-tshirts': typeof ServicesCorporateTshirtsRoute
+  '/services/custom-tshirt-printing': typeof ServicesCustomTshirtPrintingRoute
+  '/services/dtf-printing': typeof ServicesDtfPrintingRoute
+  '/services/embroidery': typeof ServicesEmbroideryRoute
+  '/services/event-tshirts': typeof ServicesEventTshirtsRoute
+  '/services/oversized-tshirts': typeof ServicesOversizedTshirtsRoute
+  '/services/polo-tshirts': typeof ServicesPoloTshirtsRoute
+  '/services/round-neck-tshirts': typeof ServicesRoundNeckTshirtsRoute
+  '/services/school-college-tshirts': typeof ServicesSchoolCollegeTshirtsRoute
+  '/services/sports-jerseys': typeof ServicesSportsJerseysRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -178,7 +335,25 @@ export interface FileRoutesById {
   '/signs-posters': typeof SignsPostersRoute
   '/stamps': typeof StampsRoute
   '/stationery': typeof StationeryRoute
+  '/blog/best-corporate-tshirt-printing-company': typeof BlogBestCorporateTshirtPrintingCompanyRoute
+  '/blog/best-fabric-corporate-tshirts': typeof BlogBestFabricCorporateTshirtsRoute
+  '/blog/best-promotional-tshirt-ideas': typeof BlogBestPromotionalTshirtIdeasRoute
+  '/blog/bulk-tshirt-printing-cost': typeof BlogBulkTshirtPrintingCostRoute
+  '/blog/corporate-uniform-guide': typeof BlogCorporateUniformGuideRoute
+  '/blog/embroidery-vs-dtf-printing': typeof BlogEmbroideryVsDtfPrintingRoute
+  '/blog/top-10-tshirt-printing-hyderabad': typeof BlogTop10TshirtPrintingHyderabadRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/services/company-uniform-tshirts': typeof ServicesCompanyUniformTshirtsRoute
+  '/services/corporate-tshirts': typeof ServicesCorporateTshirtsRoute
+  '/services/custom-tshirt-printing': typeof ServicesCustomTshirtPrintingRoute
+  '/services/dtf-printing': typeof ServicesDtfPrintingRoute
+  '/services/embroidery': typeof ServicesEmbroideryRoute
+  '/services/event-tshirts': typeof ServicesEventTshirtsRoute
+  '/services/oversized-tshirts': typeof ServicesOversizedTshirtsRoute
+  '/services/polo-tshirts': typeof ServicesPoloTshirtsRoute
+  '/services/round-neck-tshirts': typeof ServicesRoundNeckTshirtsRoute
+  '/services/school-college-tshirts': typeof ServicesSchoolCollegeTshirtsRoute
+  '/services/sports-jerseys': typeof ServicesSportsJerseysRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -200,7 +375,25 @@ export interface FileRouteTypes {
     | '/signs-posters'
     | '/stamps'
     | '/stationery'
+    | '/blog/best-corporate-tshirt-printing-company'
+    | '/blog/best-fabric-corporate-tshirts'
+    | '/blog/best-promotional-tshirt-ideas'
+    | '/blog/bulk-tshirt-printing-cost'
+    | '/blog/corporate-uniform-guide'
+    | '/blog/embroidery-vs-dtf-printing'
+    | '/blog/top-10-tshirt-printing-hyderabad'
     | '/product/$slug'
+    | '/services/company-uniform-tshirts'
+    | '/services/corporate-tshirts'
+    | '/services/custom-tshirt-printing'
+    | '/services/dtf-printing'
+    | '/services/embroidery'
+    | '/services/event-tshirts'
+    | '/services/oversized-tshirts'
+    | '/services/polo-tshirts'
+    | '/services/round-neck-tshirts'
+    | '/services/school-college-tshirts'
+    | '/services/sports-jerseys'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -220,7 +413,25 @@ export interface FileRouteTypes {
     | '/signs-posters'
     | '/stamps'
     | '/stationery'
+    | '/blog/best-corporate-tshirt-printing-company'
+    | '/blog/best-fabric-corporate-tshirts'
+    | '/blog/best-promotional-tshirt-ideas'
+    | '/blog/bulk-tshirt-printing-cost'
+    | '/blog/corporate-uniform-guide'
+    | '/blog/embroidery-vs-dtf-printing'
+    | '/blog/top-10-tshirt-printing-hyderabad'
     | '/product/$slug'
+    | '/services/company-uniform-tshirts'
+    | '/services/corporate-tshirts'
+    | '/services/custom-tshirt-printing'
+    | '/services/dtf-printing'
+    | '/services/embroidery'
+    | '/services/event-tshirts'
+    | '/services/oversized-tshirts'
+    | '/services/polo-tshirts'
+    | '/services/round-neck-tshirts'
+    | '/services/school-college-tshirts'
+    | '/services/sports-jerseys'
   id:
     | '__root__'
     | '/'
@@ -240,7 +451,25 @@ export interface FileRouteTypes {
     | '/signs-posters'
     | '/stamps'
     | '/stationery'
+    | '/blog/best-corporate-tshirt-printing-company'
+    | '/blog/best-fabric-corporate-tshirts'
+    | '/blog/best-promotional-tshirt-ideas'
+    | '/blog/bulk-tshirt-printing-cost'
+    | '/blog/corporate-uniform-guide'
+    | '/blog/embroidery-vs-dtf-printing'
+    | '/blog/top-10-tshirt-printing-hyderabad'
     | '/product/$slug'
+    | '/services/company-uniform-tshirts'
+    | '/services/corporate-tshirts'
+    | '/services/custom-tshirt-printing'
+    | '/services/dtf-printing'
+    | '/services/embroidery'
+    | '/services/event-tshirts'
+    | '/services/oversized-tshirts'
+    | '/services/polo-tshirts'
+    | '/services/round-neck-tshirts'
+    | '/services/school-college-tshirts'
+    | '/services/sports-jerseys'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -261,7 +490,25 @@ export interface RootRouteChildren {
   SignsPostersRoute: typeof SignsPostersRoute
   StampsRoute: typeof StampsRoute
   StationeryRoute: typeof StationeryRoute
+  BlogBestCorporateTshirtPrintingCompanyRoute: typeof BlogBestCorporateTshirtPrintingCompanyRoute
+  BlogBestFabricCorporateTshirtsRoute: typeof BlogBestFabricCorporateTshirtsRoute
+  BlogBestPromotionalTshirtIdeasRoute: typeof BlogBestPromotionalTshirtIdeasRoute
+  BlogBulkTshirtPrintingCostRoute: typeof BlogBulkTshirtPrintingCostRoute
+  BlogCorporateUniformGuideRoute: typeof BlogCorporateUniformGuideRoute
+  BlogEmbroideryVsDtfPrintingRoute: typeof BlogEmbroideryVsDtfPrintingRoute
+  BlogTop10TshirtPrintingHyderabadRoute: typeof BlogTop10TshirtPrintingHyderabadRoute
   ProductSlugRoute: typeof ProductSlugRoute
+  ServicesCompanyUniformTshirtsRoute: typeof ServicesCompanyUniformTshirtsRoute
+  ServicesCorporateTshirtsRoute: typeof ServicesCorporateTshirtsRoute
+  ServicesCustomTshirtPrintingRoute: typeof ServicesCustomTshirtPrintingRoute
+  ServicesDtfPrintingRoute: typeof ServicesDtfPrintingRoute
+  ServicesEmbroideryRoute: typeof ServicesEmbroideryRoute
+  ServicesEventTshirtsRoute: typeof ServicesEventTshirtsRoute
+  ServicesOversizedTshirtsRoute: typeof ServicesOversizedTshirtsRoute
+  ServicesPoloTshirtsRoute: typeof ServicesPoloTshirtsRoute
+  ServicesRoundNeckTshirtsRoute: typeof ServicesRoundNeckTshirtsRoute
+  ServicesSchoolCollegeTshirtsRoute: typeof ServicesSchoolCollegeTshirtsRoute
+  ServicesSportsJerseysRoute: typeof ServicesSportsJerseysRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -385,11 +632,137 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/sports-jerseys': {
+      id: '/services/sports-jerseys'
+      path: '/services/sports-jerseys'
+      fullPath: '/services/sports-jerseys'
+      preLoaderRoute: typeof ServicesSportsJerseysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/school-college-tshirts': {
+      id: '/services/school-college-tshirts'
+      path: '/services/school-college-tshirts'
+      fullPath: '/services/school-college-tshirts'
+      preLoaderRoute: typeof ServicesSchoolCollegeTshirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/round-neck-tshirts': {
+      id: '/services/round-neck-tshirts'
+      path: '/services/round-neck-tshirts'
+      fullPath: '/services/round-neck-tshirts'
+      preLoaderRoute: typeof ServicesRoundNeckTshirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/polo-tshirts': {
+      id: '/services/polo-tshirts'
+      path: '/services/polo-tshirts'
+      fullPath: '/services/polo-tshirts'
+      preLoaderRoute: typeof ServicesPoloTshirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/oversized-tshirts': {
+      id: '/services/oversized-tshirts'
+      path: '/services/oversized-tshirts'
+      fullPath: '/services/oversized-tshirts'
+      preLoaderRoute: typeof ServicesOversizedTshirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/event-tshirts': {
+      id: '/services/event-tshirts'
+      path: '/services/event-tshirts'
+      fullPath: '/services/event-tshirts'
+      preLoaderRoute: typeof ServicesEventTshirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/embroidery': {
+      id: '/services/embroidery'
+      path: '/services/embroidery'
+      fullPath: '/services/embroidery'
+      preLoaderRoute: typeof ServicesEmbroideryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/dtf-printing': {
+      id: '/services/dtf-printing'
+      path: '/services/dtf-printing'
+      fullPath: '/services/dtf-printing'
+      preLoaderRoute: typeof ServicesDtfPrintingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/custom-tshirt-printing': {
+      id: '/services/custom-tshirt-printing'
+      path: '/services/custom-tshirt-printing'
+      fullPath: '/services/custom-tshirt-printing'
+      preLoaderRoute: typeof ServicesCustomTshirtPrintingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/corporate-tshirts': {
+      id: '/services/corporate-tshirts'
+      path: '/services/corporate-tshirts'
+      fullPath: '/services/corporate-tshirts'
+      preLoaderRoute: typeof ServicesCorporateTshirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/company-uniform-tshirts': {
+      id: '/services/company-uniform-tshirts'
+      path: '/services/company-uniform-tshirts'
+      fullPath: '/services/company-uniform-tshirts'
+      preLoaderRoute: typeof ServicesCompanyUniformTshirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product/$slug': {
       id: '/product/$slug'
       path: '/product/$slug'
       fullPath: '/product/$slug'
       preLoaderRoute: typeof ProductSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/top-10-tshirt-printing-hyderabad': {
+      id: '/blog/top-10-tshirt-printing-hyderabad'
+      path: '/blog/top-10-tshirt-printing-hyderabad'
+      fullPath: '/blog/top-10-tshirt-printing-hyderabad'
+      preLoaderRoute: typeof BlogTop10TshirtPrintingHyderabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/embroidery-vs-dtf-printing': {
+      id: '/blog/embroidery-vs-dtf-printing'
+      path: '/blog/embroidery-vs-dtf-printing'
+      fullPath: '/blog/embroidery-vs-dtf-printing'
+      preLoaderRoute: typeof BlogEmbroideryVsDtfPrintingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/corporate-uniform-guide': {
+      id: '/blog/corporate-uniform-guide'
+      path: '/blog/corporate-uniform-guide'
+      fullPath: '/blog/corporate-uniform-guide'
+      preLoaderRoute: typeof BlogCorporateUniformGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/bulk-tshirt-printing-cost': {
+      id: '/blog/bulk-tshirt-printing-cost'
+      path: '/blog/bulk-tshirt-printing-cost'
+      fullPath: '/blog/bulk-tshirt-printing-cost'
+      preLoaderRoute: typeof BlogBulkTshirtPrintingCostRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/best-promotional-tshirt-ideas': {
+      id: '/blog/best-promotional-tshirt-ideas'
+      path: '/blog/best-promotional-tshirt-ideas'
+      fullPath: '/blog/best-promotional-tshirt-ideas'
+      preLoaderRoute: typeof BlogBestPromotionalTshirtIdeasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/best-fabric-corporate-tshirts': {
+      id: '/blog/best-fabric-corporate-tshirts'
+      path: '/blog/best-fabric-corporate-tshirts'
+      fullPath: '/blog/best-fabric-corporate-tshirts'
+      preLoaderRoute: typeof BlogBestFabricCorporateTshirtsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/best-corporate-tshirt-printing-company': {
+      id: '/blog/best-corporate-tshirt-printing-company'
+      path: '/blog/best-corporate-tshirt-printing-company'
+      fullPath: '/blog/best-corporate-tshirt-printing-company'
+      preLoaderRoute: typeof BlogBestCorporateTshirtPrintingCompanyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -413,7 +786,26 @@ const rootRouteChildren: RootRouteChildren = {
   SignsPostersRoute: SignsPostersRoute,
   StampsRoute: StampsRoute,
   StationeryRoute: StationeryRoute,
+  BlogBestCorporateTshirtPrintingCompanyRoute:
+    BlogBestCorporateTshirtPrintingCompanyRoute,
+  BlogBestFabricCorporateTshirtsRoute: BlogBestFabricCorporateTshirtsRoute,
+  BlogBestPromotionalTshirtIdeasRoute: BlogBestPromotionalTshirtIdeasRoute,
+  BlogBulkTshirtPrintingCostRoute: BlogBulkTshirtPrintingCostRoute,
+  BlogCorporateUniformGuideRoute: BlogCorporateUniformGuideRoute,
+  BlogEmbroideryVsDtfPrintingRoute: BlogEmbroideryVsDtfPrintingRoute,
+  BlogTop10TshirtPrintingHyderabadRoute: BlogTop10TshirtPrintingHyderabadRoute,
   ProductSlugRoute: ProductSlugRoute,
+  ServicesCompanyUniformTshirtsRoute: ServicesCompanyUniformTshirtsRoute,
+  ServicesCorporateTshirtsRoute: ServicesCorporateTshirtsRoute,
+  ServicesCustomTshirtPrintingRoute: ServicesCustomTshirtPrintingRoute,
+  ServicesDtfPrintingRoute: ServicesDtfPrintingRoute,
+  ServicesEmbroideryRoute: ServicesEmbroideryRoute,
+  ServicesEventTshirtsRoute: ServicesEventTshirtsRoute,
+  ServicesOversizedTshirtsRoute: ServicesOversizedTshirtsRoute,
+  ServicesPoloTshirtsRoute: ServicesPoloTshirtsRoute,
+  ServicesRoundNeckTshirtsRoute: ServicesRoundNeckTshirtsRoute,
+  ServicesSchoolCollegeTshirtsRoute: ServicesSchoolCollegeTshirtsRoute,
+  ServicesSportsJerseysRoute: ServicesSportsJerseysRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -23,13 +23,90 @@ export const Route = createFileRoute("/")({
 });
 
 const HERO_SLIDES = [
-  { title: "Premium Corporate Welcome Kits", label: "Onboarding Specialists", description: "Curated onboarding boxes with logo-printed diaries, bottles, keychains, and premium packaging.", image: "/images/welcome-kit.png", route: "/photo-gifts", search: { sub: "Welcome Kits" }, prices: [["Welcome Kit", "Starting from ₹1299"], ["Custom Packaging", "Premium boxes included"]], gradient: "linear-gradient(135deg, hsl(34 80% 38%), hsl(359 60% 38%))" },
-  { title: "High-Quality Custom T-Shirts", label: "T-Shirt Printing Specialists", description: "Soft cotton round-neck t-shirts customized with vibrant, durable prints for teams and fests.", image: "/images/custom-tshirts.png", route: "/clothing-bags", search: { sub: "T-Shirts" }, prices: [["Round Neck", "Starting from ₹299"], ["Bulk Pricing", "Available on request"]], gradient: "linear-gradient(135deg, hsl(359 75% 38%), hsl(215 80% 16%))" },
-  { title: "Smart Custom Polo T-Shirts", label: "Polo Shirt Specialists", description: "Refined branded polo shirts, perfect for team uniforms, client meetings, and brand presence.", image: "/images/polo-tshirts.png", route: "/clothing-bags", search: { sub: "Polo T-Shirts" }, prices: [["Pique Polo", "Starting from ₹349"], ["Embroidery", "Available on request"]], gradient: "linear-gradient(135deg, hsl(220 52% 20%), hsl(359 66% 40%))" },
-  { title: "Premium Custom Hoodies", label: "Fleece Hoodie Specialists", description: "Comfortable heavyweight fleece hoodies and sweatshirts with print or embroidery finishes.", image: "/images/classic-custom-hoodie-beige.png", route: "/clothing-bags", search: { sub: "Hoodies" }, prices: [["Fleece Hoodie", "Starting from ₹799"], ["Cozy Fit", "Unisex sizes XS-4XL"]], gradient: "linear-gradient(135deg, hsl(215 56% 18%), hsl(205 48% 32%))" },
-  { title: "Premium Custom Embroidery", label: "Embroidery Specialists", description: "High-density Japanese stitched logos on shirts, jackets, uniforms, and structured caps.", image: "/images/dress-shirts.png", route: "/clothing-bags", search: { sub: "Embroidery" }, prices: [["Logo Stitching", "Starting from ₹149"], ["Quality Thread", "Up to 12 colors"]], gradient: "linear-gradient(135deg, hsl(186 56% 23%), hsl(215 70% 17%))" },
-  { title: "High-Quality DTF Printing", label: "Direct-to-Film Specialists", description: "Vibrant, stretchable, and wash-resistant transfers for activewear, sports jerseys, and event tees.", image: "/images/banners.png", route: "/clothing-bags", search: { sub: "DTF Prints" }, prices: [["DTF Transfers", "Starting from ₹249"], ["Stretch Proof", "Vibrant colors"]], gradient: "linear-gradient(135deg, hsl(255 38% 22%), hsl(328 49% 35%))" },
-  { title: "Branded Corporate Gifts", label: "Corporate Gifting Division", description: "High-utility premium gifts like custom bottles, ceramic mugs, notebook sets, and laptop bags.", image: "/images/photo-gifts.png", route: "/photo-gifts", search: {}, prices: [["Gift Items", "Starting from ₹199"], ["Custom Sets", "Made for every occasion"]], gradient: "linear-gradient(135deg, hsl(203 65% 27%), hsl(185 55% 24%))" },
+  { 
+    title: "Custom T-Shirt Printing in Hyderabad", 
+    label: "T-Shirt Printing Hyderabad", 
+    description: "Premium custom T-shirts for businesses, events, schools, colleges, startups, and corporate branding with fast delivery and bulk pricing.", 
+    image: "/images/custom-t-shirt-printing-hyderabad.webp", 
+    route: "/clothing-bags", 
+    search: { sub: "T-Shirts" }, 
+    prices: [["Round Neck", "Starting from ₹299"], ["Bulk Printing", "Available on request"]], 
+    gradient: "linear-gradient(135deg, hsl(359 75% 38%), hsl(215 80% 16%))",
+    primaryCTA: { label: "Get a Free Quote", to: "#quote" },
+    secondaryCTA: { label: "WhatsApp Us" }
+  },
+  { 
+    title: "Premium Corporate Welcome Kits", 
+    label: "Onboarding Specialists", 
+    description: "Curated onboarding boxes with logo-printed diaries, bottles, keychains, and premium packaging.", 
+    image: "/images/bulk-t-shirt-printing.webp", 
+    route: "/photo-gifts", 
+    search: { sub: "Welcome Kits" }, 
+    prices: [["Welcome Kit", "Starting from ₹1299"], ["Custom Packaging", "Premium boxes included"]], 
+    gradient: "linear-gradient(135deg, hsl(34 80% 38%), hsl(359 60% 38%))",
+    primaryCTA: { label: "Explore Products", to: "/photo-gifts" },
+    secondaryCTA: { label: "WhatsApp Us" }
+  },
+  { 
+    title: "Smart Custom Polo T-Shirts", 
+    label: "Polo Shirt Specialists", 
+    description: "Refined branded polo shirts, perfect for team uniforms, client meetings, and brand presence.", 
+    image: "/images/polo-t-shirt-printing.webp", 
+    route: "/clothing-bags", 
+    search: { sub: "Polo T-Shirts" }, 
+    prices: [["Pique Polo", "Starting from ₹349"], ["Embroidery", "Available on request"]], 
+    gradient: "linear-gradient(135deg, hsl(220 52% 20%), hsl(359 66% 40%))",
+    primaryCTA: { label: "Explore Products", to: "/clothing-bags" },
+    secondaryCTA: { label: "WhatsApp Us" }
+  },
+  { 
+    title: "Premium Custom Hoodies", 
+    label: "Fleece Hoodie Specialists", 
+    description: "Comfortable heavyweight fleece hoodies and sweatshirts with print or embroidery finishes.", 
+    image: "/images/printed-round-neck-tshirts.webp", 
+    route: "/clothing-bags", 
+    search: { sub: "Hoodies" }, 
+    prices: [["Fleece Hoodie", "Starting from ₹799"], ["Cozy Fit", "Unisex sizes XS-4XL"]], 
+    gradient: "linear-gradient(135deg, hsl(215 56% 18%), hsl(205 48% 32%))",
+    primaryCTA: { label: "Explore Products", to: "/clothing-bags" },
+    secondaryCTA: { label: "WhatsApp Us" }
+  },
+  { 
+    title: "Premium Custom Embroidery", 
+    label: "Embroidery Specialists", 
+    description: "High-density Japanese stitched logos on shirts, jackets, uniforms, and structured caps.", 
+    image: "/images/corporate-t-shirts.webp", 
+    route: "/clothing-bags", 
+    search: { sub: "Embroidery" }, 
+    prices: [["Logo Stitching", "Starting from ₹149"], ["Quality Thread", "Up to 12 colors"]], 
+    gradient: "linear-gradient(135deg, hsl(186 56% 23%), hsl(215 70% 17%))",
+    primaryCTA: { label: "Explore Products", to: "/clothing-bags" },
+    secondaryCTA: { label: "WhatsApp Us" }
+  },
+  { 
+    title: "High-Quality DTF Printing", 
+    label: "Direct-to-Film Specialists", 
+    description: "Vibrant, stretchable, and wash-resistant transfers for activewear, sports jerseys, and event tees.", 
+    image: "/images/banners.png", 
+    route: "/clothing-bags", 
+    search: { sub: "DTF Prints" }, 
+    prices: [["DTF Transfers", "Starting from ₹249"], ["Stretch Proof", "Vibrant colors"]], 
+    gradient: "linear-gradient(135deg, hsl(255 38% 22%), hsl(328 49% 35%))",
+    primaryCTA: { label: "Explore Products", to: "/clothing-bags" },
+    secondaryCTA: { label: "WhatsApp Us" }
+  },
+  { 
+    title: "Branded Corporate Gifts", 
+    label: "Corporate Gifting Division", 
+    description: "High-utility premium gifts like custom bottles, ceramic mugs, notebook sets, and laptop bags.", 
+    image: "/images/photo-gifts.png", 
+    route: "/photo-gifts", 
+    search: {}, 
+    prices: [["Gift Items", "Starting from ₹199"], ["Custom Sets", "Made for every occasion"]], 
+    gradient: "linear-gradient(135deg, hsl(203 65% 27%), hsl(185 55% 24%))",
+    primaryCTA: { label: "Explore Products", to: "/photo-gifts" },
+    secondaryCTA: { label: "WhatsApp Us" }
+  },
 ] as const;
 
 function PremiumHeroSection() {
@@ -126,27 +203,30 @@ function PremiumHeroSection() {
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link 
-                to={slide.route === "/product/sports-jerseys" ? "/product/$slug" : (slide.route as any)}
-                params={slide.route === "/product/sports-jerseys" ? { slug: "sports-jerseys" } : undefined}
-                search={slide.search as Record<string, string>} 
-                className="btn-primary !bg-white !text-primary hover:!bg-white/90 shadow-lg hover:shadow-white/20 hover:-translate-y-0.5 transition-all duration-300 font-bold text-base px-6 py-3.5 rounded-xl"
-              >
-                Explore Products <ArrowRight className="inline h-4 w-4 ml-2" />
-              </Link>
-              <a 
-                href="#quote"
-                className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/5 hover:bg-white/10 px-6 py-3.5 font-bold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5"
-              >
-                Get Quote
-              </a>
+              {slide.primaryCTA.to.startsWith("#") ? (
+                <a 
+                  href={slide.primaryCTA.to}
+                  className="btn-primary !bg-white !text-primary hover:!bg-white/90 shadow-lg hover:shadow-white/20 hover:-translate-y-0.5 transition-all duration-300 font-bold text-base px-6 py-3.5 rounded-xl"
+                >
+                  {slide.primaryCTA.label} <ArrowRight className="inline h-4 w-4 ml-2" />
+                </a>
+              ) : (
+                <Link 
+                  to={slide.primaryCTA.to === "/product/sports-jerseys" ? "/product/$slug" : (slide.primaryCTA.to as any)}
+                  params={slide.primaryCTA.to === "/product/sports-jerseys" ? { slug: "sports-jerseys" } : undefined}
+                  search={slide.search as Record<string, string>} 
+                  className="btn-primary !bg-white !text-primary hover:!bg-white/90 shadow-lg hover:shadow-white/20 hover:-translate-y-0.5 transition-all duration-300 font-bold text-base px-6 py-3.5 rounded-xl"
+                >
+                  {slide.primaryCTA.label} <ArrowRight className="inline h-4 w-4 ml-2" />
+                </Link>
+              )}
               <a 
                 href={whatsappUrl(`Hi Suriyan Prints! I want details about ${slide.title}.`)} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#20ba56] text-white px-6 py-3.5 font-bold transition-all hover:-translate-y-0.5 shadow-md"
               >
-                <MessageCircle className="h-4.5 w-4.5" /> WhatsApp Us
+                <MessageCircle className="h-4.5 w-4.5" /> {slide.secondaryCTA.label}
               </a>
             </div>
           </div>
@@ -728,6 +808,116 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* LOCAL SEO FOOTER SECTION */}
+      <section className="bg-surface border-t border-border py-12 md:py-16 text-left">
+        <div className="container-page">
+          <div className="grid md:grid-cols-2 gap-8 text-left">
+            <div>
+              <h3 className="text-base font-extrabold text-foreground mb-4">Hyderabad T-Shirt Printing Service Areas</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                Suriyan Prints provides premium custom t-shirt printing and corporate uniform solutions across major regions in Hyderabad. We offer express delivery and free design verification in Gachibowli, Hitech City, Madhapur, Kukatpally, Secunderabad, Miyapur, Banjara Hills, Jubilee Hills, and Kompally.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {["Hyderabad", "Gachibowli", "Hitech City", "Madhapur", "Kukatpally", "Secunderabad", "Miyapur", "Banjara Hills", "Jubilee Hills", "Kompally"].map((loc) => (
+                  <span key={loc} className="px-2.5 py-1 bg-card border border-border rounded-full text-xs text-muted-foreground font-semibold">
+                    {loc}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-base font-extrabold text-foreground mb-4">Our Customized Printing Services</h3>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                {[
+                  { name: "Custom T-Shirt Printing", to: "/services/custom-tshirt-printing" },
+                  { name: "Corporate T-Shirts", to: "/services/corporate-tshirts" },
+                  { name: "Polo T-Shirts", to: "/services/polo-tshirts" },
+                  { name: "Round Neck T-Shirts", to: "/services/round-neck-tshirts" },
+                  { name: "Oversized T-Shirts", to: "/services/oversized-tshirts" },
+                  { name: "Sports Jerseys", to: "/services/sports-jerseys" },
+                  { name: "Event T-Shirts", to: "/services/event-tshirts" },
+                  { name: "School & College T-Shirts", to: "/services/school-college-tshirts" },
+                  { name: "Company Uniforms", to: "/services/company-uniform-tshirts" },
+                  { name: "Embroidery Services", to: "/services/embroidery" },
+                  { name: "DTF Printing", to: "/services/dtf-printing" }
+                ].map((srv) => (
+                  <Link key={srv.name} to={srv.to as any} className="text-xs text-muted-foreground hover:text-primary transition-colors py-1 flex items-center gap-1.5 group">
+                    <span className="h-1 w-1 rounded-full bg-border group-hover:bg-primary" />
+                    {srv.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* JSON-LD Structured Data Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "LocalBusiness",
+                "@id": "https://suriyanprints.vercel.app/#localbusiness",
+                "name": "Suriyan Prints",
+                "image": "https://suriyanprints.vercel.app/images/custom-t-shirt-printing-hyderabad.webp",
+                "url": "https://suriyanprints.vercel.app/",
+                "telephone": "+919676662304",
+                "priceRange": "₹₹",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Suriyan Prints, 45, Main Road, Bhiwandi",
+                  "addressLocality": "Thane, Mumbai",
+                  "addressRegion": "Maharashtra",
+                  "postalCode": "421302",
+                  "addressCountry": "IN"
+                },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": 19.2990,
+                  "longitude": 73.0601
+                },
+                "openingHoursSpecification": {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+                  ],
+                  "opens": "09:00",
+                  "closes": "19:00"
+                }
+              },
+              {
+                "@type": "Organization",
+                "@id": "https://suriyanprints.vercel.app/#organization",
+                "name": "Suriyan Prints",
+                "url": "https://suriyanprints.vercel.app/",
+                "logo": "https://suriyanprints.vercel.app/suriyanprintslogo.png",
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "+919676662304",
+                  "contactType": "sales",
+                  "areaServed": "IN",
+                  "availableLanguage": ["en", "hi", "te"]
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://suriyanprints.vercel.app/#website",
+                "url": "https://suriyanprints.vercel.app/",
+                "name": "Suriyan Prints",
+                "description": "Premium custom t-shirt printing and branding merchandise solutions in Hyderabad.",
+                "publisher": {
+                  "@id": "https://suriyanprints.vercel.app/#organization"
+                }
+              }
+            ]
+          })
+        }}
+      />
     </div>
   );
 }
