@@ -1,13 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   ArrowRight, Award, BadgeCheck, Building2, CalendarDays, CheckCircle2, ChevronLeft, ChevronRight,
   Clock3, Factory, Gift, GraduationCap, HeartHandshake, Hospital, Layers3, Mail, MapPin,
   MessageCircle, PackageCheck, Palette, PenLine, Phone, Printer, Rocket, Scissors, Send, Shirt,
-  Sparkles, Star, Trophy, Truck, Upload, UtensilsCrossed, WandSparkles, Sparkle, Layers, Cpu, ShieldCheck
+  Sparkles, Star, Trophy, Truck, Upload, UtensilsCrossed, WandSparkles, Sparkle, Layers, Cpu, ShieldCheck,
+  ShoppingCart
 } from "lucide-react";
 import { buildQuoteMessage, SITE_CONTACT, whatsappUrl } from "@/data/site";
 import { FadeIn } from "@/components/ui/fade-in";
+import { addCartLine } from "@/lib/cart";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -21,7 +23,6 @@ export const Route = createFileRoute("/")({
 
 const HERO_SLIDES = [
   { title: "Premium Round Neck T-Shirt Printing", label: "T-Shirt Printing Specialists", description: "High-quality custom round-neck T-shirts for businesses, events, teams, schools, and brands.", image: "/images/custom-tshirts.png", route: "/clothing-bags", search: { sub: "T-Shirts" }, prices: [["Round Neck", "Starting from ₹299"], ["Bulk Orders", "Special team pricing"]], gradient: "linear-gradient(135deg, hsl(359 75% 38%), hsl(215 80% 16%))" },
-  { title: "Custom Sports Jerseys", label: "Athletic & Teamwear", description: "Premium custom jerseys for cricket, football, volleyball, basketball, badminton, kabaddi, cycling, marathons, and school sports teams.", image: "/images/sports-jerseys.png", route: "/product/sports-jerseys", search: {}, prices: [["Custom Jerseys", "Starting from ₹449"], ["Team Quote", "Bulk rates available"]], gradient: "linear-gradient(135deg, hsl(359 75% 38%), hsl(220 52% 20%))" },
   { title: "Smart Custom Polo T-Shirts", label: "Polos made for your brand", description: "Refined branded polos for teams, workplaces, hospitality and client-facing events.", image: "/images/polo-tshirts.png", route: "/clothing-bags", search: { sub: "Polo T-Shirts" }, prices: [["Pique Polo", "Starting from ₹349"], ["Embroidery", "Available on request"]], gradient: "linear-gradient(135deg, hsl(220 52% 20%), hsl(359 66% 40%))" },
   { title: "Business Shirts, Made Personal", label: "Polished teamwear", description: "Premium business shirts that help your team look coordinated, confident and ready to represent your brand.", image: "/images/dress-shirts.png", route: "/clothing-bags", search: { sub: "T-Shirts" }, prices: [["Formal Shirts", "Starting from ₹499"], ["Logo Embroidery", "Available on request"]], gradient: "linear-gradient(135deg, hsl(215 56% 18%), hsl(205 48% 32%))" },
   { title: "Custom Caps That Top It Off", label: "Headwear with presence", description: "Structured, comfortable caps with bold print or a refined embroidered logo finish.", image: "/images/custom-caps.png", route: "/clothing-bags", search: { sub: "Caps" }, prices: [["Custom Caps", "Starting from ₹149"], ["Embroidery", "Premium stitched finish"]], gradient: "linear-gradient(135deg, hsl(186 56% 23%), hsl(215 70% 17%))" },
@@ -213,7 +214,15 @@ function PremiumHeroSection() {
   );
 }
 
+const CATALOGUE_PRODUCTS = [
+  { slug: "welcome-kit", name: "Welcome Kit", price: 1299, image: "/images/welcome-kit.png" },
+  { slug: "custom-tshirts", name: "Custom T-shirt", price: 299, image: "/images/custom-tshirts.png" },
+  { slug: "polo-tshirts", name: "Custom Polo T-shirt", price: 349, image: "/images/polo-tshirts.png" },
+  { slug: "classic-custom-hoodie-beige", name: "Classic Custom Hoodie", price: 799, image: "/images/classic-custom-hoodie-beige.png" },
+];
+
 function HomePage() {
+  const navigate = useNavigate();
   const [quoteData, setQuoteData] = useState({ name: "", company: "", email: "", phone: "", product: "Custom T-Shirts", details: "" });
   const submitQuote = (event: React.FormEvent<HTMLFormElement>) => { 
     event.preventDefault(); 
@@ -223,6 +232,60 @@ function HomePage() {
   return (
     <>
       <PremiumHeroSection />
+
+      {/* PRODUCTS CATALOGUE */}
+      <section className="bg-white py-12 border-b border-border">
+        <div className="container-page">
+          <div className="flex justify-center mb-8">
+            <Link 
+              to="/clothing-bags" 
+              className="text-[11px] font-black uppercase tracking-[0.25em] border-b-[1.5px] border-foreground pb-0.5 hover:text-primary hover:border-primary transition-all flex items-center gap-1.5"
+            >
+              Explore All <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10">
+            {CATALOGUE_PRODUCTS.map((prod) => (
+              <Link
+                key={prod.slug}
+                to="/product/$slug"
+                params={{ slug: prod.slug }}
+                className="group block"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-muted shadow-sm">
+                  <img
+                    src={prod.image}
+                    alt={prod.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="mt-4 px-1">
+                  <h3 className="font-extrabold text-foreground text-sm tracking-tight leading-tight">
+                    {prod.name}
+                  </h3>
+                  <div className="flex items-center justify-between mt-1">
+                    <span className="font-extrabold text-[#111] text-sm">₹{prod.price}</span>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        addCartLine({ slug: prod.slug, qty: 1 });
+                        navigate({ to: "/cart" });
+                      }}
+                      className="h-9 w-9 rounded-xl bg-[#f5f5f5] hover:bg-[#e5e5e5] active:scale-95 transition-all flex items-center justify-center text-foreground"
+                    >
+                      <ShoppingCart className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* PRIMARY FOCUS: Apparel Lab / T-Shirt Showcase */}
       <section className="bg-gradient-to-b from-surface via-white to-surface border-b border-border overflow-hidden">

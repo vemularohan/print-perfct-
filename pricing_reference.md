@@ -738,7 +738,7 @@ This document contains the complete and unsimplified data for all products in th
 ---
 
 ### Custom Canvas Prints
-* **Slug**: `canvas-prints`
+* **Slug**: `canvas-prints`₹
 * **Name**: Custom Canvas Prints
 * **Category Slug**: `photo-gifts`
 * **Sub-Category**: `Canvas Prints`
