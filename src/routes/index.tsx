@@ -1,92 +1,36 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  ArrowRight, Award, BadgeCheck, Building2, CalendarDays, CheckCircle2, ChevronLeft, ChevronRight,
-  Clock3, Factory, Gift, GraduationCap, HeartHandshake, Hospital, Layers3, Mail, MapPin,
-  MessageCircle, PackageCheck, Palette, PenLine, Phone, Printer, Rocket, Scissors, Send, Shirt,
-  Sparkles, Star, Trophy, Truck, Upload, UtensilsCrossed, WandSparkles, Sparkle, Layers, Cpu, ShieldCheck,
-  ShoppingCart
+  ArrowRight, Award, BadgeCheck, Building2, CheckCircle2, ChevronLeft, ChevronRight,
+  Clock3, Factory, Gift, GraduationCap, HeartHandshake, Mail, MapPin,
+  MessageCircle, PackageCheck, Phone, Printer, Send, Shirt,
+  Sparkles, Star, Trophy, Truck, Upload
 } from "lucide-react";
 import { buildQuoteMessage, SITE_CONTACT, whatsappUrl } from "@/data/site";
 import { FadeIn } from "@/components/ui/fade-in";
 import { addCartLine } from "@/lib/cart";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [
-    { title: "SuriyanPrints — Premium Custom Printing & Merchandise" },
-    { name: "description", content: "Premium custom T-shirts, apparel, corporate gifts and printing solutions for teams, schools and businesses across India." },
-    { property: "og:title", content: "SuriyanPrints — Premium Custom Printing" },
-    { property: "og:description", content: "Custom apparel, merchandise and print solutions, produced with care." },
-  ] }),
+  head: () => ({
+    meta: [
+      { title: "SuriyanPrints — Premium Custom Printing & Merchandise" },
+      { name: "description", content: "Premium custom T-shirts, apparel, welcome kits, corporate gifts and printing solutions for teams, schools and businesses across India." },
+      { property: "og:title", content: "SuriyanPrints — Premium Custom Printing" },
+      { property: "og:description", content: "Custom apparel, merchandise and print solutions, produced with care." },
+    ],
+  }),
   component: HomePage,
 });
 
 const HERO_SLIDES = [
-  { title: "Premium Round Neck T-Shirt Printing", label: "T-Shirt Printing Specialists", description: "High-quality custom round-neck T-shirts for businesses, events, teams, schools, and brands.", image: "/images/custom-tshirts.png", route: "/clothing-bags", search: { sub: "T-Shirts" }, prices: [["Round Neck", "Starting from ₹299"], ["Bulk Orders", "Special team pricing"]], gradient: "linear-gradient(135deg, hsl(359 75% 38%), hsl(215 80% 16%))" },
-  { title: "Smart Custom Polo T-Shirts", label: "Polos made for your brand", description: "Refined branded polos for teams, workplaces, hospitality and client-facing events.", image: "/images/polo-tshirts.png", route: "/clothing-bags", search: { sub: "Polo T-Shirts" }, prices: [["Pique Polo", "Starting from ₹349"], ["Embroidery", "Available on request"]], gradient: "linear-gradient(135deg, hsl(220 52% 20%), hsl(359 66% 40%))" },
-  { title: "Business Shirts, Made Personal", label: "Polished teamwear", description: "Premium business shirts that help your team look coordinated, confident and ready to represent your brand.", image: "/images/dress-shirts.png", route: "/clothing-bags", search: { sub: "T-Shirts" }, prices: [["Formal Shirts", "Starting from ₹499"], ["Logo Embroidery", "Available on request"]], gradient: "linear-gradient(135deg, hsl(215 56% 18%), hsl(205 48% 32%))" },
-  { title: "Custom Caps That Top It Off", label: "Headwear with presence", description: "Structured, comfortable caps with bold print or a refined embroidered logo finish.", image: "/images/custom-caps.png", route: "/clothing-bags", search: { sub: "Caps" }, prices: [["Custom Caps", "Starting from ₹149"], ["Embroidery", "Premium stitched finish"]], gradient: "linear-gradient(135deg, hsl(186 56% 23%), hsl(215 70% 17%))" },
-  { title: "Bottles Your Brand Travels With", label: "Everyday brand visibility", description: "Useful everyday drinkware that keeps your logo visible from desk to commute.", image: "/images/water-bottles.png", route: "/drinkware", search: { sub: "Water Bottles" }, prices: [["Steel Bottles", "Starting from ₹399"], ["Bulk Gifting", "Made for every occasion"]], gradient: "linear-gradient(135deg, hsl(203 65% 27%), hsl(185 55% 24%))" },
-  { title: "Corporate Gifts Worth Keeping", label: "Give your brand more meaning", description: "Curated branded gifts that make thoughtful welcomes, thank-yous and milestones feel special.", image: "/images/photo-gifts.png", route: "/photo-gifts", search: { sub: "Gift Sets" }, prices: [["Gift Sets", "Starting from ₹599"], ["Welcome Kits", "Tailored to your team"]], gradient: "linear-gradient(135deg, hsl(34 80% 38%), hsl(359 60% 38%))" },
-  { title: "Custom Pens That Keep You Top of Mind", label: "A small detail with staying power", description: "Smart, useful branded pens for client meetings, welcome kits, conferences and daily work.", image: "/images/metal-pens.png", route: "/pens", search: { sub: "Metal Pens" }, prices: [["Metal Pens", "Starting from ₹49"], ["Corporate Orders", "Bulk rates available"]], gradient: "linear-gradient(135deg, hsl(255 38% 22%), hsl(328 49% 35%))" },
+  { title: "Premium Corporate Welcome Kits", label: "Onboarding Specialists", description: "Curated onboarding boxes with logo-printed diaries, bottles, keychains, and premium packaging.", image: "/images/welcome-kit.png", route: "/photo-gifts", search: { sub: "Welcome Kits" }, prices: [["Welcome Kit", "Starting from ₹1299"], ["Custom Packaging", "Premium boxes included"]], gradient: "linear-gradient(135deg, hsl(34 80% 38%), hsl(359 60% 38%))" },
+  { title: "High-Quality Custom T-Shirts", label: "T-Shirt Printing Specialists", description: "Soft cotton round-neck t-shirts customized with vibrant, durable prints for teams and fests.", image: "/images/custom-tshirts.png", route: "/clothing-bags", search: { sub: "T-Shirts" }, prices: [["Round Neck", "Starting from ₹299"], ["Bulk Pricing", "Available on request"]], gradient: "linear-gradient(135deg, hsl(359 75% 38%), hsl(215 80% 16%))" },
+  { title: "Smart Custom Polo T-Shirts", label: "Polo Shirt Specialists", description: "Refined branded polo shirts, perfect for team uniforms, client meetings, and brand presence.", image: "/images/polo-tshirts.png", route: "/clothing-bags", search: { sub: "Polo T-Shirts" }, prices: [["Pique Polo", "Starting from ₹349"], ["Embroidery", "Available on request"]], gradient: "linear-gradient(135deg, hsl(220 52% 20%), hsl(359 66% 40%))" },
+  { title: "Premium Custom Hoodies", label: "Fleece Hoodie Specialists", description: "Comfortable heavyweight fleece hoodies and sweatshirts with print or embroidery finishes.", image: "/images/classic-custom-hoodie-beige.png", route: "/clothing-bags", search: { sub: "Hoodies" }, prices: [["Fleece Hoodie", "Starting from ₹799"], ["Cozy Fit", "Unisex sizes XS-4XL"]], gradient: "linear-gradient(135deg, hsl(215 56% 18%), hsl(205 48% 32%))" },
+  { title: "Premium Custom Embroidery", label: "Embroidery Specialists", description: "High-density Japanese stitched logos on shirts, jackets, uniforms, and structured caps.", image: "/images/dress-shirts.png", route: "/clothing-bags", search: { sub: "Embroidery" }, prices: [["Logo Stitching", "Starting from ₹149"], ["Quality Thread", "Up to 12 colors"]], gradient: "linear-gradient(135deg, hsl(186 56% 23%), hsl(215 70% 17%))" },
+  { title: "High-Quality DTF Printing", label: "Direct-to-Film Specialists", description: "Vibrant, stretchable, and wash-resistant transfers for activewear, sports jerseys, and event tees.", image: "/images/banners.png", route: "/clothing-bags", search: { sub: "DTF Prints" }, prices: [["DTF Transfers", "Starting from ₹249"], ["Stretch Proof", "Vibrant colors"]], gradient: "linear-gradient(135deg, hsl(255 38% 22%), hsl(328 49% 35%))" },
+  { title: "Branded Corporate Gifts", label: "Corporate Gifting Division", description: "High-utility premium gifts like custom bottles, ceramic mugs, notebook sets, and laptop bags.", image: "/images/photo-gifts.png", route: "/photo-gifts", search: {}, prices: [["Gift Items", "Starting from ₹199"], ["Custom Sets", "Made for every occasion"]], gradient: "linear-gradient(135deg, hsl(203 65% 27%), hsl(185 55% 24%))" },
 ] as const;
-
-const WHY_CHOOSE = [
-  [Award, "Premium Printing", "Rich colour, crisp detail and dependable finishing."],
-  [Shirt, "Embroidery Available", "Premium stitched branding for apparel and caps."],
-  [Truck, "Fast Delivery", "Clear timelines and reliable dispatch."],
-  [BadgeCheck, "Bulk Discounts", "Better value for growing teams and events."],
-  [Building2, "Corporate Orders", "Dedicated support for recurring business needs."],
-  [Sparkles, "Best Quality Materials", "Products people are proud to use and wear."],
-] as const;
-
-const CATEGORIES = [
-  ["Round Neck T-Shirts", "/clothing-bags", { sub: "T-Shirts" }, "/images/custom-tshirts.png", Shirt],
-  ["Polo T-Shirts", "/clothing-bags", { sub: "Polo T-Shirts" }, "/images/polo-tshirts.png", Shirt],
-  ["Business Shirts", "/clothing-bags", { sub: "T-Shirts" }, "/images/dress-shirts.png", Shirt],
-  ["Caps", "/clothing-bags", { sub: "Caps" }, "/images/custom-caps.png", Trophy],
-  ["Bottles", "/drinkware", { sub: "Water Bottles" }, "/images/water-bottles.png", Sparkles],
-  ["Badges", "/labels-stickers", {}, "/images/bumper-stickers.png", BadgeCheck],
-  ["Pens", "/pens", { sub: "Metal Pens" }, "/images/metal-pens.png", PenLine],
-  ["Corporate Gifts", "/photo-gifts", { sub: "Gift Sets" }, "/images/photo-gifts.png", Gift],
-  ["Stamps", "/stamps", { sub: "Self Inking" }, "/images/self-inking-stamps.png", Printer],
-] as const;
-
-const INDUSTRIES = [
-  [GraduationCap, "Schools"], [GraduationCap, "Colleges"], [Building2, "Corporate Companies"], [UtensilsCrossed, "Restaurants"],
-  [CalendarDays, "Events"], [Hospital, "Hospitals"], [Rocket, "Startups"], [Trophy, "Sports Teams"],
-] as const;
-
-const TESTIMONIALS = [
-  { name: "Priya Menon", role: "HR Manager, Nashik", image: "/images/polo-tshirts.png", quote: "Our polos arrived looking sharp and consistent across every size. The proofing process was simple and delivery was right on time." },
-  { name: "Arjun Kulkarni", role: "College Event Lead", image: "/images/custom-tshirts.png", quote: "Suriyan Prints handled our tees and badges on a tight timeline. Great colour, clean printing and an incredibly responsive team." },
-  { name: "Meera Shah", role: "Founder, Studio M", image: "/images/photo-gifts.png", quote: "The corporate gifting quality felt genuinely premium. Our branded welcome kits made a lovely first impression." },
-];
-
-const FAQS = [
-  ["What is the minimum order quantity?", "You can begin with small quantities, while 10+ units unlock better bulk pricing. Share your size mix and artwork for an accurate quote."],
-  ["Can you help with artwork and logo placement?", "Yes. Send even a rough idea and our design team will help prepare artwork and send a proof before production."],
-  ["How quickly can my order be delivered?", "Timelines vary by product, quantity and finish. We confirm the production and delivery plan before your order is finalised."],
-  ["Do you offer embroidery?", "Yes. Embroidery is available for select apparel and caps, offering a durable, premium stitched logo finish."],
-];
-
-function SectionHeading({ eyebrow, title, text, centered = false, dark = false }: { eyebrow: string; title: string; text?: string; centered?: boolean; dark?: boolean }) {
-  return (
-    <div className={`${centered ? "text-center mx-auto" : ""} max-w-3xl`}>
-      <p className={`font-extrabold uppercase tracking-[0.2em] text-xs mb-3 ${dark ? "text-amber-400" : "text-primary"}`}>
-        {eyebrow}
-      </p>
-      <h2 className={`text-3xl md:text-5xl font-black tracking-tight leading-tight ${dark ? "text-white" : "text-foreground"}`}>
-        {title}
-      </h2>
-      {text ? (
-        <p className={`mt-4 text-base md:text-lg ${dark ? "text-white/80" : "text-muted-foreground"} leading-relaxed`}>
-          {text}
-        </p>
-      ) : null}
-    </div>
-  );
-}
 
 function PremiumHeroSection() {
   const [active, setActive] = useState(0);
@@ -120,6 +64,33 @@ function PremiumHeroSection() {
     }
   }, [active, paused, interacted]);
 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) {
+      handleUserInteraction(active + 1);
+    }
+    if (isRightSwipe) {
+      handleUserInteraction(active - 1);
+    }
+  };
+
   return (
     <section 
       id="home"
@@ -127,6 +98,9 @@ function PremiumHeroSection() {
       style={{ backgroundImage: slide.gradient }} 
       onMouseEnter={() => setPaused(true)} 
       onMouseLeave={() => setPaused(false)} 
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
       aria-label="Featured product carousel"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.18),transparent_60%)]" />
@@ -156,17 +130,23 @@ function PremiumHeroSection() {
                 to={slide.route === "/product/sports-jerseys" ? "/product/$slug" : (slide.route as any)}
                 params={slide.route === "/product/sports-jerseys" ? { slug: "sports-jerseys" } : undefined}
                 search={slide.search as Record<string, string>} 
-                className="btn-primary !bg-white !text-primary hover:!bg-white/90 shadow-lg hover:shadow-white/20 hover:-translate-y-0.5 transition-all duration-300 font-bold text-base px-8 py-4 rounded-xl"
+                className="btn-primary !bg-white !text-primary hover:!bg-white/90 shadow-lg hover:shadow-white/20 hover:-translate-y-0.5 transition-all duration-300 font-bold text-base px-6 py-3.5 rounded-xl"
               >
-                Configure Order <ArrowRight className="inline h-5 w-5 ml-2" />
+                Explore Products <ArrowRight className="inline h-4 w-4 ml-2" />
               </Link>
+              <a 
+                href="#quote"
+                className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/5 hover:bg-white/10 px-6 py-3.5 font-bold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5"
+              >
+                Get Quote
+              </a>
               <a 
                 href={whatsappUrl(`Hi Suriyan Prints! I want details about ${slide.title}.`)} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center rounded-xl border border-white/35 px-8 py-4 font-bold text-white hover:bg-white/10 transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#20ba56] text-white px-6 py-3.5 font-bold transition-all hover:-translate-y-0.5 shadow-md"
               >
-                <MessageCircle className="h-5 w-5 mr-2" /> WhatsApp Consultation
+                <MessageCircle className="h-4.5 w-4.5" /> WhatsApp Us
               </a>
             </div>
           </div>
@@ -214,467 +194,358 @@ function PremiumHeroSection() {
   );
 }
 
-const CATALOGUE_PRODUCTS = [
-  { slug: "welcome-kit", name: "Welcome Kit", price: 1299, image: "/images/welcome-kit.png" },
-  { slug: "custom-tshirts", name: "Custom T-shirt", price: 299, image: "/images/custom-tshirts.png" },
-  { slug: "polo-tshirts", name: "Custom Polo T-shirt", price: 349, image: "/images/polo-tshirts.png" },
-  { slug: "classic-custom-hoodie-beige", name: "Classic Custom Hoodie", price: 799, image: "/images/classic-custom-hoodie-beige.png" },
+const CATEGORIES = [
+  {
+    name: "Welcome Kits",
+    desc: "Complete corporate onboarding kits & custom boxes.",
+    img: "/images/welcome-kit.png",
+    to: "/photo-gifts",
+    search: { sub: "Welcome Kits" }
+  },
+  {
+    name: "Custom T-Shirts",
+    desc: "Premium round neck cotton t-shirts with durable prints.",
+    img: "/images/custom-tshirts.png",
+    to: "/clothing-bags",
+    search: { sub: "T-Shirts" }
+  },
+  {
+    name: "Polo T-Shirts",
+    desc: "Professional collared polo t-shirts with custom logos.",
+    img: "/images/polo-tshirts.png",
+    to: "/clothing-bags",
+    search: { sub: "Polo T-Shirts" }
+  },
+  {
+    name: "Hoodies & Jackets",
+    desc: "Heavyweight fleece hoodies with prints or premium stitching.",
+    img: "/images/classic-custom-hoodie-beige.png",
+    to: "/clothing-bags",
+    search: { sub: "Hoodies" }
+  },
+  {
+    name: "Embroidery Services",
+    desc: "High-density Japanese stitched logos for corporate apparel.",
+    img: "/images/dress-shirts.png",
+    to: "/clothing-bags",
+    search: { sub: "Embroidery" }
+  },
+  {
+    name: "DTF Printing",
+    desc: "Vibrant, stretchable direct-to-film prints for activewear.",
+    img: "/images/banners.png",
+    to: "/clothing-bags",
+    search: { sub: "DTF Prints" }
+  },
+  {
+    name: "Corporate Gifts",
+    desc: "High-end customer gifts, drinkware, and accessories.",
+    img: "/images/photo-gifts.png",
+    to: "/photo-gifts"
+  }
+];
+
+const GIFT_PRODUCTS = [
+  { name: "Custom Mugs", img: "/images/ceramic-mugs.png", to: "/drinkware", search: { sub: "Ceramic Mugs" } },
+  { name: "Steel Bottles", img: "/images/water-bottles.png", to: "/drinkware", search: { sub: "Water Bottles" } },
+  { name: "Premium Diaries", img: "/images/diaries.png", to: "/stationery", search: { sub: "Diaries" } },
+  { name: "Metallic Pens", img: "/images/metal-pens.png", to: "/pens", search: { sub: "Metal Pens" } },
+  { name: "Laptop Bags", img: "/images/backpacks.png", to: "/clothing-bags" },
+  { name: "Gift Boxes", img: "/images/welcome-kit.png", to: "/photo-gifts" },
+  { name: "Office Folders", img: "/images/folders.png", to: "/stationery", search: { sub: "Folders" } }
+];
+
+const TESTIMONIALS = [
+  { name: "Priya Menon", role: "HR Manager, Nashik", image: "/images/polo-tshirts.png", quote: "Our onboarding welcome kits arrived looking exceptionally premium. The custom printing on the diaries and bottles was flawless." },
+  { name: "Arjun Kulkarni", role: "College Event Lead", image: "/images/custom-tshirts.png", quote: "Ordered 250 custom t-shirts for our annual fest. The DTF print quality is incredibly sharp and wash-resistant." },
+  { name: "Meera Shah", role: "Founder, Studio M", image: "/images/photo-gifts.png", quote: "The logo embroidery on our corporate polo shirts is dense and clean. Exceptional customer support!" }
 ];
 
 function HomePage() {
   const navigate = useNavigate();
-  const [quoteData, setQuoteData] = useState({ name: "", company: "", email: "", phone: "", product: "Custom T-Shirts", details: "" });
-  const submitQuote = (event: React.FormEvent<HTMLFormElement>) => { 
-    event.preventDefault(); 
-    window.open(whatsappUrl(buildQuoteMessage(quoteData)), "_blank", "noopener,noreferrer"); 
+  const [quoteData, setQuoteData] = useState({ name: "", company: "", email: "", phone: "", product: "Welcome Kits", details: "" });
+  const submitQuote = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    window.open(whatsappUrl(buildQuoteMessage(quoteData)), "_blank", "noopener,noreferrer");
   };
 
   return (
-    <>
+    <div className="bg-background min-h-screen">
+      
       <PremiumHeroSection />
 
-      {/* PRODUCTS CATALOGUE */}
-      <section className="bg-white py-8 md:py-12 border-b border-border">
-        <div className="container-page">
-          <div className="flex justify-center mb-6 md:mb-8">
-            <Link 
-              to="/clothing-bags" 
-              className="text-[11px] font-black uppercase tracking-[0.25em] border-b-[1.5px] border-foreground pb-0.5 hover:text-primary hover:border-primary transition-all flex items-center gap-1.5"
-            >
-              Explore All <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
+      {/* 2. PRODUCT CATEGORIES */}
+      <section className="container-page py-16 md:py-24">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <span className="text-xs font-black uppercase tracking-[0.25em] text-primary block mb-2">Our Offerings</span>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">Shop by Merchandise Category</h2>
+          <p className="mt-4 text-sm md:text-base text-muted-foreground">Select a category below to customize. Designed for durability and brand consistency.</p>
+        </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3.5 gap-y-8 md:gap-x-6 md:gap-y-10">
-            {CATALOGUE_PRODUCTS.map((prod) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+          {CATEGORIES.map((cat, i) => (
+            <FadeIn key={cat.name} delay={i * 0.02}>
               <Link
-                key={prod.slug}
-                to="/product/$slug"
-                params={{ slug: prod.slug }}
-                className="group block"
+                to={cat.to as any}
+                search={cat.search as any}
+                className="group flex flex-col h-full rounded-3xl overflow-hidden border border-border bg-card shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1.5"
               >
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] md:rounded-[1.5rem] bg-muted shadow-sm">
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                   <img
-                    src={prod.image}
-                    alt={prod.name}
+                    src={cat.img}
+                    alt={cat.name}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="mt-3 px-0.5">
-                  <h3 className="font-extrabold text-foreground text-xs md:text-sm tracking-tight leading-tight">
-                    {prod.name}
-                  </h3>
-                  <div className="flex items-center justify-between mt-1">
-                    <span className="font-black text-[#111] text-xs md:text-sm">₹{prod.price}</span>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        addCartLine({ slug: prod.slug, qty: 1 });
-                        navigate({ to: "/cart" });
-                      }}
-                      className="h-8 w-8 md:h-9 md:w-9 rounded-xl bg-[#f5f5f5] hover:bg-[#e5e5e5] active:scale-95 transition-all flex items-center justify-center text-foreground shrink-0"
-                    >
-                      <ShoppingCart className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                    </button>
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-extrabold text-base text-foreground group-hover:text-primary transition-colors">
+                      {cat.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                      {cat.desc}
+                    </p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-border/50 flex items-center justify-between text-primary font-bold text-xs">
+                    <span>Explore Products</span>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
-            ))}
-          </div>
+            </FadeIn>
+          ))}
         </div>
       </section>
 
-      {/* DEDICATED SECTION: Embroidery Services */}
-      <section className="bg-surface border-b border-border overflow-hidden">
-        <div className="container-page py-20 md:py-28">
+      {/* 3. PREMIUM EMBROIDERY SECTION */}
+      <section className="bg-surface border-y border-border overflow-hidden">
+        <div className="container-page py-16 md:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeIn className="order-2 lg:order-1 relative mx-auto w-full max-w-lg">
-              <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-primary to-indigo-600 opacity-10 blur-2xl" />
-              <div className="relative rounded-[2rem] overflow-hidden border border-border bg-card p-3 shadow-card">
-                <img src="/images/polo-tshirts.png" alt="Embroidery Showcase" className="w-full aspect-video object-cover rounded-xl mb-4" />
-                <div className="p-4 bg-surface rounded-xl border border-border flex items-center justify-between">
-                  <div>
-                    <h5 className="text-sm font-bold">Premium Japanese Stitched Finish</h5>
-                    <p className="text-xs text-muted-foreground">Up to 10,000 stitches per logo for outstanding density.</p>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Premium Stitched</span>
+            
+            {/* Visual Gallery */}
+            <div className="grid grid-cols-2 gap-4 order-2 lg:order-1">
+              <div className="space-y-4">
+                <div className="rounded-3xl overflow-hidden shadow-md aspect-square bg-muted">
+                  <img src="/images/polo-tshirts.png" alt="Embroidered Polo Shirt" className="w-full h-full object-cover hover:scale-105 transition-all duration-500" />
+                </div>
+                <div className="rounded-3xl overflow-hidden shadow-md aspect-[3/4] bg-muted">
+                  <img src="/images/custom-caps.png" alt="Embroidered Caps" className="w-full h-full object-cover hover:scale-105 transition-all duration-500" />
                 </div>
               </div>
-            </FadeIn>
-            <FadeIn className="order-1 lg:order-2">
-              <SectionHeading 
-                eyebrow="Stitched Perfection" 
-                title="Premium Embroidery Services" 
-                text="Transform standard uniform apparel into premium corporate statements. Our professional multi-head embroidery machines provide rich, high-density stitched branding that lasts a lifetime."
-              />
-              <div className="space-y-4 mt-8">
-                <div className="flex items-start gap-3">
-                  <span className="h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
-                    <CheckCircle2 className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <span className="font-extrabold text-foreground text-base block">High Thread-Count Density</span>
-                    <span className="text-sm text-muted-foreground">Thick, textured stitching that stands out, perfect for polo shirts, heavy caps, jackets, and canvas bags.</span>
-                  </div>
+              <div className="space-y-4 pt-8">
+                <div className="rounded-3xl overflow-hidden shadow-md aspect-[3/4] bg-muted">
+                  <img src="/images/dress-shirts.png" alt="Embroidered Jackets & Shirts" className="w-full h-full object-cover hover:scale-105 transition-all duration-500" />
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
-                    <CheckCircle2 className="h-4 w-4" />
-                  </span>
+                <div className="rounded-3xl overflow-hidden shadow-md aspect-square bg-muted flex items-center justify-center bg-secondary text-white p-6 text-center">
                   <div>
-                    <span className="font-extrabold text-foreground text-base block">Up to 12 Colors per Design</span>
-                    <span className="text-sm text-muted-foreground">We handle complex multi-color emblems and crests using colorfast premium polyester threads.</span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="h-6 w-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
-                    <CheckCircle2 className="h-4 w-4" />
-                  </span>
-                  <div>
-                    <span className="font-extrabold text-foreground text-base block">Industrial Consistency</span>
-                    <span className="text-sm text-muted-foreground">Every stitch is digitally calibrated, ensuring your logo is identical on the first shirt and the thousandth.</span>
+                    <span className="text-xs uppercase tracking-widest font-black text-amber-400 block mb-2">Quality Standards</span>
+                    <p className="text-xs text-white/80 leading-relaxed">Multi-head machinery with colorfast premium threads up to 10k stitches.</p>
                   </div>
                 </div>
               </div>
-              <div className="mt-8">
-                <a href="#quote" className="btn-primary inline-flex items-center gap-2 font-bold px-8 py-3.5 rounded-xl hover:-translate-y-0.5 transition-all">
+            </div>
+
+            {/* Content Details */}
+            <div className="order-1 lg:order-2 space-y-6">
+              <span className="text-xs font-black uppercase tracking-[0.25em] text-primary block">Stitched Perfection</span>
+              <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">Premium Custom Embroidery</h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                High-quality logo embroidery for corporate apparel. Create a cohesive look across polo shirts, jackets, caps, and uniforms with durable, premium stitching.
+              </p>
+              
+              <div className="grid sm:grid-cols-2 gap-4 pt-2">
+                <div className="flex items-center gap-3">
+                  <span className="h-5 w-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-sm font-bold text-foreground">Polos, Jackets & Caps</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="h-5 w-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-sm font-bold text-foreground">Colorfast Polyester Threads</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="h-5 w-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-sm font-bold text-foreground">High Thread-Count Density</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="h-5 w-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="text-sm font-bold text-foreground">Digitally Calibrated Finish</span>
+                </div>
+              </div>
+
+              <div className="pt-4 flex gap-4">
+                <a href="#quote" className="btn-primary inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-xl hover:-translate-y-0.5 transition-all text-sm">
                   Inquire About Embroidery <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
-            </FadeIn>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* DEDICATED SECTION: Bulk Orders */}
-      <section id="bulk-orders" className="bg-gradient-to-br from-primary via-red-800 to-secondary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.1),transparent_50%)]" />
-        <div className="container-page py-20 md:py-28 relative z-10">
-          <FadeIn>
-            <SectionHeading 
-              eyebrow="Corporate & Enterprise" 
-              title="Seamless Bulk Merchandise Orders" 
-              text="Unlock maximum value with custom solutions scaled for organizations. Get volume-based discounts, premium material options, and a dedicated team handling logistics from design to delivery."
-              centered
-              dark
-            />
-          </FadeIn>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            <div className="bg-white/5 border border-white/15 rounded-3xl p-6 backdrop-blur-sm">
-              <span className="h-12 w-12 rounded-2xl bg-white/10 text-amber-300 flex items-center justify-center mb-4">
-                <BadgeCheck className="h-6 w-6" />
-              </span>
-              <h4 className="text-lg font-black mb-2">Volume-Tier Pricing</h4>
-              <p className="text-sm text-white/70 leading-relaxed">Save more on larger quantities. Enjoy deep price drops starting from orders of just 25 units up to thousands.</p>
-            </div>
-            <div className="bg-white/5 border border-white/15 rounded-3xl p-6 backdrop-blur-sm">
-              <span className="h-12 w-12 rounded-2xl bg-white/10 text-amber-300 flex items-center justify-center mb-4">
-                <Building2 className="h-6 w-6" />
-              </span>
-              <h4 className="text-lg font-black mb-2">Dedicated Account Managers</h4>
-              <p className="text-sm text-white/70 leading-relaxed">Direct support, real-time status updates, and custom invoicing for corporations, schools, and brands.</p>
-            </div>
-            <div className="bg-white/5 border border-white/15 rounded-3xl p-6 backdrop-blur-sm">
-              <span className="h-12 w-12 rounded-2xl bg-white/10 text-amber-300 flex items-center justify-center mb-4">
-                <Factory className="h-6 w-6" />
-              </span>
-              <h4 className="text-lg font-black mb-2">Physical Mockup Proofing</h4>
-              <p className="text-sm text-white/70 leading-relaxed">For large orders (100+ units), request a physical printed sample before final mass production starts.</p>
-            </div>
-          </div>
-
-          <div className="mt-12 rounded-3xl bg-white/10 border border-white/20 p-8 backdrop-blur-md max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-8 items-center justify-between">
-              <div>
-                <p className="text-amber-300 text-xs font-black uppercase tracking-widest mb-1">Bulk Program Benefits</p>
-                <h4 className="text-xl font-bold">Need customized gifting solutions or kits?</h4>
-                <p className="text-sm text-white/80 mt-2">Get free logistics coordination, premium packing options, and multi-location dispatch across India.</p>
-              </div>
-              <a href="#quote" className="btn-primary !bg-white !text-primary hover:!bg-white/95 shrink-0 px-8 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all">
-                Request Bulk Proposal <ArrowRight className="h-4.5 w-4.5 ml-2 inline" />
+      {/* 4. DTF PRINTING SECTION */}
+      <section className="container-page py-16 md:py-24">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+          
+          <div className="space-y-6">
+            <span className="text-xs font-black uppercase tracking-[0.25em] text-primary block">Vibrant & Flexible</span>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">High Quality DTF Printing</h2>
+            <p className="text-base text-muted-foreground leading-relaxed">
+              Vibrant direct-to-film prints perfect for colorful designs, sports team jerseys, activewear, and event round-neck t-shirts. Engineered to withstand heavy stretching and repeated washes without cracking or fading.
+            </p>
+            <div className="flex flex-wrap gap-4 pt-2">
+              <a href="#quote" className="btn-primary inline-flex items-center gap-2 font-bold px-6 py-3.5 rounded-xl hover:-translate-y-0.5 transition-all text-sm">
+                Get DTF Print Quote
+              </a>
+              <a
+                href={whatsappUrl("Hi Suriyan Prints! I want to print with DTF.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary px-6 py-3.5 font-bold text-sm text-primary hover:bg-primary/5 transition-all hover:-translate-y-0.5"
+              >
+                WhatsApp Specs
               </a>
             </div>
           </div>
+
+          {/* Process Visuals */}
+          <div className="grid grid-cols-3 gap-3">
+            <div className="rounded-3xl overflow-hidden aspect-[4/5] bg-muted shadow-sm col-span-2">
+              <img src="/images/custom-tshirts.png" alt="DTF Process T-Shirts" className="w-full h-full object-cover hover:scale-105 transition-all duration-500" />
+            </div>
+            <div className="space-y-3">
+              <div className="rounded-2xl overflow-hidden aspect-square bg-muted shadow-sm">
+                <img src="/images/sports-jerseys.png" alt="Sports Jerseys" className="w-full h-full object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden aspect-square bg-muted shadow-sm">
+                <img src="/images/banners.png" alt="Printed Banners" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* DEDICATED SECTION: Sports Team Printing */}
-      <section className="bg-gradient-to-b from-white to-surface border-b border-border overflow-hidden">
-        <div className="container-page py-20 md:py-28">
-          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
-            <FadeIn>
-              <SectionHeading 
-                eyebrow="Athletic & Teamwear" 
-                title="Professional Sports Team Printing" 
-                text="Engineered for high performance. Get custom-printed, moisture-wicking team wear for your club, academy, school, or corporate league. Durable prints that withstand sweat, stretch, and multiple washes."
-              />
-              
-              <div className="mt-8 grid grid-cols-2 gap-4">
-                {[
-                  "Cricket Jerseys", "Football Jerseys", "Volleyball Jerseys", "Basketball Jerseys",
-                  "Kabaddi Jerseys", "Badminton Jerseys", "Cycling Jerseys", "Marathon Event T-Shirts"
-                ].map((sport) => (
-                  <div key={sport} className="flex items-center gap-2 p-3.5 bg-card border border-border rounded-2xl shadow-sm hover:border-primary/30 transition-all duration-300">
-                    <span className="h-2 w-2 rounded-full bg-primary shrink-0" />
-                    <span className="font-extrabold text-sm text-foreground">{sport}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-10 space-y-3.5 border-t border-border pt-8">
-                <h4 className="text-sm uppercase tracking-widest text-primary font-bold">Premium Team Benefits</h4>
-                <div className="grid sm:grid-cols-2 gap-3 text-xs font-semibold text-muted-foreground">
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" /> Starting from ₹449</div>
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" /> Player Name & Number</div>
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" /> Team Logo Printing</div>
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" /> High-detail DTF Printing</div>
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" /> Optional Embroidery</div>
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" /> Bulk Team Discounts</div>
-                  <div className="flex items-center gap-2 col-span-2"><CheckCircle2 className="h-4.5 w-4.5 text-emerald-500" /> Fast Delivery Across India</div>
-                </div>
-              </div>
-
-              <div className="mt-10 flex flex-wrap gap-4">
-                <a 
-                  href={whatsappUrl("Hi Suriyan Prints! I want to design custom sports jerseys for my team.")} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn-primary inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-xl hover:-translate-y-0.5 transition-all text-sm"
-                >
-                  Design Your Jersey <ArrowRight className="h-4.5 w-4.5" />
-                </a>
-                <a 
-                  href="#quote" 
-                  className="inline-flex items-center rounded-xl border border-primary px-7 py-3.5 font-bold text-primary hover:bg-primary/5 transition-all hover:-translate-y-0.5 text-sm"
-                >
-                  Get Team Quote
-                </a>
-                <a 
-                  href={`tel:${SITE_CONTACT.phoneTel}`} 
-                  className="inline-flex items-center gap-2 rounded-xl border border-border px-5 py-3.5 font-bold text-muted-foreground hover:bg-surface transition-all text-sm"
-                >
-                  Contact Sales
-                </a>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2} className="relative mx-auto w-full max-w-md">
-              <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-emerald-500 to-primary opacity-15 blur-2xl" />
-              <div className="relative rounded-[2rem] bg-card border border-border p-6 shadow-card">
-                <img 
-                  src="/images/custom-tshirts.png" 
-                  alt="Sports Jersey Mockup" 
-                  className="w-full aspect-[4/3] object-cover rounded-2xl mb-6 border border-border"
-                />
-                <div className="p-4 bg-surface rounded-xl border border-border text-center">
-                  <span className="text-[10px] uppercase tracking-widest text-primary font-black block mb-1">Squad Special</span>
-                  <h5 className="font-bold text-base">Sweat-Wicking DryFit Fabric</h5>
-                  <p className="text-xs text-muted-foreground mt-1">Lightweight, stretchable, breathable fabric engineered specifically for active sports.</p>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* DEDICATED SECTION: Events Specialization */}
-      <section id="event-orders" className="bg-secondary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(255,255,255,0.08),transparent_60%)]" />
-        <div className="container-page py-20 md:py-28 relative z-10">
-          <FadeIn>
-            <SectionHeading 
-              centered
-              dark
-              eyebrow="Events Printing Division" 
-              title="Expert Printing for Every Gathering" 
-              text="From massive college fests to professional corporate expos and local charity runs. We provide customized apparel, badges, banners, and merchandise on tight timelines with express delivery options."
-            />
-          </FadeIn>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mt-16">
-            {[
-              { name: "College Fests", icon: GraduationCap, bg: "bg-white/5 hover:bg-primary/20" },
-              { name: "Cultural Events", icon: Palette, bg: "bg-white/5 hover:bg-amber-500/20" },
-              { name: "Sports Meets", icon: Trophy, bg: "bg-white/5 hover:bg-emerald-500/20" },
-              { name: "Marathons", icon: Sparkle, bg: "bg-white/5 hover:bg-indigo-500/20" },
-              { name: "Corporate Events", icon: Building2, bg: "bg-white/5 hover:bg-blue-500/20" },
-              { name: "School Annual Days", icon: Award, bg: "bg-white/5 hover:bg-rose-500/20" },
-              { name: "Conferences & Expos", icon: Layers, bg: "bg-white/5 hover:bg-teal-500/20" },
-              { name: "Political Campaigns", icon: Factory, bg: "bg-white/5 hover:bg-red-500/20" },
-              { name: "Charity Runs", icon: HeartHandshake, bg: "bg-white/5 hover:bg-violet-500/20" },
-              { name: "Family Reunions", icon: Gift, bg: "bg-white/5 hover:bg-orange-500/20" }
-            ].map((eventItem) => {
-              const IconComp = eventItem.icon;
-              return (
-                <FadeIn key={eventItem.name} className="h-full">
-                  <div className={`h-full rounded-2xl border border-white/10 ${eventItem.bg} p-6 text-center transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-center items-center`}>
-                    <span className="h-12 w-12 rounded-xl bg-white/10 text-white flex items-center justify-center mb-4 transition-transform duration-300">
-                      <IconComp className="h-6 w-6 text-amber-300" />
-                    </span>
-                    <h4 className="font-extrabold text-sm leading-snug">{eventItem.name}</h4>
-                  </div>
-                </FadeIn>
-              );
-            })}
+      {/* 5. WELCOME KITS */}
+      <section className="bg-surface border-y border-border">
+        <div className="container-page py-16 md:py-24">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <span className="text-xs font-black uppercase tracking-[0.25em] text-primary block mb-2">Onboarding & Milestones</span>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">Premium Welcome Kits</h2>
+            <p className="mt-4 text-sm md:text-base text-muted-foreground">The ultimate employee onboarding package. Fully customized presentation boxes filled with premium branded products.</p>
           </div>
 
-          <div className="mt-16 text-center">
-            <a 
-              href={whatsappUrl("Hi Suriyan Prints! I need custom event printing services.")} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn-primary inline-flex items-center gap-2 !bg-amber-400 !text-secondary hover:!bg-amber-300 font-bold px-8 py-4 rounded-xl transition-all"
-            >
-              <MessageCircle className="h-5 w-5" /> Consult Event Specialist
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+            {/* Box & Layout */}
+            <div className="bg-card border border-border rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted mb-4">
+                <img src="/images/welcome-kit.png" alt="Onboarding Box Mockup" className="w-full h-full object-cover" />
+              </div>
+              <h4 className="font-extrabold text-lg text-foreground">Welcome Gift Boxes</h4>
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">Elegant, heavyweight cardboard box structures with screen-printed company branding.</p>
+            </div>
+
+            {/* Apparel & Accessories */}
+            <div className="bg-card border border-border rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted mb-4">
+                <img src="/images/polo-tshirts.png" alt="Apparel & Accessories" className="w-full h-full object-cover" />
+              </div>
+              <h4 className="font-extrabold text-lg text-foreground">T-Shirts & Bottles</h4>
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">Include high-quality bio-washed t-shirts and laser-engraved double-walled steel bottles.</p>
+            </div>
+
+            {/* Stationery */}
+            <div className="bg-card border border-border rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted mb-4">
+                <img src="/images/diaries.png" alt="Notebooks & Diaries" className="w-full h-full object-cover" />
+              </div>
+              <h4 className="font-extrabold text-lg text-foreground">Diaries & ID Cards</h4>
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">Complete your pack with hardbound logo-embossed diaries, metallic pens, and premium lanyards.</p>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <a href="#quote" className="btn-primary inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl hover:-translate-y-0.5 transition-all text-sm">
+              Configure Welcome Kit <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
       </section>
 
-      {/* CATEGORIES GRID */}
-      <section className="container-page py-20 md:py-28">
-        <FadeIn>
-          <SectionHeading 
-            eyebrow="Explore the collections" 
-            title="Shop by Print Category" 
-            text="High-quality custom products engineered for brands, workspaces, gifting, and corporate giveaways."
-          />
-        </FadeIn>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-12">
-          {CATEGORIES.map(([name, route, search, image, Icon], i) => (
-            <FadeIn key={name} delay={i * 0.03}>
-              <Link 
-                to={route} 
-                search={search as Record<string, string>} 
-                className="group block rounded-3xl overflow-hidden border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-                  <img 
-                    src={image} 
-                    alt={name} 
-                    loading="lazy" 
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  />
-                  <span className="absolute top-4 left-4 h-10 w-10 rounded-2xl bg-white/95 text-primary shadow-sm inline-flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                </div>
-                <div className="p-5 flex items-center justify-between gap-2 bg-card">
-                  <h3 className="font-extrabold text-sm group-hover:text-primary transition-colors">{name}</h3>
-                  <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
-                </div>
-              </Link>
-            </FadeIn>
+      {/* 6. CORPORATE GIFTS */}
+      <section className="container-page py-16 md:py-24">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <span className="text-xs font-black uppercase tracking-[0.25em] text-primary block mb-2">Corporate Gifting</span>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">Branded Corporate Gifts</h2>
+          <p className="mt-4 text-sm md:text-base text-muted-foreground">Premium, high-utility gifts curated for clients, employee appreciation, and business events.</p>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+          {GIFT_PRODUCTS.map((prod) => (
+            <Link
+              key={prod.name}
+              to={prod.to as any}
+              search={prod.search as any}
+              className="group flex flex-col h-full rounded-2xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-card hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="relative aspect-square overflow-hidden bg-muted">
+                <img
+                  src={prod.img}
+                  alt={prod.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h4 className="font-extrabold text-xs text-foreground group-hover:text-primary transition-colors">
+                  {prod.name}
+                </h4>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
 
-      {/* WHY CHOOSE SURIYAN PRINTS */}
-      <section id="about" className="bg-surface border-y border-border">
-        <div className="container-page py-20 md:py-28">
-          <FadeIn>
-            <SectionHeading 
-              centered 
-              eyebrow="Why Choose Suriyan Prints" 
-              title="Print with confidence. Deliver with impact." 
-              text="A thoughtful blend of industrial grade quality, swift fulfillment, and personalized support."
-            />
-          </FadeIn>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-            {WHY_CHOOSE.map(([Icon, title, text], i) => (
-              <FadeIn key={title} delay={i * 0.04}>
-                <article className="h-full rounded-3xl border border-border bg-card p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover flex flex-col justify-between">
-                  <div>
-                    <span className="h-12 w-12 rounded-2xl bg-primary/10 text-primary inline-flex items-center justify-center mb-6">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <h3 className="font-extrabold text-lg">{title}</h3>
-                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{text}</p>
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 7. DEDICATED BULK ORDERS SECTION */}
+      <section id="bulk-orders" className="bg-secondary text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05),transparent_50%)]" />
+        <div className="container-page py-16 md:py-24 relative z-10 text-center max-w-4xl mx-auto">
+          <span className="text-xs font-black uppercase tracking-[0.25em] text-amber-400 block mb-3">Enterprise Programs</span>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight">Need Bulk Pricing?</h2>
+          <p className="mt-6 text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Contact us directly for the best corporate pricing. We supply high-end welcome kits and customized apparel to organizations nationwide.
+          </p>
+          <p className="text-amber-400 text-xs font-extrabold uppercase tracking-widest mt-4">
+            Bulk Discounts Available on Request
+          </p>
 
-      {/* CUSTOMER STORIES */}
-      <section className="container-page py-20 md:py-28">
-        <FadeIn>
-          <SectionHeading 
-            centered 
-            eyebrow="Customer Stories" 
-            title="Trusted for the details people notice" 
-            text="From college event coordinators to corporate teams, our customers count on SuriyanPrints to deliver a polished impression."
-          />
-        </FadeIn>
-        <div className="grid md:grid-cols-3 gap-6 mt-16">
-          {TESTIMONIALS.map((testimonial, i) => (
-            <FadeIn key={testimonial.name} delay={i * 0.05}>
-              <figure className="h-full rounded-3xl bg-card border border-border p-8 shadow-card flex flex-col justify-between">
-                <div>
-                  <div className="flex text-amber-500 mb-6">
-                    {Array.from({ length: 5 }, (_, star) => (
-                      <Star key={star} className="h-4.5 w-4.5 fill-current" />
-                    ))}
-                  </div>
-                  <blockquote className="text-sm leading-7 text-muted-foreground italic mb-6">
-                    “{testimonial.quote}”
-                  </blockquote>
-                </div>
-                <div className="flex items-center gap-3 border-t border-border pt-5">
-                  <img 
-                    src={testimonial.image} 
-                    alt="" 
-                    loading="lazy" 
-                    className="h-12 w-12 rounded-full object-cover border-2 border-primary/20" 
-                  />
-                  <div>
-                    <p className="font-black text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-muted-foreground font-semibold">{testimonial.role}</p>
-                  </div>
-                </div>
-              </figure>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
-
-      {/* WORKFLOW */}
-      <section className="bg-surface border-y border-border">
-        <div className="container-page py-20 md:py-28">
-          <FadeIn>
-            <SectionHeading 
-              centered 
-              eyebrow="Transparent Workflow" 
-              title="From Initial Idea to Your Doorstep" 
-            />
-          </FadeIn>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 mt-16 relative">
-            {[[Shirt, "Choose Product"], [Upload, "Upload Design"], [Factory, "We Print"], [CheckCircle2, "Quality Check"], [PackageCheck, "Delivered"]].map(([Icon, title], i) => (
-              <FadeIn key={title as string} delay={i * 0.05}>
-                <article className="relative rounded-3xl border border-border bg-card p-6 text-center shadow-card h-full flex flex-col justify-center items-center">
-                  <span className="absolute top-4 right-5 text-2xl font-black text-primary/10">0{i + 1}</span>
-                  <span className="h-14 w-14 rounded-full bg-primary/10 text-primary inline-flex items-center justify-center mb-4">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <p className="font-extrabold text-sm">{title as string}</p>
-                  {i < 4 ? (
-                    <ArrowRight className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-primary/40 z-10" />
-                  ) : null}
-                </article>
-              </FadeIn>
-            ))}
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="#quote" className="btn-primary !bg-white !text-primary hover:!bg-white/95 px-8 py-4 rounded-xl font-bold text-sm shadow-md transition-all">
+              Request Quote
+            </a>
+            <a
+              href={whatsappUrl("Hi Suriyan Prints! I want to inquire about bulk ordering custom merchandise.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 px-8 py-4 font-bold text-sm text-white transition-all"
+            >
+              <MessageCircle className="h-4.5 w-4.5" /> WhatsApp Now
+            </a>
           </div>
         </div>
       </section>
 
       {/* MARQUEE CLIENTS */}
-      <section className="overflow-hidden border-b border-border bg-secondary text-white">
+      <section className="overflow-hidden border-b border-border bg-footer text-white">
         <div className="container-page py-12">
           <p className="text-center text-xs uppercase tracking-[0.25em] font-extrabold text-white/50 mb-8">
             Trusted by businesses, colleges, and sports clubs nationwide
@@ -692,64 +563,39 @@ function HomePage() {
         </div>
       </section>
 
-      {/* INDUSTRIES */}
-      <section className="container-page py-20 md:py-28">
-        <FadeIn>
-          <SectionHeading 
-            centered 
-            eyebrow="Industries We Support" 
-            title="Practical Merchandise for Every Team" 
-            text="Whether coordinating high-end branding for corporate offices or supplying vibrant fests, we build options to suit your scale."
-          />
-        </FadeIn>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-16">
-          {INDUSTRIES.map(([Icon, name], i) => (
-            <FadeIn key={name} delay={i * 0.03}>
-              <article className="rounded-3xl border border-border bg-card p-6 text-center shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-300">
-                <Icon className="h-7 w-7 text-primary mx-auto" />
-                <p className="font-extrabold text-sm mt-4 text-foreground">{name}</p>
-              </article>
-            </FadeIn>
-          ))}
+      {/* CUSTOMER STORIES */}
+      <section className="container-page py-16 md:py-24">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <span className="text-xs font-black uppercase tracking-[0.25em] text-primary block mb-2">Success Stories</span>
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">What Corporate Clients Say</h2>
         </div>
-      </section>
 
-      {/* FAQ SECTION */}
-      <section className="container-page py-20 md:py-28 border-t border-border">
-        <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12">
-          <FadeIn>
-            <SectionHeading 
-              eyebrow="Frequently Asked Questions" 
-              title="Everything you need to know before you print." 
-              text="Have a custom order requirement or special printing request? Contact our support desk for personalized answers."
-            />
-            <a 
-              href={whatsappUrl("Hi Suriyan Prints! I have a question about a custom order.")} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="inline-flex items-center gap-2 bg-primary text-white font-bold rounded-xl px-6 py-3.5 mt-8 shadow-md hover:bg-primary/95 hover:-translate-y-0.5 transition-all"
-            >
-              <MessageCircle className="h-5 w-5" /> Chat on WhatsApp
-            </a>
-          </FadeIn>
-          <FadeIn delay={0.08}>
-            <div className="space-y-4">
-              {FAQS.map(([question, answer]) => (
-                <details 
-                  key={question} 
-                  className="group rounded-3xl border border-border bg-card px-6 py-5 shadow-card transition-all duration-300"
-                >
-                  <summary className="cursor-pointer list-none flex items-center justify-between gap-4 font-bold text-base text-foreground select-none">
-                    <span>{question}</span>
-                    <span className="text-primary text-2xl font-light transition-transform duration-300 group-open:rotate-45">+</span>
-                  </summary>
-                  <p className="mt-4 text-sm text-muted-foreground leading-7 border-t border-border/50 pt-3">
-                    {answer}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </FadeIn>
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {TESTIMONIALS.map((testimonial) => (
+            <figure key={testimonial.name} className="h-full rounded-3xl bg-card border border-border p-8 shadow-card flex flex-col justify-between">
+              <div>
+                <div className="flex text-amber-500 mb-6">
+                  {Array.from({ length: 5 }, (_, star) => (
+                    <Star key={star} className="h-4.5 w-4.5 fill-current" />
+                  ))}
+                </div>
+                <blockquote className="text-sm leading-7 text-muted-foreground italic mb-6">
+                  “{testimonial.quote}”
+                </blockquote>
+              </div>
+              <div className="flex items-center gap-3 border-t border-border/50 pt-5">
+                <img 
+                  src={testimonial.image} 
+                  alt="" 
+                  className="h-12 w-12 rounded-full object-cover border-2 border-primary/20" 
+                />
+                <div>
+                  <p className="font-black text-sm">{testimonial.name}</p>
+                  <p className="text-xs text-muted-foreground font-semibold">{testimonial.role}</p>
+                </div>
+              </div>
+            </figure>
+          ))}
         </div>
       </section>
 
@@ -860,19 +706,18 @@ function HomePage() {
               <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider">
                 Product Interested In
                 <select value={quoteData.product} onChange={(event) => setQuoteData((value) => ({ ...value, product: event.target.value }))} className="mt-1.5 w-full rounded-xl border border-input bg-white px-4 py-3 text-sm focus:outline-primary transition-all font-semibold">
+                  <option>Welcome Kits</option>
                   <option>Custom T-Shirts</option>
-                  <option>Custom Sports Jerseys</option>
-                  <option>Custom Bottles</option>
-                  <option>Custom Caps</option>
-                  <option>Custom Badges</option>
+                  <option>Polo T-Shirts</option>
+                  <option>Hoodies & Jackets</option>
+                  <option>Custom Embroidery</option>
+                  <option>DTF Printing</option>
                   <option>Corporate Gifts</option>
-                  <option>Custom Pens</option>
-                  <option>Custom Stamps</option>
                 </select>
               </label>
               <label className="block text-xs font-bold text-muted-foreground uppercase tracking-wider">
                 Message / Order Details
-                <textarea required rows={3} value={quoteData.details} onChange={(event) => setQuoteData((value) => ({ ...value, details: event.target.value }))} placeholder="E.g. 50x Round Neck Shirts, Front DTF print, deliver to Bangalore by August 15" className="mt-1.5 w-full rounded-xl border border-input px-4 py-3 text-sm focus:outline-primary transition-all font-semibold" />
+                <textarea required rows={3} value={quoteData.details} onChange={(event) => setQuoteData((value) => ({ ...value, details: event.target.value }))} placeholder="E.g. 50x Polo Shirts, Left chest Embroidery, deliver to Mumbai by September 1" className="mt-1.5 w-full rounded-xl border border-input px-4 py-3 text-sm focus:outline-primary transition-all font-semibold" />
               </label>
               <div className="pt-2 space-y-3">
                 <button type="submit" className="btn-primary w-full inline-flex justify-center items-center gap-2 py-4 rounded-xl shadow-lg hover:shadow-primary/20 transition-all font-bold text-base">
@@ -883,7 +728,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
-

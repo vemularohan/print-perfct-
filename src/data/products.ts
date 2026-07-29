@@ -30,27 +30,16 @@ export function getProductPricing(product: Product, qty: number) {
   }
   
   let discountPercent = 0;
+  if (qty >= 250) discountPercent = 15;
+  else if (qty >= 100) discountPercent = 12;
+  else if (qty >= 50) discountPercent = 10;
+  else if (qty >= 25) discountPercent = 8;
+  else if (qty >= 10) discountPercent = 5;
+  else discountPercent = 0;
   
-  if (isBulkProduct) {
-    const ratio = qty / baseQty;
-    if (ratio >= 10) discountPercent = 35;
-    else if (ratio >= 5) discountPercent = 25;
-    else if (ratio >= 2.5) discountPercent = 15;
-    else if (ratio >= 2) discountPercent = 10;
-    else if (ratio >= 1.5) discountPercent = 5;
-  } else {
-    if (qty >= 100) discountPercent = 40;
-    else if (qty >= 50) discountPercent = 30;
-    else if (qty >= 25) discountPercent = 25;
-    else if (qty >= 10) discountPercent = 20;
-    else if (qty >= 5) discountPercent = 15;
-    else if (qty >= 3) discountPercent = 10;
-    else if (qty >= 2) discountPercent = 5;
-  }
-  
-  const discountedUnitPrice = unitPrice * (1 - discountPercent / 100);
+  const discountedUnitPrice = Number((unitPrice * (1 - discountPercent / 100)).toFixed(2));
   const totalPrice = Math.round(discountedUnitPrice * qty);
-  const originalPrice = Math.round(unitPrice * qty * 1.4); // 40% markup
+  const originalPrice = Math.round(unitPrice * 1.4046822742474916 * qty);
   
   return {
     unitPrice: discountedUnitPrice,

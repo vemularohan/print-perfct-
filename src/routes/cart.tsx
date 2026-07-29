@@ -121,7 +121,7 @@ function CartPage() {
                         <span className="font-semibold block">₹{pricing.totalPrice.toLocaleString("en-IN")}</span>
                         {pricing.discountPercent > 0 ? (
                           <span className="text-[10px] text-success font-medium block">
-                            {pricing.discountPercent}% off (₹{Math.round(pricing.unitPrice)}/u)
+                            {pricing.discountPercent}% off (₹{pricing.unitPrice % 1 === 0 ? pricing.unitPrice : pricing.unitPrice.toFixed(2)}/u)
                           </span>
                         ) : null}
                       </div>

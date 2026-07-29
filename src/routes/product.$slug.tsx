@@ -153,7 +153,7 @@ function ProductDetail() {
             </div>
             {pricing.discountPercent > 0 && (
               <div className="text-sm text-success font-medium mt-1">
-                Includes {pricing.discountPercent}% bulk discount (₹{Math.round(pricing.unitPrice)} / unit){embroidery ? " + ₹100 embroidery / unit" : ""}
+                Includes {pricing.discountPercent}% bulk discount (₹{pricing.unitPrice % 1 === 0 ? pricing.unitPrice : pricing.unitPrice.toFixed(2)} / unit){embroidery ? " + ₹100 embroidery / unit" : ""}
               </div>
             )}
           </div>

@@ -128,6 +128,7 @@ export const CATEGORIES: Category[] = [
 
 export const NAV_TABS: NavTab[] = [
   { label: "Home", to: "/" },
+  { label: "Explore All", to: "/explore" },
   {
     label: "T-Shirts",
     to: "/clothing-bags",

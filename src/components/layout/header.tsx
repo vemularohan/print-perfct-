@@ -10,6 +10,7 @@ export function Header() {
   const [promoOpen, setPromoOpen] = useState(true);
   const [openTab, setOpenTab] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpandedTab, setMobileExpandedTab] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -193,14 +194,14 @@ export function Header() {
       </div>
 
       {/* Mobile drawer */}
-      <div className={cn("fixed inset-0 z-50 lg:hidden", mobileOpen ? "pointer-events-auto" : "pointer-events-none")}>
+      <div className={cn("fixed inset-0 z-50 lg:hidden transition-all duration-300", mobileOpen ? "visible pointer-events-auto" : "invisible pointer-events-none")}>
         <div
-          className={cn("absolute inset-0 bg-foreground/50 transition-opacity", mobileOpen ? "opacity-100" : "opacity-0")}
+          className={cn("absolute inset-0 bg-foreground/50 transition-opacity duration-300", mobileOpen ? "opacity-100" : "opacity-0")}
           onClick={() => setMobileOpen(false)}
         />
         <div
           className={cn(
-            "absolute inset-y-0 left-0 w-[85%] max-w-sm bg-background shadow-xl overflow-y-auto transition-transform",
+            "absolute inset-y-0 left-0 w-[85%] max-w-sm bg-background shadow-xl overflow-y-auto transition-transform duration-300",
             mobileOpen ? "translate-x-0" : "-translate-x-full",
           )}
         >
@@ -212,27 +213,46 @@ export function Header() {
           </div>
           <nav className="p-2">
             {NAV_TABS.map((tab) => {
-              const category = CATEGORIES.find((c) => c.route === tab.to);
+              const hasSub = tab.subCategories && tab.subCategories.length > 0;
+              const isExpanded = mobileExpandedTab === tab.label;
               return (
                 <div key={tab.label} className="border-b border-border">
-                  <Link
-                    to={tab.to === "/product/sports-jerseys" ? "/product/$slug" : (tab.to as any)}
-                    params={tab.to === "/product/sports-jerseys" ? { slug: "sports-jerseys" } : undefined}
-                    hash={tab.hash}
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-3 text-sm font-medium hover:bg-muted"
-                  >
-                    {tab.label}
-                  </Link>
-                  {category ? (
-                    <div className="pl-4 pb-2">
-                      {category.subCategories.map((s) => (
-                        <Link key={s} to={category.route as any} search={{ sub: s } as any} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      to={tab.to === "/product/sports-jerseys" ? "/product/$slug" : (tab.to as any)}
+                      params={tab.to === "/product/sports-jerseys" ? { slug: "sports-jerseys" } : undefined}
+                      hash={tab.hash}
+                      onClick={() => setMobileOpen(false)}
+                      className="flex-1 px-3 py-3 text-sm font-medium hover:bg-muted text-left"
+                    >
+                      {tab.label}
+                    </Link>
+                    {hasSub && (
+                      <button
+                        type="button"
+                        onClick={() => setMobileExpandedTab(isExpanded ? null : tab.label)}
+                        className="p-3 text-muted-foreground hover:text-foreground"
+                        aria-label={isExpanded ? "Collapse section" : "Expand section"}
+                      >
+                        <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", isExpanded && "rotate-180")} />
+                      </button>
+                    )}
+                  </div>
+                  {hasSub && (
+                    <div className={cn("pl-4 pb-2 transition-all duration-200 overflow-hidden", isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none")}>
+                      {tab.subCategories.map((s) => (
+                        <Link
+                          key={s}
+                          to={tab.to as any}
+                          search={{ sub: s } as any}
+                          onClick={() => setMobileOpen(false)}
+                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary"
+                        >
                           {s}
                         </Link>
                       ))}
                     </div>
-                  ) : null}
+                  )}
                 </div>
               );
             })}
