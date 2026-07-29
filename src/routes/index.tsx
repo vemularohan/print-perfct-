@@ -234,9 +234,9 @@ function HomePage() {
       <PremiumHeroSection />
 
       {/* PRODUCTS CATALOGUE */}
-      <section className="bg-white py-12 border-b border-border">
+      <section className="bg-white py-8 md:py-12 border-b border-border">
         <div className="container-page">
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-6 md:mb-8">
             <Link 
               to="/clothing-bags" 
               className="text-[11px] font-black uppercase tracking-[0.25em] border-b-[1.5px] border-foreground pb-0.5 hover:text-primary hover:border-primary transition-all flex items-center gap-1.5"
@@ -245,7 +245,7 @@ function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3.5 gap-y-8 md:gap-x-6 md:gap-y-10">
             {CATALOGUE_PRODUCTS.map((prod) => (
               <Link
                 key={prod.slug}
@@ -253,7 +253,7 @@ function HomePage() {
                 params={{ slug: prod.slug }}
                 className="group block"
               >
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-muted shadow-sm">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] md:rounded-[1.5rem] bg-muted shadow-sm">
                   <img
                     src={prod.image}
                     alt={prod.name}
@@ -261,12 +261,12 @@ function HomePage() {
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="mt-4 px-1">
-                  <h3 className="font-extrabold text-foreground text-sm tracking-tight leading-tight">
+                <div className="mt-3 px-0.5">
+                  <h3 className="font-extrabold text-foreground text-xs md:text-sm tracking-tight leading-tight">
                     {prod.name}
                   </h3>
                   <div className="flex items-center justify-between mt-1">
-                    <span className="font-extrabold text-[#111] text-sm">₹{prod.price}</span>
+                    <span className="font-black text-[#111] text-xs md:text-sm">₹{prod.price}</span>
                     <button
                       type="button"
                       onClick={(e) => {
@@ -275,196 +275,14 @@ function HomePage() {
                         addCartLine({ slug: prod.slug, qty: 1 });
                         navigate({ to: "/cart" });
                       }}
-                      className="h-9 w-9 rounded-xl bg-[#f5f5f5] hover:bg-[#e5e5e5] active:scale-95 transition-all flex items-center justify-center text-foreground"
+                      className="h-8 w-8 md:h-9 md:w-9 rounded-xl bg-[#f5f5f5] hover:bg-[#e5e5e5] active:scale-95 transition-all flex items-center justify-center text-foreground shrink-0"
                     >
-                      <ShoppingCart className="h-4 w-4" />
+                      <ShoppingCart className="h-3.5 w-3.5 md:h-4 md:w-4" />
                     </button>
                   </div>
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PRIMARY FOCUS: Apparel Lab / T-Shirt Showcase */}
-      <section className="bg-gradient-to-b from-surface via-white to-surface border-b border-border overflow-hidden">
-        <div className="container-page py-20 md:py-28">
-          <FadeIn>
-            <SectionHeading 
-              eyebrow="Primary Focus" 
-              title="Custom Apparel Built for Impact" 
-              text="From casual startup gear to high-grade corporate wear, our custom T-shirts and business shirts represent the pinnacle of fabric selection and print details."
-              centered
-            />
-          </FadeIn>
-
-          <div className="grid lg:grid-cols-3 gap-8 mt-16">
-            {/* Round Neck Card */}
-            <FadeIn delay={0.1}>
-              <div className="group relative rounded-3xl border border-border bg-card p-8 shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between h-full overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[5rem] transition-all group-hover:scale-110 duration-500" />
-                <div>
-                  <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-primary/10 text-primary mb-6 transition-transform group-hover:scale-110 duration-500">
-                    <Shirt className="h-6 w-6" />
-                  </span>
-                  <h3 className="text-2xl font-black mb-3">Round Neck T-Shirts</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    Our flagship product. Built with 180gsm super-combed cotton, pre-shrunk, and designed for ultimate wash durability.
-                  </p>
-                  <ul className="space-y-2.5 text-xs font-semibold text-muted-foreground mb-8">
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> 180 GSM Combed Cotton</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> High-detail DTF & Screen Printing</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> Bio-washed, zero shrinkage</li>
-                  </ul>
-                </div>
-                <div>
-                  <div className="border-t border-border pt-6 flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Prices from</p>
-                      <p className="text-xl font-extrabold text-primary">₹299 <span className="text-xs font-normal text-muted-foreground">/ unit</span></p>
-                    </div>
-                    <Link to="/clothing-bags" search={{ sub: "T-Shirts" }} className="inline-flex items-center gap-2 bg-primary text-white font-bold text-xs py-3 px-5 rounded-xl hover:bg-primary/90 transition-all">
-                      Customize <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Polo T-Shirts Card */}
-            <FadeIn delay={0.2}>
-              <div className="group relative rounded-3xl border border-border bg-card p-8 shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between h-full overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-[5rem] transition-all group-hover:scale-110 duration-500" />
-                <div>
-                  <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-secondary/10 text-secondary mb-6 transition-transform group-hover:scale-110 duration-500">
-                    <Award className="h-6 w-6" />
-                  </span>
-                  <h3 className="text-2xl font-black mb-3">Polo T-Shirts</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    Elevated casual wear. Crafted with premium 220gsm double-pique cotton, featuring options for precision embroidery or screen printing.
-                  </p>
-                  <ul className="space-y-2.5 text-xs font-semibold text-muted-foreground mb-8">
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> 220 GSM Rich Pique Fabric</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> Stitched logo embroidery options</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> Ribbed cuffs & double-needle collar</li>
-                  </ul>
-                </div>
-                <div>
-                  <div className="border-t border-border pt-6 flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Prices from</p>
-                      <p className="text-xl font-extrabold text-primary">₹349 <span className="text-xs font-normal text-muted-foreground">/ unit</span></p>
-                    </div>
-                    <Link to="/clothing-bags" search={{ sub: "Polo T-Shirts" }} className="inline-flex items-center gap-2 bg-primary text-white font-bold text-xs py-3 px-5 rounded-xl hover:bg-primary/90 transition-all">
-                      Customize <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Business Shirts Card */}
-            <FadeIn delay={0.3}>
-              <div className="group relative rounded-3xl border border-border bg-card p-8 shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between h-full overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-[5rem] transition-all group-hover:scale-110 duration-500" />
-                <div>
-                  <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-amber-500/10 text-amber-600 mb-6 transition-transform group-hover:scale-110 duration-500">
-                    <Building2 className="h-6 w-6" />
-                  </span>
-                  <h3 className="text-2xl font-black mb-3">Business Shirts</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    A tailored look for corporate environments. Structured premium cotton shirts that keep your brand presentation polished and sharp.
-                  </p>
-                  <ul className="space-y-2.5 text-xs font-semibold text-muted-foreground mb-8">
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> Premium Oxford & Poplin Cotton</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> Precision chest logo embroidery</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> Regular and slim fits available</li>
-                  </ul>
-                </div>
-                <div>
-                  <div className="border-t border-border pt-6 flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Prices from</p>
-                      <p className="text-xl font-extrabold text-primary">₹499 <span className="text-xs font-normal text-muted-foreground">/ unit</span></p>
-                    </div>
-                    <Link to="/clothing-bags" search={{ sub: "T-Shirts" }} className="inline-flex items-center gap-2 bg-primary text-white font-bold text-xs py-3 px-5 rounded-xl hover:bg-primary/90 transition-all">
-                      Customize <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* DEDICATED SECTION: DTF Printing Technology */}
-      <section className="bg-secondary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(251,191,36,0.1),transparent_50%)]" />
-        <div className="container-page py-20 md:py-28 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeIn>
-              <SectionHeading 
-                eyebrow="Advanced Printing Tech" 
-                title="Ultra-Vibrant DTF (Direct-to-Film) Printing" 
-                text="Experience unlimited colours, razor-sharp details, and elastic durability. DTF is the modern standard for printing on apparel, supporting highly complex gradients with zero peeling."
-                dark
-              />
-              <div className="grid sm:grid-cols-2 gap-6 mt-10">
-                <div className="flex gap-4">
-                  <span className="h-10 w-10 shrink-0 rounded-xl bg-white/10 text-amber-400 flex items-center justify-center">
-                    <Palette className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-lg">Unlimited Colour spectrum</h4>
-                    <p className="text-white/70 text-sm mt-1">Perfect for photos, complex logos, and smooth color gradients without setup fees.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <span className="h-10 w-10 shrink-0 rounded-xl bg-white/10 text-amber-400 flex items-center justify-center">
-                    <Layers className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-lg">Multi-Fabric Transfer</h4>
-                    <p className="text-white/70 text-sm mt-1">Works seamlessly on combed cotton, polyester, canvas, nylon, and heavy blends.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <span className="h-10 w-10 shrink-0 rounded-xl bg-white/10 text-amber-400 flex items-center justify-center">
-                    <ShieldCheck className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-lg">Elastic & Wash-Safe</h4>
-                    <p className="text-white/70 text-sm mt-1">Stretches with the fabric and withstands up to 60+ machine washes without fading.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <span className="h-10 w-10 shrink-0 rounded-xl bg-white/10 text-amber-400 flex items-center justify-center">
-                    <Cpu className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <h4 className="font-bold text-lg">High-Definition Precision</h4>
-                    <p className="text-white/70 text-sm mt-1">Prints clear text down to 4pt and reproduces intricate lines flawlessly.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8">
-                <a href="#quote" className="btn-primary inline-flex items-center gap-2 !bg-amber-400 !text-secondary hover:!bg-amber-300 font-bold px-8 py-3.5 rounded-xl transition-all">
-                  Request DTF Printing Quote <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.2} className="relative mx-auto w-full max-w-lg">
-              <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-amber-400 to-red-500 opacity-30 blur-2xl" />
-              <div className="relative rounded-[2rem] overflow-hidden border border-white/10 bg-white/5 p-3 backdrop-blur-md">
-                <img src="/images/custom-tshirts.png" alt="DTF Printing Showcase" className="w-full aspect-video object-cover rounded-xl mb-4" />
-                <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                  <p className="text-xs uppercase tracking-widest text-amber-400 font-bold mb-1">Production Standard</p>
-                  <p className="text-sm text-white/90">Premium water-based pigment inks, digital proofing matching Pantone standards, and automated heat tunnel fixation.</p>
-                </div>
-              </div>
-            </FadeIn>
           </div>
         </div>
       </section>
